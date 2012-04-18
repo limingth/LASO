@@ -7,6 +7,8 @@ title: 硬件平台
 
 本课程采用 广州友善之臂 的 Tiny210 开发板 作为实验开发平台。
 
+<img src=../figures/010101.jpg>
+
 需要参加课程的学员提前准备好以下环境：
 
 	a) 电源线 （5v）
@@ -22,9 +24,12 @@ title: 硬件平台
 	b) SD卡读卡器（自备，连接PC后格式化为 FAT32 分区，可以显示盘符）
 	c) USB线（盒内原装，连接PC-大口，开发板-小口）
 	
+
+<br>
+<br>
 	
 <div>
-<a href="chp1-0.html"> 上一节 </a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="chp1-2.html"> 下一节 </a> 	
+<a href="chp1-0.html"> 上一节 </a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html"> 下一节 </a> 	
 </div>
 
 <br>
