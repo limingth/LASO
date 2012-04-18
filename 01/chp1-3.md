@@ -33,10 +33,7 @@ title: 开发工具链
 
 	如果C程序，没有 main 函数，有警告，无error，能生成可执行文件
 
-	fromelf -bin hello.axf -o hello.bin
-
-	fromelf -c hello.axf -o hello.txt
-
+###1.3.4 C 链接器
 	armcc -c hello.c
 	armlink hello.o -o hello.axf
 	fromelf -bin hello.axf -o hello2.bin
@@ -50,13 +47,17 @@ title: 开发工具链
 	armasm start.s -o start.o
 	armlink start.o main.o -o demo.axf
 
+
+###1.3.5 二进制转换工具
+	fromelf -bin hello.axf -o hello.bin
+	fromelf -c hello.axf -o hello.txt
 	
 
 <br>
 <br>
 	
 <div>
-<a href="chp1-0.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html">下一节</a> 	
+<a href="chp1-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-4.html">下一节</a> 	
 </div>
 
 <br>
