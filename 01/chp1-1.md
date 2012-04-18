@@ -12,7 +12,6 @@ title: 硬件平台
 </div>
 
 
-
 需要参加课程的学员提前准备好以下环境：
 
 	a) 电源线 （5v）
@@ -33,7 +32,7 @@ title: 硬件平台
 <br>
 	
 <div>
-<a href="chp1-0.html"> 上一节 </a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html"> 下一节 </a> 	
+<a href="chp1-0.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html">下一节</a> 	
 </div>
 
 <br>
