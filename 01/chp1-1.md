@@ -21,4 +21,4 @@ layout: post
 	
 	
 
-<a href="chp1-0.html"> 上一节 </a> || <a href="chp1-2.html"> 下一节 </a> 	
+<a href="chp1-0.html"> 上一节 </a> - <a href="chp1-2.html"> 下一节 </a> 	
