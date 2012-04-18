@@ -19,3 +19,7 @@ layout: post
 	a) SD卡（自备，2G或者4G都可以）
 	b) SD卡读卡器（自备，连接PC后格式化为 FAT32 分区，可以显示盘符）
 	c) USB线（盒内原装，连接PC-大口，开发板-小口）
+	
+	
+
+<a href="chp1-0.html"> 上一节 </a> | <a href="chp1-2.html"> 下一节 </a> 	

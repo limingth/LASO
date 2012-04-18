@@ -27,3 +27,6 @@ layout: post
 	SD-CARD:	Data(4pin) + (4pin)
 	UART:		串口(通用异步收发器)
 	LCD：		40pin / 45pin (DATA-24pin)
+	
+	
+<a href="chp1-1.html"> 上一节 </a> | <a href="chp1-3.html"> 下一节 </a> 	
