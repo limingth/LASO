@@ -29,5 +29,14 @@ title: 硬件原理图
 	UART:		串口(通用异步收发器)
 	LCD：		40pin / 45pin (DATA-24pin)
 	
+		
+
+<br>
+<br>
 	
-<a href="chp1-1.html"> 上一节 </a> | <a href="chp1-3.html"> 下一节 </a> 	
+<div>
+<a href="chp1-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-3.html">下一节</a> 	
+</div>
+
+<br>
+<b
