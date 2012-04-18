@@ -8,7 +8,7 @@ title: 硬件平台
 本课程采用 广州友善之臂 的 Tiny210 开发板 作为实验开发平台。
 
 <div class="slide">
-  <img src="../figures/010101.jpg" />
+  <img src="../figures/010101.jpeg" />
 </div>
 
 
