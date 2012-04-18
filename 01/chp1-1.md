@@ -23,5 +23,6 @@ title: 硬件平台
 	c) USB线（盒内原装，连接PC-大口，开发板-小口）
 	
 	
-
-<a href="chp1-0.html"> 上一节 </a>  <a href="chp1-2.html"> 下一节 </a> 	
+<div>
+<a href="chp1-0.html"> 上一节 </a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="chp1-2.html"> 下一节 </a> 	
+</div>
