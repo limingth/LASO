@@ -1,56 +1,53 @@
 ---
 layout: post
-title: 开发工具链 
+title: GPIO 特殊功能寄存器
 ---
 
-##  开发工具链
+## GPIO 特殊功能寄存器
 
-### 工具位置
-	C:\Program Files\ARM\ADSv1_2\Bin
-	IDE.exe 	ADS IDE
-	axd.exe		AXD debugger
+### GPIO REGISTER DESCRIPTION
+	addr range: 0xE020_0000 - 0xE020_0F80
+	Reg1: GPA0CON: GPA0 + CON (control)
+		bit-field name: GPA0CON[7] -> GPA0_7
+		field width: [31:28]
+		GPA0_7 pin setting:
+			input: 0000
+			output: 0001
+			UART_1: 0010
+			INT: 1111
 
-### 命令行开发工具链 (GNU tools-chain)
-	armcc.exe	C compiler	(armcpp.exe) /gcc
-	armasm.exe	ASM Assembler /as
-	armlink.exe	Linker	/ld (collect2)
-	fromelf.exe	Bin-Utils (objdump/objcopy)
+	Reg2: GPA0DAT
+		bit-field: [7:0]
+		when input:	the pin state(high-level:1 low-level:0)
+		when output: set bit 1, output high-level
+		when functional: leave this pin to peripheral controller
 
-### C 编译器
-	armcc
-		-c 只编译，不连接
-		-D (定义)条件编译 (-DDEBUG)
-		-U (不定义)条件编译 (-DDEBUG)
-		-g 增加调试信息
-		-I 指定 include 路径(自己的)
-		-On 编译优化级别
-		-S 生成汇编
-		-o 指定生成文件名
-	arm-linux-gcc 交叉编译器的库 和 armcc 链接的库是否一样？
+	Reg3: GPA0PUD
+		Pull-up
+		Pull-down
+			00 = Pull-up/down disabled
+			01 = Pull-down enabled
+			10 = Pull-up enabled
+			11 = Reserved
 
-	armcc hello.c
-		默认会生成  __image.axf (a.out)
+	Reg4: GPA0_INT_CON
+		Sets the signaling method
+			000 = Low level
+			001 = High level
+			010 = Falling edge triggered
+			011 = Rising edge triggered
+			100 = Both edge triggered
+			101 ~ 111 = Reserved
 
-	如果C程序，没有 main 函数，有警告，无error，能生成可执行文件
+	Reg5: GPA0_INT_MASK
+		Enables Interrupt / Masked
+			0 = Enables Interrupt
+			1 = Masked
 
-### C 链接器
-	armcc -c hello.c
-	armlink hello.o -o hello.axf
-	fromelf -bin hello.axf -o hello2.bin
-
-	armlink -entry test hello.o -o hello3.axf
-	fromelf -c hello3.axf -o hello3.txt
-
-	armlink -ro-base 0x0 -entry test hello.o -o hello4.axf
-	fromelf -c hello4.axf -o hello4.txt
-
-	armasm start.s -o start.o
-	armlink start.o main.o -o demo.axf
-
-
-### 二进制转换工具
-	fromelf -bin hello.axf -o hello.bin
-	fromelf -c hello.axf -o hello.txt
+	Reg6: GPA0_INT_PEND
+		Interrupt occur status
+			0 = Not occur
+			1 = Occur interrupt
 	
 
 <br> <br> 
