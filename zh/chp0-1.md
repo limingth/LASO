@@ -12,30 +12,22 @@ title: 序言
 这本小册子就用60页左右的内容把开源技术书的几个方面介绍一下，使得你也能写出你的开源技术书。
 
 ### 背景 ###
-值得码字处。
+
+应怜屐齿印苍苔， 小扣柴扉久不开。 春色满园关不住， 一枝红杏出墙来。
 
 ### 适合的对象 ###
+
 主要针对爱分享的技术爱好者，也适合编辑老师们了解Geek是怎么玩书的。
 
-## 本书结构 ##
-
-  * 第一章：前言
-  * 第二章：基础知识和10分钟写出第一本开源书
-  * 第三章：Markdown格式
-  * 第四章：Latex简介
-  * 第五章：其他。。
-
-### 封面 ###
-因为自己爱好设计排版，就自己DIY了一下，封面是随手找到的矢量卡通图，并用Windows PowerPoint制作完成。
-
 ## 如何写作本书的 ##
-本书也是用敏捷的方式来写作的，我在Windows（希望早日能用MBA）用Notepad++编辑器用Markdown的文本文件写内容，然后在共享目录的虚拟机中，一个命令生成所有的其他格式（如PDF、mobi、epub）；Git是我使用的版本控制系统。
+安装 GIT
+ http://progit.org/book/zh/ch1-4.html
 
-本地测试通过后，我会提交到github中去，同时架设了持续集成服务器，会对我最新内容再次检测，自动产生电子书。
+如何用 markdown 写书
+ http://www.slideshare.net/larrycai/write-book-in-markdown
 
-这些你都可以在后面学到，啰嗦了。
+如何生成 pdf 版本
+ https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md
 
 ## 致谢 ##
-特别感谢...。
-
-感谢..对本书做了早期的审阅。
+peter wang, chunzi, larrycaiyu ...
