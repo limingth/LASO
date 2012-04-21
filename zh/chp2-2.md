@@ -32,4 +32,4 @@ title: 硬件原理图
 		
 
 <br> <br> 
-<div> <a href="chp1-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-3.html">下一节</a> </div> <br> <br>
+<div> <a href="chp2-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp2-3.html">下一节</a> </div> <br> <br>
