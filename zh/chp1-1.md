@@ -26,4 +26,4 @@ title: 硬件平台
 	
 
 <br> <br> 
-<div> <a href="chp1-0.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html">下一节</a> </div> <br> <br>
+<div> <a href="chp0-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html">下一节</a> </div> <br> <br>
