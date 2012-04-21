@@ -3,20 +3,20 @@ layout: post
 title: 开发工具链 
 ---
 
-## 1.3 开发工具链
+##  开发工具链
 
-###1.3.1 工具位置
+### 工具位置
 	C:\Program Files\ARM\ADSv1_2\Bin
 	IDE.exe 	ADS IDE
 	axd.exe		AXD debugger
 
-###1.3.2 命令行开发工具链 (GNU tools-chain)
+### 命令行开发工具链 (GNU tools-chain)
 	armcc.exe	C compiler	(armcpp.exe) /gcc
 	armasm.exe	ASM Assembler /as
 	armlink.exe	Linker	/ld (collect2)
 	fromelf.exe	Bin-Utils (objdump/objcopy)
 
-###1.3.3 C 编译器
+### C 编译器
 	armcc
 		-c 只编译，不连接
 		-D (定义)条件编译 (-DDEBUG)
@@ -33,7 +33,7 @@ title: 开发工具链
 
 	如果C程序，没有 main 函数，有警告，无error，能生成可执行文件
 
-###1.3.4 C 链接器
+### C 链接器
 	armcc -c hello.c
 	armlink hello.o -o hello.axf
 	fromelf -bin hello.axf -o hello2.bin
@@ -48,17 +48,10 @@ title: 开发工具链
 	armlink start.o main.o -o demo.axf
 
 
-###1.3.5 二进制转换工具
+### 二进制转换工具
 	fromelf -bin hello.axf -o hello.bin
 	fromelf -c hello.axf -o hello.txt
 	
 
-<br>
-<br>
-	
-<div>
-<a href="chp1-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-4.html">下一节</a> 	
-</div>
-
-<br>
-<br>
+<br> <br> 
+<div> <a href="chp0-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-2.html">下一节</a> </div> <br> <br>
