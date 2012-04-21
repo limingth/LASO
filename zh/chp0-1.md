@@ -20,14 +20,14 @@ title: 序言
 主要针对爱分享的技术爱好者，也适合编辑老师们了解Geek是怎么玩书的。
 
 ## 如何写作本书的 ##
-安装 GIT
- http://progit.org/book/zh/ch1-4.html
+*安装 GIT*
+ <http://progit.org/book/zh/ch1-4.html>
 
-如何用 markdown 写书
- http://www.slideshare.net/larrycai/write-book-in-markdown
+*如何用 markdown 写书*
+ <http://www.slideshare.net/larrycai/write-book-in-markdown>
 
-如何生成 pdf 版本
- https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md
+*如何生成 pdf 版本*
+ <https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
 
 ## 致谢 ##
 peter wang, chunzi, larrycaiyu ...
