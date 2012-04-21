@@ -31,3 +31,7 @@ title: 序言
 
 ## 致谢 ##
 peter wang, chunzi, larrycaiyu ...
+
+
+<br> <br> 
+<div> <a href="../index.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-1.html">下一节</a> </div> <br> <br>
