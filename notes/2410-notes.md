@@ -3,939 +3,939 @@ layout: post
 title: 2410 dev notes
 ---
 
-ÎÒµÄÓÊÏä limingth@akaedu.org
-
-Day1: section1: ¿ÎÌÃµ÷²é
-bootloader ÏîÄ¿ÄÚÈİ
-1-LED		*
-2-UART		*
-3-stdio		#
-4-printf	#
-5-shell		#
-6-command	#
-7-loader	#
-8-xmodem	*
-9-clock		*
-10-sdram	*
-11-flash	*
-
-CÓïÑÔ²âÊÔ
-1¡¢Ğ´³ö main º¯ÊıÔ­ĞÍ
-int main(int argc, char * argv[]);
-
-2¡¢Ğ´³ö printf º¯ÊıÔ­ĞÍ
-int printf(const char *, ...);
-
-3¡¢Ğ´³öÒ»¸öº¯ÊıÔ­ĞÍ£¬Íê³ÉÊı×Öµ½×Ö·û´®µÄ×ª»»
-char * itoa(int num, char * buf);
-char * gets(char * buf);
-
-4¡¢Ğ´³öÒ»¸öº¯ÊıÔ­ĞÍ£¬Íê³É×Ö·û´®µ½Êı×ÖµÄ×ª»»
-int atoi(const char *);
-
-5¡¢Ğ´³ö2¸öº¯ÊıÔ­ĞÍ£¬Íê³É×Ö·û´®µÄ¿½±´ºÍ±È½Ï
-char * strcpy(char * dst, const char * src);
-int strcmp(const char * s1, const char * s2);
-
-ÏîÄ¿·Ö×é
-    ×é³¤	×éÔ±	 	
-1×é ¹ùÏşĞÂ	¿ÂºÆ	ÁºÅô³Ì
-2×é ¹ùÁ¢Áú	°¬³¯Óî	Óİ¸£ÖÇ	»ÆÒ«·æ
-3×é ÕÅÀû	ÁõÑ©è´	¹±ĞË	»Æº£Åô	Âí³çÖÇ
-4×é ãÆÈØÈØ	ÁõÓñ
-
-1¡¢×éÔ±µÄÄÜÁ¦ÌØ³¤
-Ó²¼şÖªÊ¶£¬ARM´¦ÀíÆ÷ÁË½â£¬Ó¢ÎÄÄÜÁ¦£¬×éÖ¯±í´ïÄÜÁ¦
-
-2¡¢Ğ¡×éµÄÑ§Ï°Ä¿±ê
-Ï£ÍûÔÚÏîÄ¿ÖĞÑ§Ï°µ½ÄÄĞ©ÖªÊ¶£¬ÕÆÎÕÄÄĞ©¼¼Êõ
-
-Day1: section2: Bootloader ÏîÄ¿¿ªÌâ
-Ò»¡¢ÏîÄ¿±³¾°
-bootloader ÏîÄ¿µÄ¼¼ÊõĞèÇó (www.zhaopin.com)
-ÎÊÌâ£ºÄãÎ´À´Ïë½øÈëÄÄ¸öĞĞÒµ¹¤×÷£¿
-ĞĞÒµ£ºÏû·ÑÀàµç×Ó¡¢Æû³µµç×Ó¡¢Ò½ÁÆµç×Ó¡¢µçĞÅ
-°²È«°²·À¡¢ÖÇÄÜ¼Ò¾Ó¡¢µç×ÓÉÌÎñ¡¢»úÆ÷ÈË¡¢Èí¼şÍâ°ü
-
-¶ş¡¢ÏîÄ¿Ä¿±ê
-ÎÊÌâ£ºÈçºÎÍê³ÉÊµÏÖÒ»¸öbootloader£¬ÔõÑùÆô¶¯Linux£¿
-Ë¼¿¼£ºÏîÄ¿µÄ¿ª·¢Á÷³Ì
-1¡¢×¼±¸¹¤×÷
-»·¾³µÄ´î½¨£ºÓ²¼ş Èí¼ş
-Ó²¼ş£ºakae2440/2410
-Èí¼ş£ºads 1.2
-
-2¡¢Àï³Ì±®£¨¹Ø¼üÂ·¾¶£©
-1) Ó²¼şÊÇºÃµÄ
-2) ÄÜµãµÆÁË£¨×Ô¼ºĞ´µÄ³ÌĞò£© +LED, +GPIO
-3) ÄÜÊä³öÁË +UART
-4) ÄÜ½»»¥ÁË +SHELL
-5) ÄÜÃüÁîÁË +COMMAND
-6) ÄÜÏÂÔØÁË +LOADER
-------------------- »ù±¾µÄbootloader
-7) ÅÜµÃ¸ü¿ìÁË +CLOCK
-8) ÄÚ´æ¸ü´óÁË +SDRAM
-9) ÄÜ±£´æ¹Ì»¯ÁË +FLASH
-10) ÄÜ×Ô¼ºÆô¶¯ +AUTORUN
-------------------- ¼Óµç bootloader -> app ×ÔÆô¶¯
-11) ÄÜÆô¶¯linuxÄÚºËÁË£¬¿´µ½ÄÚºË´òÓ¡Êä³öÁË +KERNEL
-12) ÄÜ¼ÓÔØ¸ùÎÄ¼şÏµÍ³£¬½øÈëµ½ shell ÌáÊ¾·ûÏÂÁË +ROOTFS
-13) ÄÜ¹»Í¨¹ıÍøÂç½»»¥ÁË +NET
--------------------
-
-Day1: section3: »·¾³´î½¨
-ÍøÂç³©Í¨
-ÕÆÎÕÃüÁî cmd, ping, ipconfig, path, 
-c:\windows;c:\windows\system32
-·ÃÎÊ¹²Ïí
-\\192.168.0.24
-
-tools ¹¤¾ßÈí¼ş
-1) ADS1.2 ¿ª·¢Ì×¼ş £¨armcc ÃüÁîĞĞ£©
-2) FoxitReader ÔÄ¶ÁÆ÷ £¨Í¼ĞÎ±ê×¢¹¤¾ß£©
-3) Ultraedit ±à¼­Æ÷ £¨Ìí¼ÓÓÒ¼üÖ§³Ö£¬CTRL+h£©
-
-resource Ïà¹Ø×ÊÁÏ
-Ğ¾Æ¬Êı¾İÊÖ²á
-¿ª·¢°åµÄÓ²¼şÔ­ÀíÍ¼
-
-Day1: section4: Ó²¼ş¼ì²â
-µçÔ´£¬H-jtag dection cpu: ARM920T
-²¢¿Ú£º2ÖÖ 0x378(LPT), 0xDE00 (PCI-LPT)
-
-NandFlash ·ÖÇø
-0x00000000-0x00020000 : "vivi"
-0x00020000-0x00030000 : "param"
-0x00030000-0x001f0000 : "kernel"
-0x00200000-0x04000000 : "root"
-
-vivi (bootloader): 0x20000 = 128K 
-1block = 32page = 512byte = 0.5K = 16K
-128K = 16K * 8block
-
-kernel (ÄÚºË): 0x30000 = 192K = 12block
-size = 0x1c0000 = 128K*14 = 112blocks => 124block
-
-rootfs (ÎÄ¼şÏµÍ³): 0x200000 = 128bock
-
-MC2410E DEVELOP KIT
-
-VIVI version 0.1.4 (root@Rhvd) (gcc version 2.95.2 20000516 (release) [Rebel.com]) #0.1.4 Thu May 4 00:58:37 CST 2006
-MMU table base address = 0x33DFC000
-Succeed memory mapping.
-NAND device: Manufacture ID: 0xec, Chip ID: 0x76 (Samsung K9D1208V0M)
-Found saved vivi parameters.
-CS8900 - type: 630e, rev: a00
-CS8900 - status: ad6 (EEPROM present)
-Setting MAC address...
-Display format changed to VGA 640X480 mode
-Press Return to start the LINUX now, any other key for vivi
-type "help" for help.
-vivi> 
-vivi> help
-
-Day1: section5: ¿ª·¢Á÷³Ì
-ADS ÏîÄ¿ ¹¤³ÌÎÄ¼ş .mcp (.prj)
-AXD µ÷ÊÔ ARMulator.dll Èí¼ş·ÂÕæ RDI (Remote Debug Interface)
-ARM ¿ÉÖ´ĞĞÎÄ¼ş .axf (.exe .elf)
-
-ÈçºÎÔËĞĞ¿ª·¢°åÊä³ö³ÌĞò
-´®¿Ú·¢ËÍ¼Ä´æÆ÷µØÖ·  0x50000020 
-ĞŞ¸Ä link ²ÎÊı -ro-base 0x0
-ĞŞ¸Ä link ²ÎÊı -entry __main (main -> __main)s
-
-
-Day2: section1: ´®¿ÚÇı¶¯Ô­Àí
-Ó²¼şÁ¬½Ó¹ØÏµ£º´®¿Ú <--> S3c2410 cpu
-×¨ÒµÊõÓï£ºÓ²¼şÔ­ÀíÍ¼ (pdf)
-´®¿ÚÓ²¼ş»ù´¡ÖªÊ¶£º
-1) DB9 9Õë
-2) ÆäÖĞ pin2(TxD), pin3(RxD), pin5(GND) ÓĞÓÃ
-3) Max3232 µçÆ½×ª»»Ğ¾Æ¬ (TTLµçÆ½(0-5v)->RS-232µçÆ½(-15v->+15v
-´Óµ×°åºÍºËĞÄ°åÔ­ÀíÍ¼²é¿´¿ÉÖª 
-TxD -> K15/GPH2
-RxD -> K17/GPH3
-------------------------------------
-×¨ÒµÊõÓï£ºĞ¾Æ¬Êı¾İÊÖ²á (DataSheet)
-S3C2410.pdf  
-FBGA ·â×° Pin Number/Pin Name
-UART ´®¿ÚµÄÒı½Å½Ó¿Ú - TxD/RxD nCTS/nRTS UEXTCLK
-×¨ÒµÊõÓï£ºÒı½Å¹¦ÄÜ¸´ÓÃ (Selectable Pin Functions)
-GPH2 (GPHCON) 0x56000070 
-GPH2 [5:4] 	00 = Input     01 = Output
-		10 = TXD0   11 = Reserved
-------------------------------------
-
-Day2: section2: ´®¿ÚÇı¶¯Ô­Àí2
-SoCÄÚ²¿¿ØÖÆÆ÷ (ÀïÃæÓĞÊ²Ã´£¿ ×îÖØÒªµÄ10¸ö)
-ARM920T ÄÚºË
-	Processor Core, CP15, MMU, CACHE, AMBA BUS
-BUS ×ÜÏß 
-	AHB BUS, APB BUS
-Controllers ¿ØÖÆÆ÷
-	CLOCK, Power, Mem controller, NandFlash, 
-	Interrupt, Timer, DMA, UART, GPIO
+# è¯¾ç¨‹å®‰æ’
 	
-0x1000 = 4K
-0x100000 = 1M
-1G = 0x40000000
-
-UART ¿ØÖÆÆ÷Çı¶¯¹¤×÷Ô­Àí
-×¨ÒµÊõÓï£ºÌØÊâ¹¦ÄÜ¼Ä´æÆ÷SFR (Special Function Reg)	
-µØÖ··¶Î§  (0x48000000 - 0x5A000040)
-		len = 0x12000000 = 256M
-Õ¼ÓÃ´æ´¢£º 4byte * 300 = 1K
-
-´®¿ÚµÄÌØÊâ¹¦ÄÜ¼Ä´æÆ÷
-¿ØÖÆ¼Ä´æÆ÷ W
-×´Ì¬¼Ä´æÆ÷ R
-Êı¾İ¼Ä´æÆ÷ R/W
-
-Day2: section3: ´®¿ÚÇı¶¯Ô­Àí3
-´®¿Ú¿ØÖÆÆ÷ UART Controller µÄ±à³Ì
-×¨ÒµÊõÓï£ºÊ±ĞòÍ¼ (Timing Diagram)
-´®¿ÚµÄ·¢ËÍÊ±Ğò
-1) ¿ÕÏĞ×´Ì¬ '1'
-2) ÆğÊ¼Î» 1bit  1->0   (Á¬Ğø16clock)
-3) Êı¾İÎ» 8bits/7bits/6bits/5bits  (²é¿´7,8,9clock)
-4) Ğ£ÑéÎ» none
-5) Í£Ö¹Î» 1bit/1.5bit/2bits '1'	
-
-UART Block Diagram (ÄÚ²¿½á¹¹¿òÍ¼)
-ÖØÒª×é³É£ºTransmitter/Receiver (Buffer&Shifter), 
-Control Unit, Baud Generator, Clock Source
-DataBus, AddrBus, UEXTCLK 
-
-UART SFRs
-¼Ä´æÆ÷±à³Ì
-
-
-Day2: section4: ´®¿Ú¼Ä´æÆ÷ÅäÖÃ
-vivi> dump 0x50000000 0x40
-50000000: 03 00 00 00 45 02 00 00-00 00 00 00 00 00 00 00 | ....E...........
-50000010: 02 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
-50000020: 00 00 00 00 0D 00 00 00-1A 00 00 00 00 00 00 00 | ................
-50000030: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
-
-GPHCON: GPH4, GPH5 (Txd/Rxd)
-ULCON: 	8bit(3)
-UCON:	PCLK, polling mode 0101(5)
-UBRDIV:	50M/(115200*16)-1 = 26 (0x1A)
-UTXH:  	'h'
-
-×Ü½á£º´®¿ÚÇı¶¯¹Ø¼ü²ÎÊı £¨±ØÒªÌõ¼ş£©
-1¡¢ÉèÖÃÏà¹ØÒı½ÅµÄ¹¦ÄÜ¸´ÓÃ
-2¡¢Êı¾İÎ» 8bit	
-3¡¢ÆæÅ¼Ğ£ÑéÎ» none 
-4¡¢Í£Ö¹Î» 1bit
-5¡¢Á÷¿ØÖÆ none
-6¡¢²¨ÌØÂÊ 115200
-7¡¢·¢ËÍÊ¹ÄÜ/½ÓÊÕÊ¹ÄÜ
-8¡¢Ê±ÖÓÔ´ PCLK (vivi 50Mhz)
-9¡¢¹¤×÷·½Ê½ polling/interrupt  (DMA)
-
-Day2: section5: ´®¿ÚÇı¶¯±à³ÌÊµÏÖ
-ÈÎÎñÒªÇó£ºÊµÏÖUART1µÄÊä³ö "hello, world" (ÎŞÏŞ´Î)
-
-¿Îºó×÷Òµ£º
-1¡¢ÊµÏÖ´®¿ÚµÄÏà¹Ø½Ó¿Ú,ÒªÇó±àÂë¹æ·¶,Ñ§»áÓÃºêºÍÎ»²Ù×÷(~,|,&)
-void uart_init()
-void uart_putchar(char c);
-char uart_getchar(void);
-
-2¡¢»ùÓÚ´®¿ÚµÄ uart_put/getchar£¬Íê³ÉÒÔÏÂ stdio ½Ó¿Ú
-int puts(char *);
-char * gets(char *);
-
-3¡¢Íê³É printf ¸ñÊ½»¯´òÓ¡Êä³ö£¬ÒªÇóÖ§³Ö%c,%s,%d,%x
-printf("%c, %s, %d, %x\n", 'a', "hello", 100, 100);
-
-day3: section 1: ±ê×¼¿âµÄÊµÏÖ
-#include <stdio.h>
-/usr/include/stdio.h 	-Isubdir
-ADS°²×°Ä¿Â¼ÏÂÕÒ
-putchar
-	int putchar(int c);
-getchar
-	int getchar(void);
-puts
-	int puts(const char * s);
-gets
-	char *gets(char * s);
-printf
+	Day1: section1: è¯¾å ‚è°ƒæŸ¥
+	bootloader é¡¹ç›®å†…å®¹
+	1-LED		*
+	2-UART		*
+	3-stdio		#
+	4-printf	#
+	5-shell		#
+	6-command	#
+	7-loader	#
+	8-xmodem	*
+	9-clock		*
+	10-sdram	*
+	11-flash	*
+	
+	Cè¯­è¨€æµ‹è¯•
+	1ã€å†™å‡º main å‡½æ•°åŸå‹
+	int main(int argc, char * argv[]);
+	
+	2ã€å†™å‡º printf å‡½æ•°åŸå‹
+	int printf(const char *, ...);
+	
+	3ã€å†™å‡ºä¸€ä¸ªå‡½æ•°åŸå‹ï¼Œå®Œæˆæ•°å­—åˆ°å­—ç¬¦ä¸²çš„è½¬æ¢
+	char * itoa(int num, char * buf);
+	char * gets(char * buf);
+	
+	4ã€å†™å‡ºä¸€ä¸ªå‡½æ•°åŸå‹ï¼Œå®Œæˆå­—ç¬¦ä¸²åˆ°æ•°å­—çš„è½¬æ¢
+	int atoi(const char *);
+	
+	5ã€å†™å‡º2ä¸ªå‡½æ•°åŸå‹ï¼Œå®Œæˆå­—ç¬¦ä¸²çš„æ‹·è´å’Œæ¯”è¾ƒ
+	char * strcpy(char * dst, const char * src);
+	int strcmp(const char * s1, const char * s2);
+	
+	é¡¹ç›®åˆ†ç»„
+	    ç»„é•¿	ç»„å‘˜	 	
+	1ç»„ éƒ­æ™“æ–°	æŸ¯æµ©	æ¢é¹ç¨‹
+	2ç»„ éƒ­ç«‹é¾™	è‰¾æœå®‡	è™ç¦æ™º	é»„è€€é”‹
+	3ç»„ å¼ åˆ©	åˆ˜é›ªç’	è´¡å…´	é»„æµ·é¹	é©¬å´‡æ™º
+	4ç»„ é—«è“‰è“‰	åˆ˜ç‰
+	
+	1ã€ç»„å‘˜çš„èƒ½åŠ›ç‰¹é•¿
+	ç¡¬ä»¶çŸ¥è¯†ï¼ŒARMå¤„ç†å™¨äº†è§£ï¼Œè‹±æ–‡èƒ½åŠ›ï¼Œç»„ç»‡è¡¨è¾¾èƒ½åŠ›
+	
+	2ã€å°ç»„çš„å­¦ä¹ ç›®æ ‡
+	å¸Œæœ›åœ¨é¡¹ç›®ä¸­å­¦ä¹ åˆ°å“ªäº›çŸ¥è¯†ï¼ŒæŒæ¡å“ªäº›æŠ€æœ¯
+	
+	Day1: section2: Bootloader é¡¹ç›®å¼€é¢˜
+	ä¸€ã€é¡¹ç›®èƒŒæ™¯
+	bootloader é¡¹ç›®çš„æŠ€æœ¯éœ€æ±‚ (www.zhaopin.com)
+	é—®é¢˜ï¼šä½ æœªæ¥æƒ³è¿›å…¥å“ªä¸ªè¡Œä¸šå·¥ä½œï¼Ÿ
+	è¡Œä¸šï¼šæ¶ˆè´¹ç±»ç”µå­ã€æ±½è½¦ç”µå­ã€åŒ»ç–—ç”µå­ã€ç”µä¿¡
+	å®‰å…¨å®‰é˜²ã€æ™ºèƒ½å®¶å±…ã€ç”µå­å•†åŠ¡ã€æœºå™¨äººã€è½¯ä»¶å¤–åŒ…
+	
+	äºŒã€é¡¹ç›®ç›®æ ‡
+	é—®é¢˜ï¼šå¦‚ä½•å®Œæˆå®ç°ä¸€ä¸ªbootloaderï¼Œæ€æ ·å¯åŠ¨Linuxï¼Ÿ
+	æ€è€ƒï¼šé¡¹ç›®çš„å¼€å‘æµç¨‹
+	1ã€å‡†å¤‡å·¥ä½œ
+	ç¯å¢ƒçš„æ­å»ºï¼šç¡¬ä»¶ è½¯ä»¶
+	ç¡¬ä»¶ï¼šakae2440/2410
+	è½¯ä»¶ï¼šads 1.2
+	
+	2ã€é‡Œç¨‹ç¢‘ï¼ˆå…³é”®è·¯å¾„ï¼‰
+	1) ç¡¬ä»¶æ˜¯å¥½çš„
+	2) èƒ½ç‚¹ç¯äº†ï¼ˆè‡ªå·±å†™çš„ç¨‹åºï¼‰ +LED, +GPIO
+	3) èƒ½è¾“å‡ºäº† +UART
+	4) èƒ½äº¤äº’äº† +SHELL
+	5) èƒ½å‘½ä»¤äº† +COMMAND
+	6) èƒ½ä¸‹è½½äº† +LOADER
+	------------------- åŸºæœ¬çš„bootloader
+	7) è·‘å¾—æ›´å¿«äº† +CLOCK
+	8) å†…å­˜æ›´å¤§äº† +SDRAM
+	9) èƒ½ä¿å­˜å›ºåŒ–äº† +FLASH
+	10) èƒ½è‡ªå·±å¯åŠ¨ +AUTORUN
+	------------------- åŠ ç”µ bootloader -> app è‡ªå¯åŠ¨
+	11) èƒ½å¯åŠ¨linuxå†…æ ¸äº†ï¼Œçœ‹åˆ°å†…æ ¸æ‰“å°è¾“å‡ºäº† +KERNEL
+	12) èƒ½åŠ è½½æ ¹æ–‡ä»¶ç³»ç»Ÿï¼Œè¿›å…¥åˆ° shell æç¤ºç¬¦ä¸‹äº† +ROOTFS
+	13) èƒ½å¤Ÿé€šè¿‡ç½‘ç»œäº¤äº’äº† +NET
+	-------------------
+	
+	Day1: section3: ç¯å¢ƒæ­å»º
+	ç½‘ç»œç•…é€š
+	æŒæ¡å‘½ä»¤ cmd, ping, ipconfig, path, 
+	c:\windows;c:\windows\system32
+	è®¿é—®å…±äº«
+	\\192.168.0.24
+	
+	tools å·¥å…·è½¯ä»¶
+	1) ADS1.2 å¼€å‘å¥—ä»¶ ï¼ˆarmcc å‘½ä»¤è¡Œï¼‰
+	2) FoxitReader é˜…è¯»å™¨ ï¼ˆå›¾å½¢æ ‡æ³¨å·¥å…·ï¼‰
+	3) Ultraedit ç¼–è¾‘å™¨ ï¼ˆæ·»åŠ å³é”®æ”¯æŒï¼ŒCTRL+hï¼‰
+	
+	resource ç›¸å…³èµ„æ–™
+	èŠ¯ç‰‡æ•°æ®æ‰‹å†Œ
+	å¼€å‘æ¿çš„ç¡¬ä»¶åŸç†å›¾
+	
+	Day1: section4: ç¡¬ä»¶æ£€æµ‹
+	ç”µæºï¼ŒH-jtag dection cpu: ARM920T
+	å¹¶å£ï¼š2ç§ 0x378(LPT), 0xDE00 (PCI-LPT)
+	
+	NandFlash åˆ†åŒº
+	0x00000000-0x00020000 : "vivi"
+	0x00020000-0x00030000 : "param"
+	0x00030000-0x001f0000 : "kernel"
+	0x00200000-0x04000000 : "root"
+	
+	vivi (bootloader): 0x20000 = 128K 
+	1block = 32page = 512byte = 0.5K = 16K
+	128K = 16K * 8block
+	
+	kernel (å†…æ ¸): 0x30000 = 192K = 12block
+	size = 0x1c0000 = 128K*14 = 112blocks => 124block
+	
+	rootfs (æ–‡ä»¶ç³»ç»Ÿ): 0x200000 = 128bock
+	
+	MC2410E DEVELOP KIT
+	
+	VIVI version 0.1.4 (root@Rhvd) (gcc version 2.95.2 20000516 (release) [Rebel.com]) #0.1.4 Thu May 4 00:58:37 CST 2006
+	MMU table base address = 0x33DFC000
+	Succeed memory mapping.
+	NAND device: Manufacture ID: 0xec, Chip ID: 0x76 (Samsung K9D1208V0M)
+	Found saved vivi parameters.
+	CS8900 - type: 630e, rev: a00
+	CS8900 - status: ad6 (EEPROM present)
+	Setting MAC address...
+	Display format changed to VGA 640X480 mode
+	Press Return to start the LINUX now, any other key for vivi
+	type "help" for help.
+	vivi> 
+	vivi> help
+	
+	Day1: section5: å¼€å‘æµç¨‹
+	ADS é¡¹ç›® å·¥ç¨‹æ–‡ä»¶ .mcp (.prj)
+	AXD è°ƒè¯• ARMulator.dll è½¯ä»¶ä»¿çœŸ RDI (Remote Debug Interface)
+	ARM å¯æ‰§è¡Œæ–‡ä»¶ .axf (.exe .elf)
+	
+	å¦‚ä½•è¿è¡Œå¼€å‘æ¿è¾“å‡ºç¨‹åº
+	ä¸²å£å‘é€å¯„å­˜å™¨åœ°å€  0x50000020 
+	ä¿®æ”¹ link å‚æ•° -ro-base 0x0
+	ä¿®æ”¹ link å‚æ•° -entry __main (main -> __main)s
+	
+	
+	Day2: section1: ä¸²å£é©±åŠ¨åŸç†
+	ç¡¬ä»¶è¿æ¥å…³ç³»ï¼šä¸²å£ <--> S3c2410 cpu
+	ä¸“ä¸šæœ¯è¯­ï¼šç¡¬ä»¶åŸç†å›¾ (pdf)
+	ä¸²å£ç¡¬ä»¶åŸºç¡€çŸ¥è¯†ï¼š
+	1) DB9 9é’ˆ
+	2) å…¶ä¸­ pin2(TxD), pin3(RxD), pin5(GND) æœ‰ç”¨
+	3) Max3232 ç”µå¹³è½¬æ¢èŠ¯ç‰‡ (TTLç”µå¹³(0-5v)->RS-232ç”µå¹³(-15v->+15v
+	ä»åº•æ¿å’Œæ ¸å¿ƒæ¿åŸç†å›¾æŸ¥çœ‹å¯çŸ¥ 
+	TxD -> K15/GPH2
+	RxD -> K17/GPH3
+	------------------------------------
+	ä¸“ä¸šæœ¯è¯­ï¼šèŠ¯ç‰‡æ•°æ®æ‰‹å†Œ (DataSheet)
+	S3C2410.pdf  
+	FBGA å°è£… Pin Number/Pin Name
+	UART ä¸²å£çš„å¼•è„šæ¥å£ - TxD/RxD nCTS/nRTS UEXTCLK
+	ä¸“ä¸šæœ¯è¯­ï¼šå¼•è„šåŠŸèƒ½å¤ç”¨ (Selectable Pin Functions)
+	GPH2 (GPHCON) 0x56000070 
+	GPH2 [5:4] 	00 = Input     01 = Output
+			10 = TXD0   11 = Reserved
+	------------------------------------
+	
+	Day2: section2: ä¸²å£é©±åŠ¨åŸç†2
+	SoCå†…éƒ¨æ§åˆ¶å™¨ (é‡Œé¢æœ‰ä»€ä¹ˆï¼Ÿ æœ€é‡è¦çš„10ä¸ª)
+	ARM920T å†…æ ¸
+		Processor Core, CP15, MMU, CACHE, AMBA BUS
+	BUS æ€»çº¿ 
+		AHB BUS, APB BUS
+	Controllers æ§åˆ¶å™¨
+		CLOCK, Power, Mem controller, NandFlash, 
+		Interrupt, Timer, DMA, UART, GPIO
+		
+	0x1000 = 4K
+	0x100000 = 1M
+	1G = 0x40000000
+	
+	UART æ§åˆ¶å™¨é©±åŠ¨å·¥ä½œåŸç†
+	ä¸“ä¸šæœ¯è¯­ï¼šç‰¹æ®ŠåŠŸèƒ½å¯„å­˜å™¨SFR (Special Function Reg)	
+	åœ°å€èŒƒå›´  (0x48000000 - 0x5A000040)
+			len = 0x12000000 = 256M
+	å ç”¨å­˜å‚¨ï¼š 4byte * 300 = 1K
+	
+	ä¸²å£çš„ç‰¹æ®ŠåŠŸèƒ½å¯„å­˜å™¨
+	æ§åˆ¶å¯„å­˜å™¨ W
+	çŠ¶æ€å¯„å­˜å™¨ R
+	æ•°æ®å¯„å­˜å™¨ R/W
+	
+	Day2: section3: ä¸²å£é©±åŠ¨åŸç†3
+	ä¸²å£æ§åˆ¶å™¨ UART Controller çš„ç¼–ç¨‹
+	ä¸“ä¸šæœ¯è¯­ï¼šæ—¶åºå›¾ (Timing Diagram)
+	ä¸²å£çš„å‘é€æ—¶åº
+	1) ç©ºé—²çŠ¶æ€ '1'
+	2) èµ·å§‹ä½ 1bit  1->0   (è¿ç»­16clock)
+	3) æ•°æ®ä½ 8bits/7bits/6bits/5bits  (æŸ¥çœ‹7,8,9clock)
+	4) æ ¡éªŒä½ none
+	5) åœæ­¢ä½ 1bit/1.5bit/2bits '1'	
+	
+	UART Block Diagram (å†…éƒ¨ç»“æ„æ¡†å›¾)
+	é‡è¦ç»„æˆï¼šTransmitter/Receiver (Buffer&Shifter), 
+	Control Unit, Baud Generator, Clock Source
+	DataBus, AddrBus, UEXTCLK 
+	
+	UART SFRs
+	å¯„å­˜å™¨ç¼–ç¨‹
+	
+	
+	Day2: section4: ä¸²å£å¯„å­˜å™¨é…ç½®
+	vivi> dump 0x50000000 0x40
+	50000000: 03 00 00 00 45 02 00 00-00 00 00 00 00 00 00 00 | ....E...........
+	50000010: 02 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+	50000020: 00 00 00 00 0D 00 00 00-1A 00 00 00 00 00 00 00 | ................
+	50000030: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+	
+	GPHCON: GPH4, GPH5 (Txd/Rxd)
+	ULCON: 	8bit(3)
+	UCON:	PCLK, polling mode 0101(5)
+	UBRDIV:	50M/(115200*16)-1 = 26 (0x1A)
+	UTXH:  	'h'
+	
+	æ€»ç»“ï¼šä¸²å£é©±åŠ¨å…³é”®å‚æ•° ï¼ˆå¿…è¦æ¡ä»¶ï¼‰
+	1ã€è®¾ç½®ç›¸å…³å¼•è„šçš„åŠŸèƒ½å¤ç”¨
+	2ã€æ•°æ®ä½ 8bit	
+	3ã€å¥‡å¶æ ¡éªŒä½ none 
+	4ã€åœæ­¢ä½ 1bit
+	5ã€æµæ§åˆ¶ none
+	6ã€æ³¢ç‰¹ç‡ 115200
+	7ã€å‘é€ä½¿èƒ½/æ¥æ”¶ä½¿èƒ½
+	8ã€æ—¶é’Ÿæº PCLK (vivi 50Mhz)
+	9ã€å·¥ä½œæ–¹å¼ polling/interrupt  (DMA)
+	
+	Day2: section5: ä¸²å£é©±åŠ¨ç¼–ç¨‹å®ç°
+	ä»»åŠ¡è¦æ±‚ï¼šå®ç°UART1çš„è¾“å‡º "hello, world" (æ— é™æ¬¡)
+	
+	è¯¾åä½œä¸šï¼š
+	1ã€å®ç°ä¸²å£çš„ç›¸å…³æ¥å£,è¦æ±‚ç¼–ç è§„èŒƒ,å­¦ä¼šç”¨å®å’Œä½æ“ä½œ(~,|,&)
+	void uart_init()
+	void uart_putchar(char c);
+	char uart_getchar(void);
+	
+	2ã€åŸºäºä¸²å£çš„ uart_put/getcharï¼Œå®Œæˆä»¥ä¸‹ stdio æ¥å£
+	int puts(char *);
+	char * gets(char *);
+	
+	3ã€å®Œæˆ printf æ ¼å¼åŒ–æ‰“å°è¾“å‡ºï¼Œè¦æ±‚æ”¯æŒ%c,%s,%d,%x
+	printf("%c, %s, %d, %x\n", 'a', "hello", 100, 100);
+	
+	day3: section 1: æ ‡å‡†åº“çš„å®ç°
+	#include <stdio.h>
+	/usr/include/stdio.h 	-Isubdir
+	ADSå®‰è£…ç›®å½•ä¸‹æ‰¾
+	putchar
+		int putchar(int c);
+	getchar
+		int getchar(void);
+	puts
+		int puts(const char * s);
+	gets
+		char *gets(char * s);
+	printf
+		int printf(const char * format, ...);
+	
+	ä»£ç çš„ç»„ç»‡ç»“æ„
+	main (#include "stdio.h")
+	-----
+	stdio (5 api) (#include "uart.h")
+	-----
+	uart (uart_xxx) (uart.c, uart.h)
+	
+	å­—ç¬¦ \r \n \b çš„å«ä¹‰
+	\r (Enter) 	å›è½¦ ï¼ˆå›åˆ°è¡Œé¦–ï¼‰
+	\n (Ctrl+Enter) æ¢è¡Œ ï¼ˆæ¢ä¸‹ä¸€è¡Œï¼‰
+	\b (BackSpace)	é€€æ ¼ ï¼ˆå›é€€ä¸€ä¸ªå­—ç¬¦ï¼Œä½†ä¸åˆ é™¤ï¼‰
+	putchar('a');
+	putchar('\n');
+	putchar('b');
+	putchar('\n');
+	a
+	b
+	
+	a
+	 b
+	
+	puts("hello\n");
+	puts("world\n");
+	hello
+	world
+	
+	hello
+	     world
+	
+	printf("hello\n");
+	
+	è¶…çº§ç»ˆç«¯ (windowsè‡ªå¸¦) hypertrm.exe hypertrm.dll
+	
+	ARM ä½“ç³»ç»“æ„ä¸‹ï¼Œå‡½æ•°æ ˆå¸§çš„åˆ†é…æ–¹æ³•æ˜¯ï¼š
+	1ã€å‡æ ˆï¼šæ ˆçš„ç©ºé—´æ˜¯ä»é«˜åœ°å€ï¼Œå‘ä½åœ°å€æ–¹å‘å¢é•¿çš„ã€‚
+	2ã€å‡½æ•°çš„å½¢å¼å‚æ•°ï¼Œéƒ½æ˜¯åˆ†é…åœ¨æ ˆä¸Šçš„ï¼Œè¿ç»­åˆ†é…çš„ã€‚
+	3ã€Cç¼–è¯‘å™¨åœ¨ç¼–è¯‘æ—¶ï¼Œåˆ†é…å‚æ•°åœ°å€çš„é¡ºåºæ˜¯æœ€åçš„å‚æ•°å…ˆå…¥æ ˆã€‚
+	4ã€ç¬¬ä¸€ä¸ªå‚æ•°çš„åœ°å€ï¼Œå’Œåç»§å‚æ•°çš„åœ°å€çš„å…³ç³»æ˜¯ï¼šp++
+	
+	#if 1
+		#include <stdarg.h>
+	#else
+		typedef int *	va_list;
+		#define va_start(p, fmt)	p = (va_list)&fmt + 1
+		#define va_arg(p, type)		(type)(*p++);
+		#define va_end(p)			p = (void *)0
+	#endif
+	
+	åŒ…å«3ä¸ªå®å’Œ1ä¸ªç±»å‹å®šä¹‰
+	ç±»å‹å®šä¹‰ç”¨ typedef
+	va_start å®ï¼šé€šè¿‡ format çš„åœ°å€ï¼Œä½¿pæŒ‡å‘ç¬¬2ä¸ªå‚æ•°çš„åœ°å€
+	va_arg å®ï¼šé€šè¿‡på¾—åˆ°å½“å‰å‚æ•°çš„å€¼ï¼Œå¹¶ä½¿pæŒ‡å‘ä¸‹ä¸€ä¸ªå‚æ•° ï¼ˆé€šè¿‡è°ƒç”¨å¤šæ¬¡ï¼‰
+	va_end å®ï¼šä½¿pæŒ‡å‘ç©º (0)
+	
+	è¯¾åä½œä¸šï¼š
+	å®Œæˆ printf %d, %x ä¸¤ä¸ªå‚æ•°çš„æ‰“å°è¾“å‡º
+	printf("a = %d, b = 0x%x %8x (%p)", 100, 0x64);
+	a = 100, b = 0x64 0x00000064
+	
+	day4: section1: Shell å‘½ä»¤è§£æå™¨
+	md
+	md 0x0: SRAM å†…å­˜
+	md 0x50000000: UART SFR
+	md 0x30000000: SDRAM å†…å­˜
+	
+	mw 0x0 0x11223344
+	
+	help md
+	
+	æ ¼å¼ md addr size
+	ä¸¾ä¾‹ "   md     0x0  64  "
+	è¾“å‡ºï¼š
+	0x00000000:  E52DE004 E24DD064 E28F2048 E3A01041 
+	0x00000010:  E28F0048 EB0000B5 E28F2038 E3A01041 
+	0x00000020:  E28F0038 EB0000B1 E3A03064 E3A02064 
+	0x00000030:  E3A01064 E28F0038 EB0000AC E28F0048 
+	ä»»åŠ¡è¦æ±‚ï¼šå®ç°ä¸€ä¸ª shell_parse å‡½æ•°
+	int shell_parse(char * buf, char * argv[]);
+	
+	int argc;
+	char * argv[5];
+	char buf[100];
+	
+	argc = shell_parse(buf, argv);
+	
+	day4: section2: md/mw å‘½ä»¤å®ç°
+	bootloader $ md 0x11000300
+	æŸ¥çœ‹ 0x11000300 å†…å­˜åœ°å€
+	11000300: 00000000 00000009 31120000 00D300D3
+	11000310: 05480548 25580558 25580558 25580558
+	11000320: 05480548 25580558 25580558 25580558
+	11000330: 05480548 25580558 25580558 25580558
+	
+	bootloader $ mw 0x1100030a 0x0 2
+	*(short *)0x1100030A = (short)0x0
+	
+	bootloader $ md 0x11000300
+	æŸ¥çœ‹ 0x11000300 å†…å­˜åœ°å€
+	11000300: 00000000 00000009 30000000 630E630E
+	11000310: 05480548 25580558 25580558 25580558
+	11000320: 05480548 25580558 25580558 25580558
+	11000330: 05480548 25580558 25580558 25580558
+	
+	bootloader $ mw 0x1100030a 0x20 2
+	review mem 0x1100030A:  0x30200000
+	
+	bootloader $ md 0x11000300
+	11000300: 00000000 00000009 30200000 03000300
+	11000310: 05480548 25580558 25580558 25580558
+	11000320: 05480548 25580558 25580558 25580558
+	11000330: 05480548 25580558 25580558 25580558
+	
+	day5: section1: Loader å®ç°
+	æ–°çš„ç½‘ç»œå…±äº« \\172.16.0.21
+	         UART
+	pc bin --------> board (SRAM/SDRAM)
+	        NET/USB
+	
+	vivi> load ram 0xc00 88 x
+	Ready for downloading using xmodem...
+	Waiting...
+	(èœå•ï¼šä¼ é€ -> å‘é€æ–‡ä»¶ -> 
+	test_uart0.bin -> 
+	xmodem åè®® -> å‘é€
+	æˆåŠŸåæ˜¾ç¤º
+	Downloaded file at 0x00000c00, size = 128 bytes
+	There are 0x0 bad blocks in this partition, please make it at least 0x28 bytes l
+	arger
+	vivi> go 0xc00
+			
+	day5: section2: Xmodem åè®®å®ç°
+	èƒŒæ™¯
+	1. å…³äº size
+	2. æ•°æ®åŒ… packet (0x1Aå¡«å……) 128 byte
+	3. åŒ…å¤´ + ï¼ˆæ•°æ®ï¼‰+ åŒ…å°¾
+	    3       128      1 = 132
+	ç®€å•åè®®ï¼š åŒ… 4 + bin datas
+	ä¼ é€çš„è¿‡ç¨‹ä¸­ï¼Œå¯èƒ½ä¼šæœ‰æ„å¤–
+	ä»€ä¹ˆæ„å¤–ï¼Ÿ 
+	1ï¼‰å‘é€è¿æ¥æ–­å¼€ ï¼ˆæ–­ç‚¹ç»­ä¼ ï¼‰
+	2ï¼‰å‘é€æ•°æ®çš„çªå˜ ï¼ˆé”™è¯¯çš„æ•°æ®ï¼‰
+	
+	çº¦å®šï¼š æ”¶å‘æµç¨‹
+	è¯·æ±‚å’Œåº”ç­” æœºåˆ¶
+	1ã€è°å…ˆè¯·æ±‚ï¼Ÿ å¦‚ä½•è¯·æ±‚ï¼Ÿ
+	2ã€è°æ¥åº”ç­”ï¼Ÿ å¦‚ä½•åº”ç­”ï¼Ÿ
+	
+	å¦‚ä½•å®ç° my bootloader çš„çƒ§å†™å¯åŠ¨
+	1. åˆ›å»º start.s ï¼Œä»£ç å¯å‚è€ƒ \\å”å±±-å¤ªåŸ-ARMè¯¾ç¨‹\codes\loader\start.s
+	
+	2. ä¿®æ”¹ DebugRel Setting, -> ARM Linker -> Layout -> start.o
+	
+	3. main.c æœ€å¼€å§‹ æ·»åŠ ä¸€è¡Œ å…³é—­çœ‹é—¨ç‹— 
+		// disable watch dog
+		*(int *)0x53000000 = 0;
+		
+	   uart.c é‡Œé¢ï¼ŒPCLK æ³¢ç‰¹ç‡è®¡ç®—æ”¹ç”¨ 12M	
+		// 12000000/19200/16 - 1 = 39.0 -1 = 38
+		UBRDIV0 = 38;	
+		
+	4. reset å¼€å‘æ¿ï¼Œç”¨ 19200 æ³¢ç‰¹ç‡è¿æ¥ uart0 è¿›è¡Œé€šè®¯
+	
+	é˜¶æ®µæ€»ç»“ï¼š
+	ä¸€å®šè¦èƒ½å¤Ÿè‡ªå·±ç‹¬ç«‹å®Œæˆå¹¶ç¼–ç å®ç°çš„ï¼š
+	int add(int n, ...);
 	int printf(const char * format, ...);
-
-´úÂëµÄ×éÖ¯½á¹¹
-main (#include "stdio.h")
------
-stdio (5 api) (#include "uart.h")
------
-uart (uart_xxx) (uart.c, uart.h)
-
-×Ö·û \r \n \b µÄº¬Òå
-\r (Enter) 	»Ø³µ £¨»Øµ½ĞĞÊ×£©
-\n (Ctrl+Enter) »»ĞĞ £¨»»ÏÂÒ»ĞĞ£©
-\b (BackSpace)	ÍË¸ñ £¨»ØÍËÒ»¸ö×Ö·û£¬µ«²»É¾³ı£©
-putchar('a');
-putchar('\n');
-putchar('b');
-putchar('\n');
-a
-b
-
-a
- b
-
-puts("hello\n");
-puts("world\n");
-hello
-world
-
-hello
-     world
-
-printf("hello\n");
-
-³¬¼¶ÖÕ¶Ë (windows×Ô´ø) hypertrm.exe hypertrm.dll
-
-ARM ÌåÏµ½á¹¹ÏÂ£¬º¯ÊıÕ»Ö¡µÄ·ÖÅä·½·¨ÊÇ£º
-1¡¢¼õÕ»£ºÕ»µÄ¿Õ¼äÊÇ´Ó¸ßµØÖ·£¬ÏòµÍµØÖ··½ÏòÔö³¤µÄ¡£
-2¡¢º¯ÊıµÄĞÎÊ½²ÎÊı£¬¶¼ÊÇ·ÖÅäÔÚÕ»ÉÏµÄ£¬Á¬Ğø·ÖÅäµÄ¡£
-3¡¢C±àÒëÆ÷ÔÚ±àÒëÊ±£¬·ÖÅä²ÎÊıµØÖ·µÄË³ĞòÊÇ×îºóµÄ²ÎÊıÏÈÈëÕ»¡£
-4¡¢µÚÒ»¸ö²ÎÊıµÄµØÖ·£¬ºÍºó¼Ì²ÎÊıµÄµØÖ·µÄ¹ØÏµÊÇ£ºp++
-
-#if 1
-	#include <stdarg.h>
-#else
-	typedef int *	va_list;
-	#define va_start(p, fmt)	p = (va_list)&fmt + 1
-	#define va_arg(p, type)		(type)(*p++);
-	#define va_end(p)			p = (void *)0
-#endif
-
-°üº¬3¸öºêºÍ1¸öÀàĞÍ¶¨Òå
-ÀàĞÍ¶¨ÒåÓÃ typedef
-va_start ºê£ºÍ¨¹ı format µÄµØÖ·£¬Ê¹pÖ¸ÏòµÚ2¸ö²ÎÊıµÄµØÖ·
-va_arg ºê£ºÍ¨¹ıpµÃµ½µ±Ç°²ÎÊıµÄÖµ£¬²¢Ê¹pÖ¸ÏòÏÂÒ»¸ö²ÎÊı £¨Í¨¹ıµ÷ÓÃ¶à´Î£©
-va_end ºê£ºÊ¹pÖ¸Ïò¿Õ (0)
-
-¿Îºó×÷Òµ£º
-Íê³É printf %d, %x Á½¸ö²ÎÊıµÄ´òÓ¡Êä³ö
-printf("a = %d, b = 0x%x %8x (%p)", 100, 0x64);
-a = 100, b = 0x64 0x00000064
-
-day4: section1: Shell ÃüÁî½âÎöÆ÷
-md
-md 0x0: SRAM ÄÚ´æ
-md 0x50000000: UART SFR
-md 0x30000000: SDRAM ÄÚ´æ
-
-mw 0x0 0x11223344
-
-help md
-
-¸ñÊ½ md addr size
-¾ÙÀı "   md     0x0  64  "
-Êä³ö£º
-0x00000000:  E52DE004 E24DD064 E28F2048 E3A01041 
-0x00000010:  E28F0048 EB0000B5 E28F2038 E3A01041 
-0x00000020:  E28F0038 EB0000B1 E3A03064 E3A02064 
-0x00000030:  E3A01064 E28F0038 EB0000AC E28F0048 
-ÈÎÎñÒªÇó£ºÊµÏÖÒ»¸ö shell_parse º¯Êı
-int shell_parse(char * buf, char * argv[]);
-
-int argc;
-char * argv[5];
-char buf[100];
-
-argc = shell_parse(buf, argv);
-
-day4: section2: md/mw ÃüÁîÊµÏÖ
-bootloader $ md 0x11000300
-²é¿´ 0x11000300 ÄÚ´æµØÖ·
-11000300: 00000000 00000009 31120000 00D300D3
-11000310: 05480548 25580558 25580558 25580558
-11000320: 05480548 25580558 25580558 25580558
-11000330: 05480548 25580558 25580558 25580558
-
-bootloader $ mw 0x1100030a 0x0 2
-*(short *)0x1100030A = (short)0x0
-
-bootloader $ md 0x11000300
-²é¿´ 0x11000300 ÄÚ´æµØÖ·
-11000300: 00000000 00000009 30000000 630E630E
-11000310: 05480548 25580558 25580558 25580558
-11000320: 05480548 25580558 25580558 25580558
-11000330: 05480548 25580558 25580558 25580558
-
-bootloader $ mw 0x1100030a 0x20 2
-review mem 0x1100030A:  0x30200000
-
-bootloader $ md 0x11000300
-11000300: 00000000 00000009 30200000 03000300
-11000310: 05480548 25580558 25580558 25580558
-11000320: 05480548 25580558 25580558 25580558
-11000330: 05480548 25580558 25580558 25580558
-
-day5: section1: Loader ÊµÏÖ
-ĞÂµÄÍøÂç¹²Ïí \\172.16.0.21
-         UART
-pc bin --------> board (SRAM/SDRAM)
-        NET/USB
-
-vivi> load ram 0xc00 88 x
-Ready for downloading using xmodem...
-Waiting...
-(²Ëµ¥£º´«ËÍ -> ·¢ËÍÎÄ¼ş -> 
-test_uart0.bin -> 
-xmodem Ğ­Òé -> ·¢ËÍ
-³É¹¦ºóÏÔÊ¾
-Downloaded file at 0x00000c00, size = 128 bytes
-There are 0x0 bad blocks in this partition, please make it at least 0x28 bytes l
-arger
-vivi> go 0xc00
+	ä¸²å£é©±åŠ¨çš„å‡ ä¸ªå¿…è¦æ¡ä»¶
+	stdio é‡Œé¢ gets çš„å®ç°ï¼Œéœ€è¦å¤„ç† \r \n \b 
+	printf é‡Œé¢ va_list, va_start, va_arg, va_end
+		å®ç°ä»¥ä¸‹å‡½æ•° char * itoa(int a, char * buf)	
+					void itoa_hex(int a, char * buf, int flag)
+	shell é‡Œé¢å®ç°çš„å‡½æ•°
+		int shell_parse(char * buf, char * argv[])
+		int strcmp(const char * s1, const char * s2)
+		int atoi(char * buf)  10/16è¿›åˆ¶
+	xmodem åè®®çš„åŸç†å’Œå®ç° SOH, ACK, NAK, EOT, CAN
+			åŸºæœ¬çš„ä»£ç æ¡†æ¶ 1 + 2 + 128 + 1		
+	
+	vivi> dump 0x48000000 64
+	48000000: 10 1D 11 22 00 07 00 00-00 07 00 00 7C 1F 00 00 | ..."........|...
+	48000010: 00 07 00 00 00 07 00 00-00 07 00 00 01 80 01 00 | ................
+	48000020: 01 80 01 00 E9 01 8E 00-B1 00 00 00 20 00 00 00 | ............ ...
+	48000030: 20 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |  ...............
+	vivi> dump 0x4c000000 64
+	4C000000: FF FF FF 00 40 C0 05 00-32 80 04 00 F0 FF 0F 00 | ....@...2.......
+	4C000010: 04 00 00 00 03 00 00 00-00 00 00 00 00 00 00 00 | ................
+	4C000020: FF FF FF 00 40 C0 05 00-32 80 04 00 F0 FF 0F 00 | ....@...2.......
+	4C000030: 04 00 00 00 03 00 00 00-00 00 00 00 00 00 00 00 | ................
+	vivi> dump 0x4e000000 64
+	4E000000: 30 E8 00 00 00 00 00 00-00 00 00 00 A5 00 00 00 | 0........... ...
+	4E000010: 01 83 00 00 59 A9 95 00-00 00 00 00 00 00 00 00 | ....Y...........
+	4E000020: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
+	4E000030: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | 
+			
+	day6: section1: Clock é©±åŠ¨
+	MPLL é”ç›¸ç¯
+		MPLLCON (PMS setting: PDIV/MDIV/SDIV)
+		Fout = Fin * (MDIV+8) / (PDIV+2) / s^SDIV 
+	DIVN
+		HDIVN: FCLK/HCLK
+		PDIVN: HCLK/PCLK
 		
-day5: section2: Xmodem Ğ­ÒéÊµÏÖ
-±³¾°
-1. ¹ØÓÚ size
-2. Êı¾İ°ü packet (0x1AÌî³ä) 128 byte
-3. °üÍ· + £¨Êı¾İ£©+ °üÎ²
-    3       128      1 = 132
-¼òµ¥Ğ­Òé£º °ü 4 + bin datas
-´«ËÍµÄ¹ı³ÌÖĞ£¬¿ÉÄÜ»áÓĞÒâÍâ
-Ê²Ã´ÒâÍâ£¿ 
-1£©·¢ËÍÁ¬½Ó¶Ï¿ª £¨¶ÏµãĞø´«£©
-2£©·¢ËÍÊı¾İµÄÍ»±ä £¨´íÎóµÄÊı¾İ£©
-
-Ô¼¶¨£º ÊÕ·¢Á÷³Ì
-ÇëÇóºÍÓ¦´ğ »úÖÆ
-1¡¢Ë­ÏÈÇëÇó£¿ ÈçºÎÇëÇó£¿
-2¡¢Ë­À´Ó¦´ğ£¿ ÈçºÎÓ¦´ğ£¿
-
-ÈçºÎÊµÏÖ my bootloader µÄÉÕĞ´Æô¶¯
-1. ´´½¨ start.s £¬´úÂë¿É²Î¿¼ \\ÌÆÉ½-Ì«Ô­-ARM¿Î³Ì\codes\loader\start.s
-
-2. ĞŞ¸Ä DebugRel Setting, -> ARM Linker -> Layout -> start.o
-
-3. main.c ×î¿ªÊ¼ Ìí¼ÓÒ»ĞĞ ¹Ø±Õ¿´ÃÅ¹· 
-	// disable watch dog
-	*(int *)0x53000000 = 0;
+	day6: section2: Makefile ä½¿ç”¨
+	å·¥å…·ï¼š armasm, armcc, armlink, fromelf
+	linux: (arm-linux-)as, gcc, ld, objdump/objcopy	
+	å‚æ•°ï¼š -c, -first, -ro-base, -bin, -c -d -s
 	
-   uart.c ÀïÃæ£¬PCLK ²¨ÌØÂÊ¼ÆËã¸ÄÓÃ 12M	
-	// 12000000/19200/16 - 1 = 39.0 -1 = 38
-	UBRDIV0 = 38;	
+	day6: section3: SDRAM é©±åŠ¨
+	volatile å…³é”®è¯ - é˜²æ­¢ä¼˜åŒ–ï¼Œå¼ºåˆ¶è®¿å­˜
+	JTAGï¼šJoint Test Action Group æµ‹è¯•(è°ƒè¯•)ï¼Œçƒ§å†™romï¼Œä¸‹è½½ram
+	SRAM/SDRAM/NandFlash/NorFlash åŒºåˆ«å’Œè”ç³»
 	
-4. reset ¿ª·¢°å£¬ÓÃ 19200 ²¨ÌØÂÊÁ¬½Ó uart0 ½øĞĞÍ¨Ñ¶
-
-½×¶Î×Ü½á£º
-Ò»¶¨ÒªÄÜ¹»×Ô¼º¶ÀÁ¢Íê³É²¢±àÂëÊµÏÖµÄ£º
-int add(int n, ...);
-int printf(const char * format, ...);
-´®¿ÚÇı¶¯µÄ¼¸¸ö±ØÒªÌõ¼ş
-stdio ÀïÃæ gets µÄÊµÏÖ£¬ĞèÒª´¦Àí \r \n \b 
-printf ÀïÃæ va_list, va_start, va_arg, va_end
-	ÊµÏÖÒÔÏÂº¯Êı char * itoa(int a, char * buf)	
-				void itoa_hex(int a, char * buf, int flag)
-shell ÀïÃæÊµÏÖµÄº¯Êı
-	int shell_parse(char * buf, char * argv[])
-	int strcmp(const char * s1, const char * s2)
-	int atoi(char * buf)  10/16½øÖÆ
-xmodem Ğ­ÒéµÄÔ­ÀíºÍÊµÏÖ SOH, ACK, NAK, EOT, CAN
-		»ù±¾µÄ´úÂë¿ò¼Ü 1 + 2 + 128 + 1		
-
-vivi> dump 0x48000000 64
-48000000: 10 1D 11 22 00 07 00 00-00 07 00 00 7C 1F 00 00 | ..."........|...
-48000010: 00 07 00 00 00 07 00 00-00 07 00 00 01 80 01 00 | ................
-48000020: 01 80 01 00 E9 01 8E 00-B1 00 00 00 20 00 00 00 | ............ ...
-48000030: 20 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 |  ...............
-vivi> dump 0x4c000000 64
-4C000000: FF FF FF 00 40 C0 05 00-32 80 04 00 F0 FF 0F 00 | ....@...2.......
-4C000010: 04 00 00 00 03 00 00 00-00 00 00 00 00 00 00 00 | ................
-4C000020: FF FF FF 00 40 C0 05 00-32 80 04 00 F0 FF 0F 00 | ....@...2.......
-4C000030: 04 00 00 00 03 00 00 00-00 00 00 00 00 00 00 00 | ................
-vivi> dump 0x4e000000 64
-4E000000: 30 E8 00 00 00 00 00 00-00 00 00 00 A5 00 00 00 | 0........... ...
-4E000010: 01 83 00 00 59 A9 95 00-00 00 00 00 00 00 00 00 | ....Y...........
-4E000020: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | ................
-4E000030: 00 00 00 00 00 00 00 00-00 00 00 00 00 00 00 00 | 
+	SRAM
+	6ä¸ªæ™¶ä½“ç®¡ç»„æˆè§¦å‘å™¨
+		å®¹é‡å°ï¼Œä»·æ ¼è´µï¼Œé€Ÿåº¦å¿«ï¼Œæ‰ç”µä¸¢å¤±ï¼Œä¸ç”¨åˆ·æ–°
+	SDRAM
+	1ä¸ªæ™¶ä½“ç®¡å’Œ1ä¸ªç”µå®¹ï¼Œä¾é ç”µå®¹çš„å……æ”¾ç”µæ¥ä¿å­˜æ•°æ®
+		å®¹é‡å¤§ï¼Œä»·æ ¼ä¾¿å®œï¼Œé€Ÿåº¦æ…¢ï¼Œæ‰ç”µä¸¢å¤±ï¼Œéœ€è¦åˆ·æ–°
+	
+	ä»æ¥å£ç”µè·¯ä¸Šå’Œé©±åŠ¨ç¨‹åºä¸Š
+	SRAM: åœ°å€çº¿ï¼Œæ•°æ®çº¿ï¼Œæ§åˆ¶çº¿ï¼Œç‰‡é€‰ä¿¡å·
+	2*8bit SRAM: æ•°æ®çº¿æ‹¼æˆ16ä½ï¼Œåœ°å€çº¿ä¸¢æ‰A0
+	
+	SDRAM é©±åŠ¨çš„è¦ç´ 
+	å·¥ä½œç‰¹ç‚¹ï¼šåŠ¨æ€åˆ·æ–°ï¼Œè¡Œåˆ—é€‰é€šï¼Œæ•°æ®æ‹¼å‡‘ï¼Œå†…éƒ¨åˆ†BANK
+	é©±åŠ¨ä»£ç å®ç°ï¼š
+	å¼•è„šçš„åŠŸèƒ½å¤ç”¨ ï¼ˆæ²¡æœ‰å¤ç”¨ï¼Œæ— éœ€è®¾ç½®ï¼‰
+	å·¥ä½œå‚æ•°ï¼š
+	1ã€æ•°æ®æ€»çº¿çš„å®½åº¦ 32bit -> A2 <-> A0
+	2ã€ç±»å‹æ˜¯SDRAMï¼Œåˆ—åœ°å€å®½åº¦9bit
+	3ã€RAS to CAS delay è¡Œé€‰é€šåˆ°åˆ—é€‰é€šçš„å»¶æ—¶å‚æ•°
+	4ã€SDRAMå™¨ä»¶çš„å®¹é‡64M -> åœ°å€æ€»çº¿26æ ¹
+	5ã€SDRAMå™¨ä»¶çš„åˆ·æ–°å‘¨æœŸ 7.8us -> 8196 cycles/64 ms
+	
+	day7: section1: Flash é©±åŠ¨
+	NandFlash å·¥ä½œç‰¹ç‚¹
+	æ— åœ°å€çº¿ï¼Œåœ°å€ä¿¡å·æ˜¯é€šè¿‡æ•°æ®çº¿ä¼ é€’çš„ï¼Œä¹Ÿå°±æ˜¯åœ°å€å’Œæ•°æ®å¤ç”¨
+	æ•°æ®çº¿ä¹Ÿåªæœ‰8æ ¹ï¼Œæ¯æ¬¡åªèƒ½ä¼ é€’1ä¸ªbyte
+	64M å®ƒéœ€è¦26æ ¹åœ°å€ä¿¡å·ï¼Œæ¯æ¬¡ä¼ 8bitï¼Œå¾—éœ€è¦ä¼ 4æ¬¡
+	æ¯æ¬¡å‡ºæ¥çš„æ•°æ®åªæœ‰8bit
+	
+	å—è®¾å¤‡ï¼šæ¯æ¬¡è¯»å¯ä»¥è¯»1ä¸ªpages
+	è¯»å¯ä»¥åˆ†ä¸ºä¸ŠåŠé¡µ(å‘½ä»¤00) ä¸‹åŠé¡µ(å‘½ä»¤01)
+	
+	å‘½ä»¤ä¹Ÿæ˜¯é€šè¿‡ IO0-IO7 æ¥ä¼ é€’ç»™NandFlash
+	ä¸‰ç§ä¿¡å·çš„å¤ç”¨ï¼šå‘½ä»¤ï¼Œåœ°å€ï¼Œæ•°æ®
+	
+	SDRAMçš„å®¹é‡
+	4 banks * 2^13 * 2^9 * 4bytes = 2^26 = 64M
+	
+	NandFlashå†…éƒ¨çš„ç»„æˆç»“æ„
+	4096 blocks * 32 pages * (512+16)bytes = 64M 
+	
+	NorFlash å·¥ä½œç‰¹ç‚¹
+	æœ‰åœ°å€çº¿ï¼Œè€Œä¸”ä¸ç”¨å¤ç”¨ï¼Œå‘ä¸€æ¬¡åœ°å€å°±èƒ½å¤Ÿè®¿é—®æ•°æ®
+	å’ŒSRAMçš„è¯»å–æ–¹å¼ä¸€æ ·ï¼Œæ‰€ä»¥å¯ä»¥ç”¨æ¥å¯åŠ¨ï¼Œä»£ç å¯ä»¥æ‰§è¡Œ
+	ç»“è®ºï¼šNorFlashå¯ä»¥ç›´æ¥å¯åŠ¨bootloaderï¼Œæ— éœ€SRAMå‚ä¸
+	SROM = SRAM + ROM(NorFlash) bank0-bank5
+	oneNand -> new NorFlash = [SRAM Interface + (NandFlash)]
+	
+	4pin usb interface + NandFlash
+	
+	è¯¾å ‚ä½œä¸šè¦æ±‚ï¼š
+	1ã€é€šè¿‡ read ID çš„æ—¶åºå›¾ï¼Œé…ç½®ç›¸å…³å¯„å­˜å™¨ï¼Œè¯»å‡ºèŠ¯ç‰‡ID
+		0xEC 0x76 0x?? 0x??
+	
+	2ã€é€šè¿‡ read page çš„æ—¶åºå›¾ï¼Œè¯»å‡ºä»0åœ°å€å¼€å§‹çš„512å­—èŠ‚
+	æŒ‰ç…§ md çš„è¾“å‡ºæ ¼å¼æ‰“å° ï¼ˆç®€åŒ–åŠæ³•ï¼š0å­—èŠ‚å’Œ511å­—èŠ‚ï¼‰
+	éšæœºæ‰“å° buf[0] buf[511];
+	
+	3ã€å®ç° mybootloader çš„å‡çº§ï¼šå®ç° autorun åŠŸèƒ½
+	æ¡ä»¶ï¼šæå‰æŠŠ test-uart.bin ç”¨ Hjtag çƒ§å†™åˆ° Flash
+	autorun è¿è¡Œæ—¶ï¼Œé€šè¿‡ nand_read æ¥å£è¯»å–åˆ° sdram
+	go åˆ° sdram å»æ‰§è¡Œã€‚ å¦‚æœç”¨æˆ·è¾“å…¥äº†ï¼Œåˆ™è¿›å…¥åˆ° shell
+	
+	1M = 16K * 64 blocks
+	
+	èƒ½å¤Ÿå®ç°ä¸€æ¡ nr (nandread) å‘½ä»¤ï¼Œæ ¼å¼
+	nr nand_addr sdram_addr size
+	
+	chapter 2, 3 (Arch, Ins)
+	14 (Int)   8 (DMA)
+	
+	day8: section1: ARM ä½“ç³»ç»“æ„åŸºç¡€
+	å¼‚å¸¸å¤„ç† ç³»ç»Ÿè°ƒç”¨ printf çœŸæ­£çš„å®ç°
+	SoC èŠ¯ç‰‡å†…éƒ¨çš„ç»“æ„ï¼šå†…æ ¸+æ§åˆ¶å™¨(Watchdog,GPIO,UART,CLOCK,SDRAM,NandFlash) 
+	ARMå†…æ ¸çš„ç»“æ„ï¼šARM920T (ProcessorCore,CP15,MMU,CACHE,AMBA bus)
+	Processor Core: 
+	æ¨èé˜…è¯»èµ„æ–™ ARM å’Œ X86 çš„å†å² (ä½œè€…ç‹é½ï¼Œintel)
+	
+	é‡è¦æ¦‚å¿µ
+	1) Processor Operating State å¤„ç†å™¨å·¥ä½œçŠ¶æ€
+	ARM çŠ¶æ€ï¼š32bit æŒ‡ä»¤
+	THUMB çŠ¶æ€: 16bit æŒ‡ä»¤ -> BX ins
+	
+	2) processor mode å¤„ç†å™¨æ¨¡å¼
+	éå¼‚å¸¸
+	Â· User (usr): The normal ARM program execution state
+	Â· System (sys): A privileged user mode for the operating system
+	å¼‚å¸¸
+	Â· IRQ (irq): Used for general-purpose interrupt handling
+	Â· FIQ (fiq): Designed to support a data transfer or channel process
+	Â· Supervisor (svc): Protected mode for the operating system
+	Â· Abort mode (abt): Entered after a data or instruction prefetch abort
+	Â· Undefined (und): Entered when an undefined instruction is executed
+	
+	3) Big/Little-Endian format å¤§å°¾ç«¯/å°å°¾ç«¯
+	(int *)0 => 0x12345678
+	
+	 78   56   34   12
+	---- ---- ---- ----
+	  0    1    2    3
+	  
+	*(short *)1 = ?	 0x3456
+	
+	4) Register å¯„å­˜å™¨ç»„ç»‡
+	37 ä¸ª = 31 é€šç”¨(r0-r15) + 6 çŠ¶æ€(CPSR,SPSR)
+	31 = 16 + 7 + 2 + 2 + 2 + 2
+	31 = 8*1(r0-r7) + 5*2(r8-r12) + 2*6(r13,r14) + 1*1(r15-pc)
+	
+	6 = 1*1(CPSR) + 1*5(SPSR)
+	
+	5) Exception å¼‚å¸¸
+	Exception arise å¼‚å¸¸äº‹ä»¶å‘ç”Ÿ ï¼ˆå¼‚å¸¸å‘é‡è¡¨ï¼‰
+	0x0:  	1. å¤ä½å¼‚å¸¸ -> SVCæ¨¡å¼
+	0x4:	2. æ‰§è¡Œæœªå®šä¹‰æŒ‡ä»¤ -> UNDæ¨¡å¼
+	0x8:	3. æ‰§è¡Œè½¯ä»¶ä¸­æ–­æŒ‡ä»¤(SWI) -> SVCæ¨¡å¼ ï¼ˆç³»ç»Ÿè°ƒç”¨ï¼‰
+	0xc:	4. Prefetché¢„å–æŒ‡ä»¤ç»ˆæ­¢ -> ABTæ¨¡å¼
+	0x10:	5. Prefetché¢„å–æ•°æ®ç»ˆæ­¢ -> ABTæ¨¡å¼
+	0x18:	6. IRQ æ™®é€šä¸­æ–­ -> IRQæ¨¡å¼
+	0x1c:	7. FIQ å¿«é€Ÿä¸­æ–­ -> FIQæ¨¡å¼
+	
+	Exception Priority (Prio) å¼‚å¸¸å¤„ç†ä¼˜å…ˆçº§
+	1. å¤ä½
+	2. æ•°æ®ç»ˆæ­¢
+	3. å¿«é€Ÿä¸­æ–­
+	4. æ™®é€šä¸­æ–­
+	5. æŒ‡ä»¤ç»ˆæ­¢
+	
+	6. æœªå®šä¹‰æŒ‡ä»¤/è½¯ä»¶ä¸­æ–­æŒ‡ä»¤å¼‚å¸¸
+	
+	å¼‚å¸¸æœåŠ¡/å¤„ç†ï¼ˆè¿›å…¥/é€€å‡ºï¼‰
+	* å¼‚å¸¸è¿›å…¥/å¼‚å¸¸å“åº” ï¼ˆç¡¬ä»¶å®Œæˆï¼‰
+	1ï¼‰ä¿å­˜è¿”å›è€åœ°å€ (PC+4) åˆ° LR_irq
+	2ï¼‰ä¿å­˜è¿”å›è€æ¨¡å¼ (CPSR) åˆ° SPSR_irq
+	3ï¼‰ä¿®æ”¹CPSRï¼Œè¿›å…¥æ–°çš„æ¨¡å¼ IRQ
+	4ï¼‰ä¿®æ”¹PCï¼Œè·³è½¬åˆ°æ–°çš„åœ°å€-å¼‚å¸¸å‘é‡è¡¨ 0x8/0x18
+	è½¯ä»¶æ¥åšï¼š
+	5ï¼‰ä¿å­˜ç°åœº r0-r12 -> stack
+		stmfd r13!, {r0-r12}
 		
-day6: section1: Clock Çı¶¯
-MPLL ËøÏà»·
-	MPLLCON (PMS setting: PDIV/MDIV/SDIV)
-	Fout = Fin * (MDIV+8) / (PDIV+2) / s^SDIV 
-DIVN
-	HDIVN: FCLK/HCLK
-	PDIVN: HCLK/PCLK
+	* å¼‚å¸¸è¿”å›/å¼‚å¸¸æ¢å¤ ï¼ˆè½¯ä»¶å®Œæˆï¼‰
+	0ï¼‰è½¯ä»¶ï¼šæ¢å¤ç°åœº r0-r12 <- stack
+		ldmfd r13!, {r0-r12}
+	1ï¼‰LR -> PC æ¢å¤åœ°å€
+	2ï¼‰SPSR -> CPSR æ¢å¤æ¨¡å¼
+		movs pc, lr
+		
+	3ï¼‰æ¸…é™¤ä¸­æ–­ç›¸å…³ä½
 	
-day6: section2: Makefile Ê¹ÓÃ
-¹¤¾ß£º armasm, armcc, armlink, fromelf
-linux: (arm-linux-)as, gcc, ld, objdump/objcopy	
-²ÎÊı£º -c, -first, -ro-base, -bin, -c -d -s
-
-day6: section3: SDRAM Çı¶¯
-volatile ¹Ø¼ü´Ê - ·ÀÖ¹ÓÅ»¯£¬Ç¿ÖÆ·Ã´æ
-JTAG£ºJoint Test Action Group ²âÊÔ(µ÷ÊÔ)£¬ÉÕĞ´rom£¬ÏÂÔØram
-SRAM/SDRAM/NandFlash/NorFlash Çø±ğºÍÁªÏµ
-
-SRAM
-6¸ö¾§Ìå¹Ü×é³É´¥·¢Æ÷
-	ÈİÁ¿Ğ¡£¬¼Û¸ñ¹ó£¬ËÙ¶È¿ì£¬µôµç¶ªÊ§£¬²»ÓÃË¢ĞÂ
-SDRAM
-1¸ö¾§Ìå¹ÜºÍ1¸öµçÈİ£¬ÒÀ¿¿µçÈİµÄ³ä·ÅµçÀ´±£´æÊı¾İ
-	ÈİÁ¿´ó£¬¼Û¸ñ±ãÒË£¬ËÙ¶ÈÂı£¬µôµç¶ªÊ§£¬ĞèÒªË¢ĞÂ
-
-´Ó½Ó¿ÚµçÂ·ÉÏºÍÇı¶¯³ÌĞòÉÏ
-SRAM: µØÖ·Ïß£¬Êı¾İÏß£¬¿ØÖÆÏß£¬Æ¬Ñ¡ĞÅºÅ
-2*8bit SRAM: Êı¾İÏßÆ´³É16Î»£¬µØÖ·Ïß¶ªµôA0
-
-SDRAM Çı¶¯µÄÒªËØ
-¹¤×÷ÌØµã£º¶¯Ì¬Ë¢ĞÂ£¬ĞĞÁĞÑ¡Í¨£¬Êı¾İÆ´´Õ£¬ÄÚ²¿·ÖBANK
-Çı¶¯´úÂëÊµÏÖ£º
-Òı½ÅµÄ¹¦ÄÜ¸´ÓÃ £¨Ã»ÓĞ¸´ÓÃ£¬ÎŞĞèÉèÖÃ£©
-¹¤×÷²ÎÊı£º
-1¡¢Êı¾İ×ÜÏßµÄ¿í¶È 32bit -> A2 <-> A0
-2¡¢ÀàĞÍÊÇSDRAM£¬ÁĞµØÖ·¿í¶È9bit
-3¡¢RAS to CAS delay ĞĞÑ¡Í¨µ½ÁĞÑ¡Í¨µÄÑÓÊ±²ÎÊı
-4¡¢SDRAMÆ÷¼şµÄÈİÁ¿64M -> µØÖ·×ÜÏß26¸ù
-5¡¢SDRAMÆ÷¼şµÄË¢ĞÂÖÜÆÚ 7.8us -> 8196 cycles/64 ms
-
-day7: section1: Flash Çı¶¯
-NandFlash ¹¤×÷ÌØµã
-ÎŞµØÖ·Ïß£¬µØÖ·ĞÅºÅÊÇÍ¨¹ıÊı¾İÏß´«µİµÄ£¬Ò²¾ÍÊÇµØÖ·ºÍÊı¾İ¸´ÓÃ
-Êı¾İÏßÒ²Ö»ÓĞ8¸ù£¬Ã¿´ÎÖ»ÄÜ´«µİ1¸öbyte
-64M ËüĞèÒª26¸ùµØÖ·ĞÅºÅ£¬Ã¿´Î´«8bit£¬µÃĞèÒª´«4´Î
-Ã¿´Î³öÀ´µÄÊı¾İÖ»ÓĞ8bit
-
-¿éÉè±¸£ºÃ¿´Î¶Á¿ÉÒÔ¶Á1¸öpages
-¶Á¿ÉÒÔ·ÖÎªÉÏ°ëÒ³(ÃüÁî00) ÏÂ°ëÒ³(ÃüÁî01)
-
-ÃüÁîÒ²ÊÇÍ¨¹ı IO0-IO7 À´´«µİ¸øNandFlash
-ÈıÖÖĞÅºÅµÄ¸´ÓÃ£ºÃüÁî£¬µØÖ·£¬Êı¾İ
-
-SDRAMµÄÈİÁ¿
-4 banks * 2^13 * 2^9 * 4bytes = 2^26 = 64M
-
-NandFlashÄÚ²¿µÄ×é³É½á¹¹
-4096 blocks * 32 pages * (512+16)bytes = 64M 
-
-NorFlash ¹¤×÷ÌØµã
-ÓĞµØÖ·Ïß£¬¶øÇÒ²»ÓÃ¸´ÓÃ£¬·¢Ò»´ÎµØÖ·¾ÍÄÜ¹»·ÃÎÊÊı¾İ
-ºÍSRAMµÄ¶ÁÈ¡·½Ê½Ò»Ñù£¬ËùÒÔ¿ÉÒÔÓÃÀ´Æô¶¯£¬´úÂë¿ÉÒÔÖ´ĞĞ
-½áÂÛ£ºNorFlash¿ÉÒÔÖ±½ÓÆô¶¯bootloader£¬ÎŞĞèSRAM²ÎÓë
-SROM = SRAM + ROM(NorFlash) bank0-bank5
-oneNand -> new NorFlash = [SRAM Interface + (NandFlash)]
-
-4pin usb interface + NandFlash
-
-¿ÎÌÃ×÷ÒµÒªÇó£º
-1¡¢Í¨¹ı read ID µÄÊ±ĞòÍ¼£¬ÅäÖÃÏà¹Ø¼Ä´æÆ÷£¬¶Á³öĞ¾Æ¬ID
-	0xEC 0x76 0x?? 0x??
-
-2¡¢Í¨¹ı read page µÄÊ±ĞòÍ¼£¬¶Á³ö´Ó0µØÖ·¿ªÊ¼µÄ512×Ö½Ú
-°´ÕÕ md µÄÊä³ö¸ñÊ½´òÓ¡ £¨¼ò»¯°ì·¨£º0×Ö½ÚºÍ511×Ö½Ú£©
-Ëæ»ú´òÓ¡ buf[0] buf[511];
-
-3¡¢ÊµÏÖ mybootloader µÄÉı¼¶£ºÊµÏÖ autorun ¹¦ÄÜ
-Ìõ¼ş£ºÌáÇ°°Ñ test-uart.bin ÓÃ Hjtag ÉÕĞ´µ½ Flash
-autorun ÔËĞĞÊ±£¬Í¨¹ı nand_read ½Ó¿Ú¶ÁÈ¡µ½ sdram
-go µ½ sdram È¥Ö´ĞĞ¡£ Èç¹ûÓÃ»§ÊäÈëÁË£¬Ôò½øÈëµ½ shell
-
-1M = 16K * 64 blocks
-
-ÄÜ¹»ÊµÏÖÒ»Ìõ nr (nandread) ÃüÁî£¬¸ñÊ½
-nr nand_addr sdram_addr size
-
-chapter 2, 3 (Arch, Ins)
-14 (Int)   8 (DMA)
-
-day8: section1: ARM ÌåÏµ½á¹¹»ù´¡
-Òì³£´¦Àí ÏµÍ³µ÷ÓÃ printf ÕæÕıµÄÊµÏÖ
-SoC Ğ¾Æ¬ÄÚ²¿µÄ½á¹¹£ºÄÚºË+¿ØÖÆÆ÷(Watchdog,GPIO,UART,CLOCK,SDRAM,NandFlash) 
-ARMÄÚºËµÄ½á¹¹£ºARM920T (ProcessorCore,CP15,MMU,CACHE,AMBA bus)
-Processor Core: 
-ÍÆ¼öÔÄ¶Á×ÊÁÏ ARM ºÍ X86 µÄÀúÊ· (×÷ÕßÍõÆë£¬intel)
-
-ÖØÒª¸ÅÄî
-1) Processor Operating State ´¦ÀíÆ÷¹¤×÷×´Ì¬
-ARM ×´Ì¬£º32bit Ö¸Áî
-THUMB ×´Ì¬: 16bit Ö¸Áî -> BX ins
-
-2) processor mode ´¦ÀíÆ÷Ä£Ê½
-·ÇÒì³£
-¡¤ User (usr): The normal ARM program execution state
-¡¤ System (sys): A privileged user mode for the operating system
-Òì³£
-¡¤ IRQ (irq): Used for general-purpose interrupt handling
-¡¤ FIQ (fiq): Designed to support a data transfer or channel process
-¡¤ Supervisor (svc): Protected mode for the operating system
-¡¤ Abort mode (abt): Entered after a data or instruction prefetch abort
-¡¤ Undefined (und): Entered when an undefined instruction is executed
-
-3) Big/Little-Endian format ´óÎ²¶Ë/Ğ¡Î²¶Ë
-(int *)0 => 0x12345678
-
- 78   56   34   12
----- ---- ---- ----
-  0    1    2    3
-  
-*(short *)1 = ?	 0x3456
-
-4) Register ¼Ä´æÆ÷×éÖ¯
-37 ¸ö = 31 Í¨ÓÃ(r0-r15) + 6 ×´Ì¬(CPSR,SPSR)
-31 = 16 + 7 + 2 + 2 + 2 + 2
-31 = 8*1(r0-r7) + 5*2(r8-r12) + 2*6(r13,r14) + 1*1(r15-pc)
-
-6 = 1*1(CPSR) + 1*5(SPSR)
-
-5) Exception Òì³£
-Exception arise Òì³£ÊÂ¼ş·¢Éú £¨Òì³£ÏòÁ¿±í£©
-0x0:  	1. ¸´Î»Òì³£ -> SVCÄ£Ê½
-0x4:	2. Ö´ĞĞÎ´¶¨ÒåÖ¸Áî -> UNDÄ£Ê½
-0x8:	3. Ö´ĞĞÈí¼şÖĞ¶ÏÖ¸Áî(SWI) -> SVCÄ£Ê½ £¨ÏµÍ³µ÷ÓÃ£©
-0xc:	4. PrefetchÔ¤È¡Ö¸ÁîÖÕÖ¹ -> ABTÄ£Ê½
-0x10:	5. PrefetchÔ¤È¡Êı¾İÖÕÖ¹ -> ABTÄ£Ê½
-0x18:	6. IRQ ÆÕÍ¨ÖĞ¶Ï -> IRQÄ£Ê½
-0x1c:	7. FIQ ¿ìËÙÖĞ¶Ï -> FIQÄ£Ê½
-
-Exception Priority (Prio) Òì³£´¦ÀíÓÅÏÈ¼¶
-1. ¸´Î»
-2. Êı¾İÖÕÖ¹
-3. ¿ìËÙÖĞ¶Ï
-4. ÆÕÍ¨ÖĞ¶Ï
-5. Ö¸ÁîÖÕÖ¹
-
-6. Î´¶¨ÒåÖ¸Áî/Èí¼şÖĞ¶ÏÖ¸ÁîÒì³£
-
-Òì³£·şÎñ/´¦Àí£¨½øÈë/ÍË³ö£©
-* Òì³£½øÈë/Òì³£ÏìÓ¦ £¨Ó²¼şÍê³É£©
-1£©±£´æ·µ»ØÀÏµØÖ· (PC+4) µ½ LR_irq
-2£©±£´æ·µ»ØÀÏÄ£Ê½ (CPSR) µ½ SPSR_irq
-3£©ĞŞ¸ÄCPSR£¬½øÈëĞÂµÄÄ£Ê½ IRQ
-4£©ĞŞ¸ÄPC£¬Ìø×ªµ½ĞÂµÄµØÖ·-Òì³£ÏòÁ¿±í 0x8/0x18
-Èí¼şÀ´×ö£º
-5£©±£´æÏÖ³¡ r0-r12 -> stack
-	stmfd r13!, {r0-r12}
+	day8: section2: ARM æŒ‡ä»¤é›†
+	0xE 3A 0DD40 
+	ç«‹å³æ•°æ¦‚å¿µï¼šimmediate 
+	D40 = 0x1000 : 0001 0000 0000 0000
+	B40 = 0x10000: 0001 0000 0000 0000 0000
+	940 = 0x100000
+	740	= 0x1000000
+	xYY: 
+	x-ç±»ä¼¼å¹‚ï¼Œç§»ä½çš„ä¸ªæ•°
+	YY-æœ‰æ•ˆæ•°å­— 0x40 : 0b0100 0000
+	æœ‰æ•ˆæ•°å­—:æ²¡æœ‰ç§»ä½ä¹‹å‰çš„æ•°
+	x: å¾ªç¯å³ç§»2*xä½ 26ä½ï¼š å·¦ç§»6ä½
 	
-* Òì³£·µ»Ø/Òì³£»Ö¸´ £¨Èí¼şÍê³É£©
-0£©Èí¼ş£º»Ö¸´ÏÖ³¡ r0-r12 <- stack
-	ldmfd r13!, {r0-r12}
-1£©LR -> PC »Ö¸´µØÖ·
-2£©SPSR -> CPSR »Ö¸´Ä£Ê½
+	
+	SWI è½¯ä»¶ä¸­æ–­æŒ‡ä»¤ä¼šè·³è½¬åˆ° 0x8 åœ°å€
+	
+	mov pc, lr åœ°å€è¿”å›
+	0xe1a0f00e
+	çœŸæ­£çš„è¿”å›ï¼š æ¨¡å¼ä¹Ÿè¿”å›
 	movs pc, lr
+	0xe1b0f00e
 	
-3£©Çå³ıÖĞ¶ÏÏà¹ØÎ»
-
-day8: section2: ARM Ö¸Áî¼¯
-0xE 3A 0DD40 
-Á¢¼´Êı¸ÅÄî£ºimmediate 
-D40 = 0x1000 : 0001 0000 0000 0000
-B40 = 0x10000: 0001 0000 0000 0000 0000
-940 = 0x100000
-740	= 0x1000000
-xYY: 
-x-ÀàËÆÃİ£¬ÒÆÎ»µÄ¸öÊı
-YY-ÓĞĞ§Êı×Ö 0x40 : 0b0100 0000
-ÓĞĞ§Êı×Ö:Ã»ÓĞÒÆÎ»Ö®Ç°µÄÊı
-x: Ñ­»·ÓÒÒÆ2*xÎ» 26Î»£º ×óÒÆ6Î»
-
-
-SWI Èí¼şÖĞ¶ÏÖ¸Áî»áÌø×ªµ½ 0x8 µØÖ·
-
-mov pc, lr µØÖ··µ»Ø
-0xe1a0f00e
-ÕæÕıµÄ·µ»Ø£º Ä£Ê½Ò²·µ»Ø
-movs pc, lr
-0xe1b0f00e
-
-0xe0803001	 add r3, r0, r1
-0xe0823003	 add r3, r2, r3
-0xe1b0f00e	 movs pc, r14
-
-0x10 + X*4 = 0x802c (handler)	
-0xEA002007	b handler
-
-0x10 + ? * 4 = 0x8018
-
-0xEA002002
-
-day9: section1: system call ÏµÍ³µ÷ÓÃµÄÊµÏÖ
-boot> md 0x30008000
-boot> mw 0x30008000 0xEF000005
-	swi 0x5 -> 0xef000005
-boot> md 0x30008000
-boot> go 0x30008000
-
-0x30008004
-b   .		[0xeafffffe]
-
-½â¾öË¼Â·£º
-1. ½¨Á¢Òì³£ÏòÁ¿±í£¬ÊµÏÖ2¸ö b
-2. swi_handler: ±£´æÏÖ³¡ {r0-r12, lr}
-3. Î¬³Ö±£Áô r0 ²»±ä»òÕßmov r0, #0x68	bl uart_putchar
-4. »Ö¸´ÏÖ³¡
-5. ·µ»ØÒì³£·¢Éú´¦
-
-day9: section2: Interrupt ÖĞ¶Ï´¦Àí
-ÖĞ¶ÏµÄ3²ã¹ÜÀíÄ£ĞÍ
-
-            nIRQ
-ARM920T <---------- Interrupt CONT <------ INT-SOURCES: GPIO
-								   <------ UART, USB, SD 
-
-0xFE, 0xFD, 0xBF
-0xBC <----> 1011 1100
-
-Pending (suspend) Ğü¶øÎ´¾öµÄ
-SRCPND
-
-	ÅäÖÃ GPF0 Îª EINT ·½Ê½£¨Ñ¡Ôñ¸´ÓÃ¹¦ÄÜ£©
-bootloader $ mw 0x56000050 0x2
-
-	ÅäÖÃ EINT0 Îª Falling Edge Trigger £¨ÏÂ½µÑØ´¥·¢£©
-bootloader $ mw 0x56000088 0x2
-
-	²é¿´ SRCPND ¼Ä´æÆ÷
-bootloader $ md 0x4a000000
-4A000000: 02000000 00000000 FFFFFFFF 0000007F
-4A000010: 00000000 00000000 00000003 0000FFFF
-	´ËÊ±°´ÏÂ Key3 °´¼ü£¬´¥·¢Ò»¸öÖĞ¶Ï£¬ÔÙ´Î²é¿´ SRCPND
-4A000000: 02000001 00000000 FFFFFFFF 0000007F
-4A000010: 00000000 00000000 00000003 0000FFFF
-	´ò¿ªÆÁ±Î¼Ä´æÆ÷ 0 Î» INTMSK
-bootloader $ mw 0x4a000008 0xFFFFFFFE
-	ÔÙ´Î²é¿´ SRCPND, INTPND
-buf = <md>
-4A000000: 02000001 00000000 00000000 000000FF
-4A000010: 00000001 00000000 00000003 0000FFFF
-	ÈçºÎ¸ø Pending Î»Çå³ı£¿ Ğ´1Çå0
-	Èç¹ûÏÈÇå³ı SRCPND £¬ÔÙÇå³ı INTPND£¬Ôò OK
-	Èç¹ûÏÈÇå³ı INTPND £¬ÔÙÇå³ı SRCPND£¬ÔòÎŞÓÃ£¬»¹»áÔÙ±»×Ô¶¯ÉèÖÃ1
+	0xe0803001	 add r3, r0, r1
+	0xe0823003	 add r3, r2, r3
+	0xe1b0f00e	 movs pc, r14
 	
-¸ÄÎªÖĞ¶ÏµÄ¹Ø¼ü´úÂë£º bootloader ÖĞĞŞ¸Ä
-1¡¢ÒòÎªÓÃ»§Ä£Ê½²»ÄÜĞŞ¸Ä CPSR£¬ËùÒÔbootloaderÖĞÖ±½Ó´ò¿ªÖĞ¶Ï 
-0xD0 -> 0x50
-
-2¡¢irq_handler ÖĞĞèÒªÇå³ı2¸öPND¼Ä´æÆ÷£¬µ÷ÓÃ clear_int
-
-3¡¢×îºó·µ»ØÓÃ subs pc, lr, #4	¶ø²»ÊÇ movs pc, lr
-
-ÖĞ¶Ï Timer ¶¨Ê±Æ÷ÖĞ¶Ïchp10£¬ DMA ÖĞ¶Ïchp8
-
-×Ü½á£º
-1¡¢Çø·ÖÁ½¸ö¸ÅÄî Òì³£ºÍÖĞ¶Ï vs ÖĞ¶Ï´¦ÀíºÍÒì³£´¦Àí
-                 ARM Core		Board (SoC)
-
-£¨ÖĞ¶ÏIRQ£©Òì³£
-				 
-2¡¢½áºÏÖĞ¶Ï´¦ÀíµÄÈ«¹ı³Ì£¬·ÖÎöÒ»ÏÂ
-A. ÖĞ¶ÏµÄ³õÊ¼»¯£¬ÎªÖĞ¶ÏµÄ·¢Éú´´ÔìÌõ¼ş -> Èı²ãÄ£ĞÍ
-a1) ÖĞ¶ÏÔ´µÄ³õÊ¼»¯£¨GPIO, UART, Timer, DMA£©
-	1. ÖĞ¶ÏÔ´µÄÊ¹ÄÜ£º¸æËßÖĞ¶ÏÔ´ÒÔÖĞ¶ÏµÄ·½Ê½¹¤×÷£¬Í¨ÖªÉÏ¼¶(INT CONT.)
-	2. ÖĞ¶ÏµÄ´¥·¢·½Ê½£º¸æËßÖĞ¶ÏÔ´ÖĞ¶Ï´¥·¢Ìõ¼ş
-a2) ÖĞ¶Ï¿ØÖÆÆ÷µÄ³õÊ¼»¯£¬ÒÔ±ãÏòÉÏ¼¶»ã±¨ (ARM920T)
-	0. ÖĞ¶Ï pending Î»È«²¿Çå³ıÒ»±é
-	1. ÖĞ¶ÏµÄÆÁ±ÎÎ»´ò¿ª
-	2. ÖĞ¶ÏµÄÓÅÏÈ¼¶ÉèÖÃ
-a3) ARMµÄÄÚºËÖĞ¶ÏÒì³£Î»µÄÊ¹ÄÜ
-	1. CPSR I-bit/F-bit
-
-B. ÖĞ¶ÏµÄÏìÓ¦ºÍ´¦ÀíÒÔ¼°·µ»Ø
-ÖĞ¶ÏÌõ¼ş¾ß±¸£¬ÖĞ¶Ï·¢ÉúÁË£¬ÔòµÚÒ»²½¾ÍÊÇÓ²¼ş½øĞĞ£¨ÖĞ¶Ï£©Òì³£ÏìÓ¦
-b1) (ÖĞ¶Ï)Òì³£ÏìÓ¦£¬Ó²¼ş×Ô¶¯Íê³É
-	1. ±£´æµØÖ·£º PC->LR_irq
-	2. ±£´æÄ£Ê½£º CPSR->SPSR_irq
-	3. ĞŞ¸ÄÄ£Ê½:  IRQ_mode -> CPSR (0xD2)
-	4. ĞŞ¸ÄµØÖ·:  0x18 -> PC ´ËÊ±·¢ÉúÁËÌø×ª£¬Í¬Ê±Ä£Ê½Íê³ÉÇĞ»»
-b2) (ÖĞ¶Ï)Òì³£´¦Àí£¬Èí¼şÊÖ¹¤ÊµÏÖ
-	0. ÍµÀÁµÄ×ö·¨£ºÏÈÉèÖÃÒ»ÏÂ sp_irq: mov sp, #0x33000000
-	1. ÏÖ³¡µÄ±£´æ£ºSTMFD sp!, {r0-r12, lr}
-	2. Òì³£´¦Àí³ÌĞò: ×¢ÒâÈç¹ûµ÷ÓÃC£¬Ôòlr_irqĞèÒª±£´æ
-	3. ÏÖ³¡µÄ»Ö¸´: LDMFD sp!, {r0-r12, lr}
-	4. Òì³£µÄ·µ»Ø: movs pc, lr	(Ä£Ê½ºÍµØÖ·Í¬Ê±·µ»Ø)
-b3) ÖĞ¶ÏµÄÌØÊâ´¦Àí
-	0. ÖĞ¶ÏÄ£Ê½ÏÂµÄ SP Õ»Ö¸ÕëµÄ³õÊ¼»¯
-	1. ÖĞ¶ÏpendingÎ»µÄÇå³ı
-		SRCPND -> INTPND ÏÈºóÎÊÌâ£¬ÒªÕ¶²İÏÈ³ı¸ù
-	2. ÖĞ¶ÏÒì³£·µ»ØµÄÊ±ºò£¬ĞèÒª subs pc, lr, #4	
-	 
-day10: section1: Timer ¶¨Ê±Æ÷ÖĞ¶Ï´¦Àí	
-Timer £º
-1¡¢Clock ¸ÅÄî
-ÊäÈëÊ±ÖÓ
-·ÖÆµ
-¼ÆÊı¼Ä´æÆ÷ counter--
-PWM ĞÅºÅÊä³ö£¬Õ¼¿Õ±È
-
-50M = 50000000  -->  <65535 = 50000
-50000000 -> 100000 -> 1/2 -> 50000
--------- =  200000 -> 1/4 -> 50000
-250
-
-Ê±ÖÓºÍ·ÖÆµ
-TCFG0£º250 - 1 = 249 (8-bit prescaler)
-TCFG1£º1/4 ·ÖÆµ
-
-¼ÆÊıÆ÷ 
-TCNTB0£º = 50000
-TCON£º set Manual update bit
-TCON£º set Start bit
-TCON£º clear Manual update bit
-
-day11£ºsection1£ºÇ¶ÈëÊ½Linux¿ª·¢
-1¡¢Ó²¼ş»ù´¡
-*Communication
-RS232(DB9), Ethernet (RJ45), 
-PS/2, USB(Host/Device),
-
-*Multimedia
-LCD+Ts(40pin), VGA, TV
-Audio output/in(MIC), 
-
-*Storage
-SD, IDE, 
-
-*Interface
-Key, Jtag, 
-
-2¡¢ÖØÒªĞ¾Æ¬
-S3C2410(cpu), HY57V561620C(SDRAM), 
-k9f1208(NandFlash), sst39vf160(NorFlash)
-CS8900/DM9000(Net), UDA1341/WM9714(Audio)
-
-day11£ºsection2£º½»²æ¿ª·¢»·¾³´î½¨
-su ÇĞ»»µ½¹ÜÀíÔ±Ä£Ê½£¬ÃÜÂëÎª 123456
-rpm -ivh --force *.rpm
-vi /etc/profile
-Ìí¼ÓÏµÍ³¿ÉÖ´ĞĞÎÄ¼şÂ·¾¶
-export PATH=$PATH:/opt/host/armv4l/bin:/sbin
-
-armv4l-unknown-linux-gcc hello.c -o hello
-
-4¡¢´î½¨ÍøÂç»·¾³ - ÊÔ´í
-startx ½øÈëÍ¼ĞÎÏµÍ³
-ifconfig ²é×Ô¼ºip
-ping ×Ô¼ºip
-ping 192.168.0.1
-
-route add default gw 192.168.0.1
-ping 8.8.8.8  ¿ÉÒÔpingÍ¨ÍâÍø
-ping www.baidu.com ¿´ÓòÃû½âÎö
-Èç¹û²»Í¨£¬ÔòÌí¼Ó /etc/resolv.conf  ÓòÃû½âÎöÆ÷
-nameserver 8.8.8.8
-nameserver 210.73.64.1
-nameserver 202.106.0.20
-
-ÄÜ·ñ ping µÃÍ¨µÄÒ»¸ö¹Ø¼üÌõ¼ş
-iptables -F ¹Ø±ÕLinuxµÄ·À»ğÇ½
-windows XP ÓëÖ®ÀàËÆµÄÊÇ ¿ØÖÆÃæ°å->ÍøÂçInternetÁ¬½Ó->windows·À»ğÇ½->¹Ø±Õ(²»ÍÆ¼ö)
-
-ftp server (ftpd:21)
-Æô¶¯ server£º /etc/init.d/vsftpd restart/stop/start
-ftp 172.16.0.101
-> username : akaedu
-passwd: akaedu
-> ls
-> get
-> put
-> bye/quit
-ÅäÖÃÎÄ¼ş£º /etc/vsftpd/vsftpd.conf
-Ö÷Ä¿Â¼£º /home/akaedu/
-
-webserver (httpd:80)
-Æô¶¯ server: /etc/init.d/httpd restart/stop/start
-http://172.16.0.101
-¿ÉÒÔ¿´µ½²âÊÔÒ³ test page
-ÅäÖÃÎÄ¼ş£º /etc/httpd/conf/httpd.conf
-Ö÷Ä¿Â¼£º /var/www/html/
-
-day11£ºsection3£ºÇ¶ÈëÊ½LinuxÄÚºË±àÒë
-tar zxvf linux-br.tar.gz ½âÑ¹
-du [-sh] ²é¿´Ä¿Â¼ÎÄ¼ş´óĞ¡
-find . -name *.c | wc ²é¿´ËùÓĞ c ÎÄ¼ş (4000+ ¸öc³ÌĞò)
-
-vmlinux: ÆäÊµ¾ÍÊÇ linux µÄÄÚºË£¬´øÓĞ ELF ¸ñÊ½µÄÄÚºË
-zImage£º¾ÍÊÇÎÒÃÇ×îºóÉÕĞ´µ½°å×ÓÉÏµÄ£¬Ã»ÓĞ¸ñÊ½µÄbinÎÄ¼şÄÚºË
-       ld
-*.o ------> vmlinux
-
-	objcopy
-vmlinux-----> zImage
-
-make menuconfig 
-	General Setup
-	Char Device - ´®¿Ú
-	Block Device
-	MTD Device - NandFlash
-	Network Device - Cs8900
-make dep
-make vmlinux
-make zImage
-
-zImage ÔÚ arch/arm/boot Ä¿Â¼ÏÂ, ¿½±´µ½ /home/akaedu
-cp arch/arm/boot/zImage /home/akaedu
-
-ÇĞ»»µ½ D: ÓÃ ftp ÏÂÔØ£¬ĞŞ¸Äbinary´«ÊäÄ£Ê½£¬get zImage
-
-°Ñ zImage ÉÕĞ´µ½µÚ12block´¦ ¼´ 0x30000 ´¦
-1M: 12block 12*16K = 192K ´¦
-
-°Ñ mycramfs.img ÉÕĞ´µ½µÚ128block´¦ ¼´ 0x200000 ´¦
-1M: 128block 128*16K = 2M ´¦
-
-°Ñ vivi ÉÕĞ´µ½ 0block
-
-C:\Documents and Settings\Administrator>type my.cmd
-akaedu
-akaedu
-binary
-get zImage
-bye
-
-C:\Documents and Settings\Administrator>ftp -s:my.cmd 172.16.0.101
-Connected to 172.16.0.101.
-220 (vsFTPd 1.1.3)
-User (172.16.0.101:(none)):
-331 Please specify the password.
-
-230 Login successful. Have fun.
-ftp> dir
-200 PORT command successful. Consider using PASV.
-150 Here comes the directory listing.
-drwxr-xr-x    2 0        0            4096 Jan 19 18:17 arm
-drwx------    4 500      500          4096 Apr 28 17:23 evolution
-drwxr-xr-x    2 500      500          4096 Apr 28 14:36 hello
--rw-r--r--    1 0        0            5143 Apr 28 15:30 hello.1
-drwxr-xr-x    2 0        0            4096 Mar 23 15:53 image
-drwxr-xr-x    2 0        0            4096 Apr 28 15:41 led
--rw-r--r--    1 500      500           755 Apr 28 15:25 led.c
-drwxrwxr-x    3 500      500          4096 Apr 28 15:41 lwj
-drwxrwxr-x    4 500      500          4096 Apr 28 16:58 mc2410
-drwxr-xr-x    2 0        0            4096 Jan 19 18:19 skyeye
--rwxrwxr-x    1 500      500        989788 Apr 28 19:05 zImage
-226 Directory send OK.
-ftp: ÊÕµ½ 696 ×Ö½Ú£¬ÓÃÊ± 0.01Seconds 46.40Kbytes/sec.
-ftp> get zImage
-200 PORT command successful. Consider using PASV.
-150 Opening BINARY mode data connection for zImage (989788 bytes).
-226 File send OK.
-ftp: ÊÕµ½ 989788 ×Ö½Ú£¬ÓÃÊ± 0.03Seconds 31928.65Kbytes/sec.
-ftp> bye
-221 Goodbye.
-
-¶ÁÈ¡flash£¬°Ñ zImage ·Åµ½ 0x30008000 ´¦£¬È»ºó go
-nr 0x30000 0x30008000 0x100000
-
-Source Insight ²éÔ´Âë
-
-µÃµ½Ò»¸ö rootfs µÄimgÎÄ¼ş¡£
-mkcramfs root_china my-cramfs.img
-ftp ÏÂÔØÏÂÀ´£¬ÉÕĞ´µ½ 128block
-
-./mnt/etc/init.d/rcS
-#exec /usr/etc/rc.local
-
-/var/www/html/hello
-wget http://172.16.0.101/hello
+	0x10 + X*4 = 0x802c (handler)	
+	0xEA002007	b handler
+	
+	0x10 + ? * 4 = 0x8018
+	
+	0xEA002002
+	
+	day9: section1: system call ç³»ç»Ÿè°ƒç”¨çš„å®ç°
+	boot> md 0x30008000
+	boot> mw 0x30008000 0xEF000005
+		swi 0x5 -> 0xef000005
+	boot> md 0x30008000
+	boot> go 0x30008000
+	
+	0x30008004
+	b   .		[0xeafffffe]
+	
+	è§£å†³æ€è·¯ï¼š
+	1. å»ºç«‹å¼‚å¸¸å‘é‡è¡¨ï¼Œå®ç°2ä¸ª b
+	2. swi_handler: ä¿å­˜ç°åœº {r0-r12, lr}
+	3. ç»´æŒä¿ç•™ r0 ä¸å˜æˆ–è€…mov r0, #0x68	bl uart_putchar
+	4. æ¢å¤ç°åœº
+	5. è¿”å›å¼‚å¸¸å‘ç”Ÿå¤„
+	
+	day9: section2: Interrupt ä¸­æ–­å¤„ç†
+	ä¸­æ–­çš„3å±‚ç®¡ç†æ¨¡å‹
+	
+	            nIRQ
+	ARM920T <---------- Interrupt CONT <------ INT-SOURCES: GPIO
+									   <------ UART, USB, SD 
+	
+	0xFE, 0xFD, 0xBF
+	0xBC <----> 1011 1100
+	
+	Pending (suspend) æ‚¬è€Œæœªå†³çš„
+	SRCPND
+	
+		é…ç½® GPF0 ä¸º EINT æ–¹å¼ï¼ˆé€‰æ‹©å¤ç”¨åŠŸèƒ½ï¼‰
+	bootloader $ mw 0x56000050 0x2
+	
+		é…ç½® EINT0 ä¸º Falling Edge Trigger ï¼ˆä¸‹é™æ²¿è§¦å‘ï¼‰
+	bootloader $ mw 0x56000088 0x2
+	
+		æŸ¥çœ‹ SRCPND å¯„å­˜å™¨
+	bootloader $ md 0x4a000000
+	4A000000: 02000000 00000000 FFFFFFFF 0000007F
+	4A000010: 00000000 00000000 00000003 0000FFFF
+		æ­¤æ—¶æŒ‰ä¸‹ Key3 æŒ‰é”®ï¼Œè§¦å‘ä¸€ä¸ªä¸­æ–­ï¼Œå†æ¬¡æŸ¥çœ‹ SRCPND
+	4A000000: 02000001 00000000 FFFFFFFF 0000007F
+	4A000010: 00000000 00000000 00000003 0000FFFF
+		æ‰“å¼€å±è”½å¯„å­˜å™¨ 0 ä½ INTMSK
+	bootloader $ mw 0x4a000008 0xFFFFFFFE
+		å†æ¬¡æŸ¥çœ‹ SRCPND, INTPND
+	buf = <md>
+	4A000000: 02000001 00000000 00000000 000000FF
+	4A000010: 00000001 00000000 00000003 0000FFFF
+		å¦‚ä½•ç»™ Pending ä½æ¸…é™¤ï¼Ÿ å†™1æ¸…0
+		å¦‚æœå…ˆæ¸…é™¤ SRCPND ï¼Œå†æ¸…é™¤ INTPNDï¼Œåˆ™ OK
+		å¦‚æœå…ˆæ¸…é™¤ INTPND ï¼Œå†æ¸…é™¤ SRCPNDï¼Œåˆ™æ— ç”¨ï¼Œè¿˜ä¼šå†è¢«è‡ªåŠ¨è®¾ç½®1
+		
+	æ”¹ä¸ºä¸­æ–­çš„å…³é”®ä»£ç ï¼š bootloader ä¸­ä¿®æ”¹
+	1ã€å› ä¸ºç”¨æˆ·æ¨¡å¼ä¸èƒ½ä¿®æ”¹ CPSRï¼Œæ‰€ä»¥bootloaderä¸­ç›´æ¥æ‰“å¼€ä¸­æ–­ 
+	0xD0 -> 0x50
+	
+	2ã€irq_handler ä¸­éœ€è¦æ¸…é™¤2ä¸ªPNDå¯„å­˜å™¨ï¼Œè°ƒç”¨ clear_int
+	
+	3ã€æœ€åè¿”å›ç”¨ subs pc, lr, #4	è€Œä¸æ˜¯ movs pc, lr
+	
+	ä¸­æ–­ Timer å®šæ—¶å™¨ä¸­æ–­chp10ï¼Œ DMA ä¸­æ–­chp8
+	
+	æ€»ç»“ï¼š
+	1ã€åŒºåˆ†ä¸¤ä¸ªæ¦‚å¿µ å¼‚å¸¸å’Œä¸­æ–­ vs ä¸­æ–­å¤„ç†å’Œå¼‚å¸¸å¤„ç†
+	                 ARM Core		Board (SoC)
+	
+	ï¼ˆä¸­æ–­IRQï¼‰å¼‚å¸¸
+					 
+	2ã€ç»“åˆä¸­æ–­å¤„ç†çš„å…¨è¿‡ç¨‹ï¼Œåˆ†æä¸€ä¸‹
+	A. ä¸­æ–­çš„åˆå§‹åŒ–ï¼Œä¸ºä¸­æ–­çš„å‘ç”Ÿåˆ›é€ æ¡ä»¶ -> ä¸‰å±‚æ¨¡å‹
+	a1) ä¸­æ–­æºçš„åˆå§‹åŒ–ï¼ˆGPIO, UART, Timer, DMAï¼‰
+		1. ä¸­æ–­æºçš„ä½¿èƒ½ï¼šå‘Šè¯‰ä¸­æ–­æºä»¥ä¸­æ–­çš„æ–¹å¼å·¥ä½œï¼Œé€šçŸ¥ä¸Šçº§(INT CONT.)
+		2. ä¸­æ–­çš„è§¦å‘æ–¹å¼ï¼šå‘Šè¯‰ä¸­æ–­æºä¸­æ–­è§¦å‘æ¡ä»¶
+	a2) ä¸­æ–­æ§åˆ¶å™¨çš„åˆå§‹åŒ–ï¼Œä»¥ä¾¿å‘ä¸Šçº§æ±‡æŠ¥ (ARM920T)
+		0. ä¸­æ–­ pending ä½å…¨éƒ¨æ¸…é™¤ä¸€é
+		1. ä¸­æ–­çš„å±è”½ä½æ‰“å¼€
+		2. ä¸­æ–­çš„ä¼˜å…ˆçº§è®¾ç½®
+	a3) ARMçš„å†…æ ¸ä¸­æ–­å¼‚å¸¸ä½çš„ä½¿èƒ½
+		1. CPSR I-bit/F-bit
+	
+	B. ä¸­æ–­çš„å“åº”å’Œå¤„ç†ä»¥åŠè¿”å›
+	ä¸­æ–­æ¡ä»¶å…·å¤‡ï¼Œä¸­æ–­å‘ç”Ÿäº†ï¼Œåˆ™ç¬¬ä¸€æ­¥å°±æ˜¯ç¡¬ä»¶è¿›è¡Œï¼ˆä¸­æ–­ï¼‰å¼‚å¸¸å“åº”
+	b1) (ä¸­æ–­)å¼‚å¸¸å“åº”ï¼Œç¡¬ä»¶è‡ªåŠ¨å®Œæˆ
+		1. ä¿å­˜åœ°å€ï¼š PC->LR_irq
+		2. ä¿å­˜æ¨¡å¼ï¼š CPSR->SPSR_irq
+		3. ä¿®æ”¹æ¨¡å¼:  IRQ_mode -> CPSR (0xD2)
+		4. ä¿®æ”¹åœ°å€:  0x18 -> PC æ­¤æ—¶å‘ç”Ÿäº†è·³è½¬ï¼ŒåŒæ—¶æ¨¡å¼å®Œæˆåˆ‡æ¢
+	b2) (ä¸­æ–­)å¼‚å¸¸å¤„ç†ï¼Œè½¯ä»¶æ‰‹å·¥å®ç°
+		0. å·æ‡’çš„åšæ³•ï¼šå…ˆè®¾ç½®ä¸€ä¸‹ sp_irq: mov sp, #0x33000000
+		1. ç°åœºçš„ä¿å­˜ï¼šSTMFD sp!, {r0-r12, lr}
+		2. å¼‚å¸¸å¤„ç†ç¨‹åº: æ³¨æ„å¦‚æœè°ƒç”¨Cï¼Œåˆ™lr_irqéœ€è¦ä¿å­˜
+		3. ç°åœºçš„æ¢å¤: LDMFD sp!, {r0-r12, lr}
+		4. å¼‚å¸¸çš„è¿”å›: movs pc, lr	(æ¨¡å¼å’Œåœ°å€åŒæ—¶è¿”å›)
+	b3) ä¸­æ–­çš„ç‰¹æ®Šå¤„ç†
+		0. ä¸­æ–­æ¨¡å¼ä¸‹çš„ SP æ ˆæŒ‡é’ˆçš„åˆå§‹åŒ–
+		1. ä¸­æ–­pendingä½çš„æ¸…é™¤
+			SRCPND -> INTPND å…ˆåé—®é¢˜ï¼Œè¦æ–©è‰å…ˆé™¤æ ¹
+		2. ä¸­æ–­å¼‚å¸¸è¿”å›çš„æ—¶å€™ï¼Œéœ€è¦ subs pc, lr, #4	
+		 
+	day10: section1: Timer å®šæ—¶å™¨ä¸­æ–­å¤„ç†	
+	Timer ï¼š
+	1ã€Clock æ¦‚å¿µ
+	è¾“å…¥æ—¶é’Ÿ
+	åˆ†é¢‘
+	è®¡æ•°å¯„å­˜å™¨ counter--
+	PWM ä¿¡å·è¾“å‡ºï¼Œå ç©ºæ¯”
+	
+	50M = 50000000  -->  <65535 = 50000
+	50000000 -> 100000 -> 1/2 -> 50000
+	-------- =  200000 -> 1/4 -> 50000
+	250
+	
+	æ—¶é’Ÿå’Œåˆ†é¢‘
+	TCFG0ï¼š250 - 1 = 249 (8-bit prescaler)
+	TCFG1ï¼š1/4 åˆ†é¢‘
+	
+	è®¡æ•°å™¨ 
+	TCNTB0ï¼š = 50000
+	TCONï¼š set Manual update bit
+	TCONï¼š set Start bit
+	TCONï¼š clear Manual update bit
+	
+	day11ï¼šsection1ï¼šåµŒå…¥å¼Linuxå¼€å‘
+	1ã€ç¡¬ä»¶åŸºç¡€
+	*Communication
+	RS232(DB9), Ethernet (RJ45), 
+	PS/2, USB(Host/Device),
+	
+	*Multimedia
+	LCD+Ts(40pin), VGA, TV
+	Audio output/in(MIC), 
+	
+	*Storage
+	SD, IDE, 
+	
+	*Interface
+	Key, Jtag, 
+	
+	2ã€é‡è¦èŠ¯ç‰‡
+	S3C2410(cpu), HY57V561620C(SDRAM), 
+	k9f1208(NandFlash), sst39vf160(NorFlash)
+	CS8900/DM9000(Net), UDA1341/WM9714(Audio)
+	
+	day11ï¼šsection2ï¼šäº¤å‰å¼€å‘ç¯å¢ƒæ­å»º
+	su åˆ‡æ¢åˆ°ç®¡ç†å‘˜æ¨¡å¼ï¼Œå¯†ç ä¸º 123456
+	rpm -ivh --force *.rpm
+	vi /etc/profile
+	æ·»åŠ ç³»ç»Ÿå¯æ‰§è¡Œæ–‡ä»¶è·¯å¾„
+	export PATH=$PATH:/opt/host/armv4l/bin:/sbin
+	
+	armv4l-unknown-linux-gcc hello.c -o hello
+	
+	4ã€æ­å»ºç½‘ç»œç¯å¢ƒ - è¯•é”™
+	startx è¿›å…¥å›¾å½¢ç³»ç»Ÿ
+	ifconfig æŸ¥è‡ªå·±ip
+	ping è‡ªå·±ip
+	ping 192.168.0.1
+	
+	route add default gw 192.168.0.1
+	ping 8.8.8.8  å¯ä»¥pingé€šå¤–ç½‘
+	ping www.baidu.com çœ‹åŸŸåè§£æ
+	å¦‚æœä¸é€šï¼Œåˆ™æ·»åŠ  /etc/resolv.conf  åŸŸåè§£æå™¨
+	nameserver 8.8.8.8
+	nameserver 210.73.64.1
+	nameserver 202.106.0.20
+	
+	èƒ½å¦ ping å¾—é€šçš„ä¸€ä¸ªå…³é”®æ¡ä»¶
+	iptables -F å…³é—­Linuxçš„é˜²ç«å¢™
+	windows XP ä¸ä¹‹ç±»ä¼¼çš„æ˜¯ æ§åˆ¶é¢æ¿->ç½‘ç»œInternetè¿æ¥->windowsé˜²ç«å¢™->å…³é—­(ä¸æ¨è)
+	
+	ftp server (ftpd:21)
+	å¯åŠ¨ serverï¼š /etc/init.d/vsftpd restart/stop/start
+	ftp 172.16.0.101
+	> username : akaedu
+	passwd: akaedu
+	> ls
+	> get
+	> put
+	> bye/quit
+	é…ç½®æ–‡ä»¶ï¼š /etc/vsftpd/vsftpd.conf
+	ä¸»ç›®å½•ï¼š /home/akaedu/
+	
+	webserver (httpd:80)
+	å¯åŠ¨ server: /etc/init.d/httpd restart/stop/start
+	http://172.16.0.101
+	å¯ä»¥çœ‹åˆ°æµ‹è¯•é¡µ test page
+	é…ç½®æ–‡ä»¶ï¼š /etc/httpd/conf/httpd.conf
+	ä¸»ç›®å½•ï¼š /var/www/html/
+	
+	day11ï¼šsection3ï¼šåµŒå…¥å¼Linuxå†…æ ¸ç¼–è¯‘
+	tar zxvf linux-br.tar.gz è§£å‹
+	du [-sh] æŸ¥çœ‹ç›®å½•æ–‡ä»¶å¤§å°
+	find . -name *.c | wc æŸ¥çœ‹æ‰€æœ‰ c æ–‡ä»¶ (4000+ ä¸ªcç¨‹åº)
+	
+	vmlinux: å…¶å®å°±æ˜¯ linux çš„å†…æ ¸ï¼Œå¸¦æœ‰ ELF æ ¼å¼çš„å†…æ ¸
+	zImageï¼šå°±æ˜¯æˆ‘ä»¬æœ€åçƒ§å†™åˆ°æ¿å­ä¸Šçš„ï¼Œæ²¡æœ‰æ ¼å¼çš„binæ–‡ä»¶å†…æ ¸
+	       ld
+	*.o ------> vmlinux
+	
+		objcopy
+	vmlinux-----> zImage
+	
+	make menuconfig 
+		General Setup
+		Char Device - ä¸²å£
+		Block Device
+		MTD Device - NandFlash
+		Network Device - Cs8900
+	make dep
+	make vmlinux
+	make zImage
+	
+	zImage åœ¨ arch/arm/boot ç›®å½•ä¸‹, æ‹·è´åˆ° /home/akaedu
+	cp arch/arm/boot/zImage /home/akaedu
+	
+	åˆ‡æ¢åˆ° D: ç”¨ ftp ä¸‹è½½ï¼Œä¿®æ”¹binaryä¼ è¾“æ¨¡å¼ï¼Œget zImage
+	
+	æŠŠ zImage çƒ§å†™åˆ°ç¬¬12blockå¤„ å³ 0x30000 å¤„
+	1M: 12block 12*16K = 192K å¤„
+	
+	æŠŠ mycramfs.img çƒ§å†™åˆ°ç¬¬128blockå¤„ å³ 0x200000 å¤„
+	1M: 128block 128*16K = 2M å¤„
+	
+	æŠŠ vivi çƒ§å†™åˆ° 0block
+	
+	C:\Documents and Settings\Administrator>type my.cmd
+	akaedu
+	akaedu
+	binary
+	get zImage
+	bye
+	
+	C:\Documents and Settings\Administrator>ftp -s:my.cmd 172.16.0.101
+	Connected to 172.16.0.101.
+	220 (vsFTPd 1.1.3)
+	User (172.16.0.101:(none)):
+	331 Please specify the password.
+	
+	230 Login successful. Have fun.
+	ftp> dir
+	200 PORT command successful. Consider using PASV.
+	150 Here comes the directory listing.
+	drwxr-xr-x    2 0        0            4096 Jan 19 18:17 arm
+	drwx------    4 500      500          4096 Apr 28 17:23 evolution
+	drwxr-xr-x    2 500      500          4096 Apr 28 14:36 hello
+	-rw-r--r--    1 0        0            5143 Apr 28 15:30 hello.1
+	drwxr-xr-x    2 0        0            4096 Mar 23 15:53 image
+	drwxr-xr-x    2 0        0            4096 Apr 28 15:41 led
+	-rw-r--r--    1 500      500           755 Apr 28 15:25 led.c
+	drwxrwxr-x    3 500      500          4096 Apr 28 15:41 lwj
+	drwxrwxr-x    4 500      500          4096 Apr 28 16:58 mc2410
+	drwxr-xr-x    2 0        0            4096 Jan 19 18:19 skyeye
+	-rwxrwxr-x    1 500      500        989788 Apr 28 19:05 zImage
+	226 Directory send OK.
+	ftp: æ”¶åˆ° 696 å­—èŠ‚ï¼Œç”¨æ—¶ 0.01Seconds 46.40Kbytes/sec.
+	ftp> get zImage
+	200 PORT command successful. Consider using PASV.
+	150 Opening BINARY mode data connection for zImage (989788 bytes).
+	226 File send OK.
+	ftp: æ”¶åˆ° 989788 å­—èŠ‚ï¼Œç”¨æ—¶ 0.03Seconds 31928.65Kbytes/sec.
+	ftp> bye
+	221 Goodbye.
+	
+	è¯»å–flashï¼ŒæŠŠ zImage æ”¾åˆ° 0x30008000 å¤„ï¼Œç„¶å go
+	nr 0x30000 0x30008000 0x100000
+	
+	Source Insight æŸ¥æºç 
+	
+	å¾—åˆ°ä¸€ä¸ª rootfs çš„imgæ–‡ä»¶ã€‚
+	mkcramfs root_china my-cramfs.img
+	ftp ä¸‹è½½ä¸‹æ¥ï¼Œçƒ§å†™åˆ° 128block
+	
+	./mnt/etc/init.d/rcS
+	#exec /usr/etc/rc.local
+	
+	/var/www/html/hello
+	wget http://172.16.0.101/hello
 
 	
 	
