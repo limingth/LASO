@@ -20,6 +20,7 @@ title: 硬件原理图
 
 ### 核心板
 核心板一般包含了最小系统，也就是主芯片SoC，内存SDRAM，闪存FLASH，复位电路Reset，调试接口JTAG，时钟CLOCK和电源Power。请在原理图上分别找到这些器件，并初步熟悉了解它们的芯片型号。
+
 	SoC: 	S5PV210 -> 584pin	(S5PV210_UM_REV1.1.pdf)
 	Mem:	K4T1G -> 1Gb=128MB (K4T1G164QE_rev11.pdf)
 	Flash: 	K9F2G08 -> 256M*8bit=256MB (K9F2G08.pdf)
@@ -31,6 +32,7 @@ title: 硬件原理图
 
 ### 底板
 底板一般包含了常见外设，例如通用GPIO，串口UART，网卡Net，液晶屏接口LCD，音频接口Audio等。请在原理图上找到这些器件，并初步熟悉了解它们的芯片型号。
+
 	CONN-AB:	30*2 * 2个 = 120pin 引出 (例如串口TxD/RxD)
 	CONN-C:		15*2 = 30pin 引出 (例如I2C, CAM)
 	Power-On/Off: 	S1
@@ -43,6 +45,7 @@ title: 硬件原理图
 	SD-CARD:	Data(4pin) + (4pin)
 	UART:		串口(通用异步收发器)
 	LCD：		40pin / 45pin (DATA-24pin)
+	
 	
 以上所有芯片的数据手册，都可以在开发板附带光盘中找到。		
 
