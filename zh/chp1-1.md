@@ -5,9 +5,9 @@ title: 硬件平台
 
 ## 硬件平台 ##
 
-本课程采用 广州友善之臂 的 Tiny210 开发板 作为实验开发平台。
+本课程采用 [广州友善之臂](http://arm9.net) 的 Tiny210 开发板 作为实验开发平台。 关于这个硬件开发板的详细描述和介绍，可以参考阅读 <arm9.net/tiny210.asp> 上面的内容。
 
-<div class="figures"> <img src="../figures/LASO-010101.png" /> </div>
+<div class="figures"> <img src="../figures/LASO-tiny210-433.jpg" /> </div>
 
 需要参加课程的学员提前准备好以下环境：
 
