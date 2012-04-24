@@ -90,7 +90,7 @@ title: 芯片手册导读-内部结构框图
 		SPECIAL REGISTERS 特殊功能寄存器
 		Timing 时序图
 
-### 芯片的一般结构		
+### 芯片手册的一般结构		
 	CORE - Cortex-A8
 		ALU (运算器)
 		Regs (通用寄存器)
@@ -118,7 +118,7 @@ title: 芯片手册导读-内部结构框图
 		IMAGE ROTATOR
 		JPEG
 
-### 数据手册应该怎样阅读？
+### 芯片手册应该怎样阅读？
 	Overview
 		CHIP Block Diagram, MemoryMap,
 		Pin Assignment, Signal Description
