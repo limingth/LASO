@@ -102,11 +102,11 @@ title: 开发工具链
 	
 
 ### ARM Docs 开发文档
-	DDI0100E_ARM_ARM.pdf - 		ARM体系结构知识，侧重于内核
-	ADS_CompilerGuide_D.pdf - 	编译器使用
-	ADS_LinkerGuide_A.pdf -		链接器使用
-	ADS_AssemblerGuide_B.pdf -	汇编器使用
-	ADS_DebugTargetGuide_D.pdf -	调试器使用
+	DDI0100E_ARM_ARM.pdf  		- ARM体系结构知识，侧重于内核
+	ADS_CompilerGuide_D.pdf  	- 编译器使用	
+	ADS_AssemblerGuide_B.pdf 	- 汇编器使用
+	ADS_LinkerGuide_A.pdf 		- 链接器使用	
+	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
 
 <br> <br> 
