@@ -8,7 +8,7 @@ title: 时序图
 ### 基本概念
 [时序图的基本概念](http://baike.baidu.com/view/916360.htm)
 
-<img src="http://img846.ph.126.net/ZIhQOIJoebiCzwIhk0CGGA==/749849337959226852.gif">
+<img src="http://hi.csdn.net/attachment/201203/20/0_1332209791WT3i.gif">
 
 时序图是芯片与芯片之间进行数据通信所需要遵循的一种协议。通过时序图能够直观的看出，不同的芯片引脚在时间轴上的不同时刻所呈现出来的高低电平的变换，这些引脚中，有的代表地址信息，有的代表数据信息，有的代表控制信息，它们出现的先后顺序是有严格的时间参数规定的，这称为 Timing 。
 
@@ -19,9 +19,9 @@ title: 时序图
 	typical	- 典型值
 	
 
-[Timing Table] (http://img686.ph.126.net/ezFdtOVBEhiUKt2gnJsH0w==/58546795157016659.gif)
+[Timing Table] 
 
-<img src="http://img686.ph.126.net/ezFdtOVBEhiUKt2gnJsH0w==/58546795157016659.gif"> 
+<img src="http://hi.csdn.net/attachment/201203/20/0_1332209852TT5C.gif"> 
 
 	
 <br> <br> 
