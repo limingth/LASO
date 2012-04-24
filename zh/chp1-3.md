@@ -11,15 +11,17 @@ title: 开发工具链
 
 有关 ADS 工具和 MDK 工具的介绍，可以参考阅读百度百科的介绍。
 
-	[ADS] (http://baike.baidu.com/view/171249.htm#sub6295819)
-	[MDK] (http://baike.baidu.com/view/1745465.htm)
+[ADS] (http://baike.baidu.com/view/171249.htm#sub6295819)
+[MDK] (http://baike.baidu.com/view/1745465.htm)
 
 总体说来，MDK 是 ADS 的升级版本，界面上做了很大改动，但后台使用的命令行工具链基本一样。以下就是以 ADS 安装为例，对命令行工具链做一个简单说明。
 
-### 工具位置
-	C:\Program Files\ARM\ADSv1_2\Bin
-	IDE.exe - 	ADS IDE
-	axd.exe	-	AXD debugger
+### 安装说明
+	工具下载： http://limingth.github.com/ARM-Tools
+	安装目录： C:\Program Files\ARM\ADSv1_2\Bin
+	图形开发环境：
+		IDE.exe - 	ADS IDE
+		axd.exe	-	AXD debugger
 
 ### 命令行开发工具链 /(GNU tools-chain)
 	armcc.exe -	C compiler (armcpp.exe) /(gcc)
@@ -47,7 +49,8 @@ title: 开发工具链
 		armcc -c hello.c
 			默认会生成  hello.o ，此时还需要 link 之后才能生成 axf 可执行文件
 
-	特殊用法： 如果一个C程序，没有 main 函数，编译会怎么样？ （有警告warning，无错误error，能生成可执行文件axf）
+	特殊用法： 
+		如果一个C程序，没有 main 函数，编译会怎么样？ （有警告warning，无错误error，能生成可执行文件axf）
 	
 
 ### asm 汇编器
@@ -86,7 +89,7 @@ title: 开发工具链
 ### 综合应用
 	单独汇编程序的编译链接
 		armasm start.s
-		armlink start.o main.o -o demo.axf
+		armlink start.o -o demo.axf
 
 	单独C程序的编译链接
 		armcc -c hello.c
@@ -95,7 +98,7 @@ title: 开发工具链
 	汇编和C程序的混合链接
 		armasm start.s
 		armcc -c main.c
-		armlink -first start.o -ro-base 0x0 -entry begin start.o main.o -o hello4.axf
+		armlink -first start.o -ro-base 0x0 -entry begin start.o main.o -o demo.axf
 	
 
 ### ARM Docs 开发文档
