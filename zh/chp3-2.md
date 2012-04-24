@@ -1,23 +1,28 @@
 ---
 layout: post
-title: GPIO 输出引脚
+title: 时钟管理 - 时钟输出频率
 ---
 
-##  GPIO 输出引脚
+##  时钟输出频率
 
-### GPIO的工作原理
-	GPIO Controller
-		how many pin
-		pin number, pin name, pin mux functional
-		device <-> GPIO (LED1 -> GPJ2_0) 原理图
-	GPIO SFRs
-		Set mux function
-			控制寄存器 GPXCON
-		Set pin value
-			数据寄存器 GPXDAT
-		Set interrupt function
-			中断寄存器 ...
-	
+### 时钟输出
+	MSYS clock domain (H->HighPerformance P->Peripheral)
+		AHB / APB
+		freq(ARMCLK)  = 1000Mhz		1000M/1
+		freq(HCLK_MSYS) = 200Mhz	ARMCLK/5
+		freq(PCLK_MSYS) = 100Mhz	HCLK_M/2
+		freq(HCLK_IMEM) = 100Mhz	HCLK_M/2
+
+	DSYS clock domain
+		freq(HCLK_DSYS) = 166Mhz
+		freq(PCLK_DSYS) = 83Mhz		HCLK_D/2
+
+	PSYS clock domain
+		freq(HCLK_PSYS) = 133Mhz
+		freq(PCLK_PSYS) = 66Mhz		HCKL_P/2
+		freq(SCLK_ONENAND) = 133M/166Mhz
+
+	PLL PMS setting
 		
 
 <br> <br> 
