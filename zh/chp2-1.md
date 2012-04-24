@@ -1,11 +1,11 @@
 ---
 layout: post
-title: 内部结构框图 
+title: 芯片手册导读-内部结构框图 
 ---
 
 ## 内部结构框图 ##
 
-### 目录结构
+### S5PV210 芯片数据手册目录结构
 	一、Overview
 		1. overview
 			block diagram
@@ -67,35 +67,35 @@ title: 内部结构框图
 		5. KeyPad
 	十一、Security	
 
-### S5PV210 Block Diagram
+### S5PV210 Block Diagram 芯片内部结构框图 
 	PRODUCT OVERVIEW
 	Block Diagram
 		CPU (运算) (控制)
-		BUS
+		BUS (地址/数据/控制)
 		Controllers (特殊功能寄存器)
-	Pin Assignment Diagram
-	SIGNAL DESCRIPTIONS
+	Pin Assignment Diagram 管脚定义
+	SIGNAL DESCRIPTIONS 信号描述
 	SPECIAL REGISTERS (SFRs)
 	SYSTEM MANAGER
 		System Memory Map (系统内存映射)
 			0x4000000 = 0x40M = 64M
-		System Manager Registers (10+)
+		System Manager Registers (10+) 
 	SFR
 		Name + Address + R/W + desc. + Reset Value
-		Bit-Field
+		Bit-Field 位域
 	Timing 时序图
-	Controller
-		OVERVIEW
-		Diagram
-		SPECIAL REGISTERS
-		Timing
+	Controller 控制器
+		OVERVIEW 综述
+		Block Diagram 框图
+		SPECIAL REGISTERS 特殊功能寄存器
+		Timing 时序图
 
 ### 芯片的一般结构		
 	CORE - Cortex-A8
-	MMU
-	CACHE
-	Regs (通用寄存器)
-	ALU (运算器)
+		ALU (运算器)
+		Regs (通用寄存器)
+		MMU
+		CACHE		
 	BUS
 		片内 - 地址线32bit
 		片外 - 地址线取决于BANK的大小
@@ -134,8 +134,7 @@ title: 内部结构框图
 		Memory (DDR)
 		DMA
 		Interrupt
-		PWM Timer
-			-> mini OS porting
+		PWM Timer			
 		LCD + TS
 		AUDIO
 		DM9000
