@@ -1,32 +1,32 @@
 ---
 layout: post
-title: UART ¿ØÖÆÆ÷ - ´®¿Ú¿ØÖÆÆ÷½á¹¹
+title: UART æ§åˆ¶å™¨ - ä¸²å£æ§åˆ¶å™¨ç»“æ„
 ---
 
-## ´®¿Ú¿ØÖÆÆ÷¹¦ÄÜ
+## ä¸²å£æ§åˆ¶å™¨åŠŸèƒ½
 UART Controller (p853-p882)
-	ÀàËÆÊÇÒ»¸öº¯Êı£¬ĞèÒªÁË½âËüµÄ->ÊäÈë£¬Êä³ö£¬ÈçºÎÊµÏÖ
-		1. Êä³ö£ºTiming (´®ĞĞÍ¨ĞÅÊµÏÖÊ±ĞòÍ¼)
+	ç±»ä¼¼æ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œéœ€è¦äº†è§£å®ƒçš„->è¾“å…¥ï¼Œè¾“å‡ºï¼Œå¦‚ä½•å®ç°
+		1. è¾“å‡ºï¼šTiming (ä¸²è¡Œé€šä¿¡å®ç°æ—¶åºå›¾)
 			Serial I/O Frame Timing Diagram (Normal UART)  ->p860
-		2. ÊäÈë£ºSFR (´®¿Ú¿ØÖÆÆ÷µÄ¼Ä´æÆ÷)
+		2. è¾“å…¥ï¼šSFR (ä¸²å£æ§åˆ¶å™¨çš„å¯„å­˜å™¨)
 			REGISTER DESCRIPTION  ->p864
-		3. ÊµÏÖ£ºBlock Diagram (½á¹¹¿òÍ¼)
+		3. å®ç°ï¼šBlock Diagram (ç»“æ„æ¡†å›¾)
 			Block Diagram of UART  ->p854
-## ´®¿Ú¿ØÖÆÆ÷½á¹¹			
+## ä¸²å£æ§åˆ¶å™¨ç»“æ„			
 	Block Diagram:
-		Peripheral Bus ÍâÉè×ÜÏß
+		Peripheral Bus å¤–è®¾æ€»çº¿
 			*(int *)SFR_ADDR = value;
-		Controll Unit ¿ØÖÆµ¥Ôª
+		Controll Unit æ§åˆ¶å•å…ƒ
 			Control Regs
-		Baud-Rate Gengenrator ²¨ÌØÂÊ·¢ÉúÆ÷
-			Clock Source Ê±ÖÓÔ´ (66M)
-		Transmitter ·¢ËÍÆ÷
-			Transmit shift ·¢ËÍÒÆÎ»Æ÷
-			Transmit buffer ·¢ËÍ¶ÓÁĞFIFO»º³åÆ÷
-		Receiver ½ÓÊÕÆ÷
-			Receiver shift ½ÓÊÕÒÆÎ»Æ÷
+		Baud-Rate Gengenrator æ³¢ç‰¹ç‡å‘ç”Ÿå™¨
+			Clock Source æ—¶é’Ÿæº (66M)
+		Transmitter å‘é€å™¨
+			Transmit shift å‘é€ç§»ä½å™¨
+			Transmit buffer å‘é€é˜Ÿåˆ—FIFOç¼“å†²å™¨
+		Receiver æ¥æ”¶å™¨
+			Receiver shift æ¥æ”¶ç§»ä½å™¨
 
 	
 
 <br> <br> 
-<div> <a href="chp5-3.html">ÉÏÒ»½Ú</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-5.html">ÏÂÒ»½Ú</a> </div> <br> <br>
+<div> <a href="chp5-3.html">ä¸Šä¸€èŠ‚</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-5.html">ä¸‹ä¸€èŠ‚</a> </div> <br> <br>

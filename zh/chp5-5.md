@@ -1,11 +1,11 @@
 ---
 layout: post
-title: UART ¿ØÖÆÆ÷ - ´®¿Ú¼Ä´æÆ÷ÅäÖÃ
+title: UART æŽ§åˆ¶å™¨ - ä¸²å£å¯„å­˜å™¨é…ç½®
 ---
 
-## ´®¿ÚµÄ¼Ä´æÆ÷ SFR:
+## ä¸²å£çš„å¯„å­˜å™¨ SFR:
 	15 Regs	Register  Address
-	¿ØÖÆÀà	6¸ö
+	æŽ§åˆ¶ç±»	6ä¸ª
 		ULCON0  0xE290_0000
 		UCON0  0xE290_0004
 		UFCON0  0xE290_0008
@@ -13,22 +13,22 @@ title: UART ¿ØÖÆÆ÷ - ´®¿Ú¼Ä´æÆ÷ÅäÖÃ
 		UBRDIV0  0xE290_0028
 		UDIVSLOT0  0xE290_002C
 
-	×´Ì¬Àà	4¸ö
+	çŠ¶æ€ç±»	4ä¸ª
 		UTRSTAT0  0xE290_0010
 		UERSTAT0  0xE290_0014
 		UFSTAT0  0xE290_0018
 		UMSTAT0  0xE290_001C
 
-	Êý¾ÝÀà	2¸ö
+	æ•°æ®ç±»	2ä¸ª
 		UTXH0  0xE290_0020
 		URXH0  0xE290_0024
 
-	ÖÐ¶ÏÀà	3¸ö
+	ä¸­æ–­ç±»	3ä¸ª
 		UINTP0  0xE290_0030
 		UINTSP0  0xE290_0034
 		UINTM0  0xE290_0038
 		
-## ²é¿´ uboot ¶Ô´®¿ÚµÄÉèÖÃ
+## æŸ¥çœ‹ uboot å¯¹ä¸²å£çš„è®¾ç½®
 	[FriendlyLEG-TINY210]# md 0xe2900000
 	e2900000: 00000003 00000245 00000000 00000000    ....E...........
 	e2900010: 00000000 00000000 00010000 00000010    ................
@@ -48,7 +48,7 @@ title: UART ¿ØÖÆÆ÷ - ´®¿Ú¼Ä´æÆ÷ÅäÖÃ
 	UBRDIV0  	0xE290_0028 	00000023
 	UDIVSLOT0  	0xE290_002C 	00000808
 
-	ÆäÖÐ FIFO control & Modem control ¿ÉÒÔ²»ÓÃÉèÖÃ
+	å…¶ä¸­ FIFO control & Modem control å¯ä»¥ä¸ç”¨è®¾ç½®
 	Timing setting
 		ULCON0	0x3
 			data bit: 8bit
@@ -62,16 +62,16 @@ title: UART ¿ØÖÆÆ÷ - ´®¿Ú¼Ä´æÆ÷ÅäÖÃ
 	CLOCK setting
 		UCON0	00:  PCLK (66M)
 			--> 115200 bps (bit/second)
-			--> ²¨ÌØÂÊ²¢²»ÊÇ´®¿Ú¿ØÖÆÆ÷µÄ¹¤×÷ÆµÂÊ£¬´®¿Ú¿ØÖÆÆ÷ÔÚ½ÓÊÕ²ÉÑùÊ±£¬ÊÇ²¨ÌØÂÊµÄ16±¶
+			--> æ³¢ç‰¹çŽ‡å¹¶ä¸æ˜¯ä¸²å£æŽ§åˆ¶å™¨çš„å·¥ä½œé¢‘çŽ‡ï¼Œä¸²å£æŽ§åˆ¶å™¨åœ¨æŽ¥æ”¶é‡‡æ ·æ—¶ï¼Œæ˜¯æ³¢ç‰¹çŽ‡çš„16å€
 
 		66Mhz = 66000000hz
 
-		·ÖÆµÒò×Ó = 66000000 / (115200*16) - 1
-		(·ÖÆµÒò×Ó + 1) = PCLK/(bps*16)
+		åˆ†é¢‘å› å­ = 66000000 / (115200*16) - 1
+		(åˆ†é¢‘å› å­ + 1) = PCLK/(bps*16)
 
 		UBRDIV0:  0x23 = (66000000)/(115200*16)-1= 35
 		UDIVSLOT0:
 	
 
 <br> <br> 
-<div> <a href="chp5-4.html">ÉÏÒ»½Ú</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-6.html">ÏÂÒ»½Ú</a> </div> <br> <br>
+<div> <a href="chp5-4.html">ä¸Šä¸€èŠ‚</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-6.html">ä¸‹ä¸€èŠ‚</a> </div> <br> <br>

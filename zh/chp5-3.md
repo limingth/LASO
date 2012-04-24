@@ -1,15 +1,15 @@
 ---
 layout: post
-title: UART ¿ØÖÆÆ÷ - ´®¿ÚÊ±ĞòÍ¼
+title: UART æ§åˆ¶å™¨ - ä¸²å£æ—¶åºå›¾
 ---
 
-## ´®¿ÚÊ±ĞòÍ¼
+## ä¸²å£æ—¶åºå›¾
 	Timing:
-		¿ÕÏĞ×´Ì¬ high-level
-		ÆğÊ¼Î» start bit - 1 bit
-		Êı¾İÎ» data bit - 8bit
-			ÆæÅ¼Ğ£Ñé odd/even Parity (ÎŞ)
-		Í£Ö¹Î» stop bit - 1 bit
+		ç©ºé—²çŠ¶æ€ high-level
+		èµ·å§‹ä½ start bit - 1 bit
+		æ•°æ®ä½ data bit - 8bit
+			å¥‡å¶æ ¡éªŒ odd/even Parity (æ— )
+		åœæ­¢ä½ stop bit - 1 bit
 
 <br> <br> 
-<div> <a href="chp5-2.html">ÉÏÒ»½Ú</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-4.html">ÏÂÒ»½Ú</a> </div> <br> <br>
+<div> <a href="chp5-2.html">ä¸Šä¸€èŠ‚</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-4.html">ä¸‹ä¸€èŠ‚</a> </div> <br> <br>
