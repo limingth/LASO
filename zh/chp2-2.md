@@ -32,6 +32,7 @@ title: 存储管理和地址映射
 
 ### Memory Map 存储映射
 存储映射这个概念是本节最重要的知识，以 S5PV210 芯片为例，了解并掌握它的映射情况。
+
 	Boot Area: 0x0 - 0x20000000 =512M
 		Mirrored region depending on boot mode
 	
@@ -42,6 +43,7 @@ title: 存储管理和地址映射
 	iRAM: 	0xD0020000 - 0xD0038000: =96K (0x18=24*0x1000) 
 	
 	思考问题： 根据上述地址映射，对不同地址进行的访问，会引发底层硬件产生何种响应？
+		*(int *)0x00000000 : it depends
 		*(int *)0x21000000 : DRAM
 		*(int *)0xE0200280 : GPIO SFR
 		*(int *)0xE2900000 : UART SFR
