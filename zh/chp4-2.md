@@ -26,4 +26,4 @@ title: 时钟管理 - 时钟输出频率
 		
 
 <br> <br> 
-<div> <a href="chp3-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp3-3.html">下一节</a> </div> <br> <br>
+<div> <a href="chp4-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp4-3.html">下一节</a> </div> <br> <br>

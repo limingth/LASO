@@ -23,4 +23,4 @@ title: UART 控制器 - 串口硬件连接
 	
 
 <br> <br> 
-<div> <a href="chp4-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-2.html">下一节</a> </div> <br> <br>
+<div> <a href="chp4-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-2.html">下一节</a> </div> <br> <br>
