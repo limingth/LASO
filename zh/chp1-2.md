@@ -20,14 +20,14 @@ title: 硬件原理图
 ### 核心板
 核心板一般包含了最小系统，也就是主芯片SoC，内存SDRAM，闪存FLASH，复位电路Reset，调试接口JTAG，时钟CLOCK和电源Power。请在原理图上分别找到这些器件，并初步熟悉了解它们的芯片型号。
 
-**主芯片	SoC: 	S5PV210 -> 584pin			(S5PV210_UM_REV1.1.pdf)  
-**内存		Mem:	K4T1G -> 1Gb=128MB 			(K4T1G164QE_rev11.pdf)  
-**闪存		Flash: 	K9F2G08 -> 2Gbx8bit=256Mx1Byte=256MB	(K9F2G08.pdf)  
-**复位电路	Reset:	Max811					(MAX811T.pdf)  
-**调试电路	Jtag:	TCK/TDI/TDO/TMS/TRST  
-**时钟		CLOCK:	24Mhz (X1) XXTI/XXTO  
-**发光二极管	LED:	LED1-4  
-**高清接口	HDMI:	mini HDMI(CON8)  
+	**主芯片	SoC: 	S5PV210 -> 584pin			(S5PV210_UM_REV1.1.pdf)  
+	**内存		Mem:	K4T1G -> 1Gb=128MB 			(K4T1G164QE_rev11.pdf)  
+	**闪存		Flash: 	K9F2G08 -> 2Gbx8bit=256Mx1Byte=256MB	(K9F2G08.pdf)  
+	**复位电路	Reset:	Max811					(MAX811T.pdf)  
+	**调试电路	Jtag:	TCK/TDI/TDO/TMS/TRST  
+	**时钟		CLOCK:	24Mhz (X1) XXTI/XXTO  
+	**发光二极管	LED:	LED1-4  
+	**高清接口	HDMI:	mini HDMI(CON8)  
 
 ### 底板
 底板一般包含了常见外设，例如通用GPIO，串口UART，网卡Net，液晶屏接口LCD，音频接口Audio等。请在原理图上找到这些器件，并初步熟悉了解它们的芯片型号。
