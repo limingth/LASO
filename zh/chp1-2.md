@@ -42,8 +42,8 @@ title: 硬件原理图
 	I2C-Eeprom:	MAC address (6 bytes)
 	Buttons:	K1-K8 (XEINT16-27)
 	SD-CARD:	Data(4pin) + (4pin)
-	UART:		串口(通用异步收发器)			<u>MAX3232.pdf</u>
-	LCD：		40pin / 45pin (DATA-24pin)		<u>H43-HSD043I9W1.pdf</u>
+	UART:		串口(通用异步收发器)				[MAX3232.pdf]
+	LCD：		40pin / 45pin (DATA-24pin)			[H43-HSD043I9W1.pdf]
 	
 	
 以上所有芯片的数据手册，都可以在开发板附带光盘中找到，也可以从 <https://github.com/limingth/ARM-Resources> 链接下载得到。
