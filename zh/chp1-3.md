@@ -7,12 +7,13 @@ title: 开发工具链
 
 在ARM开发领域，有两大类开发工具可以选择，一类是基于 Windows 平台的 SDT, ADS, RealView MDK 系列，一类是基于 Linux 平台的 GNU Cross-Toolchain 。
 
-考虑到大部分学习者对 Linux 平台比较陌生，我们先介绍 Windows 平台上的工具链。一旦我们对工具链背后的开发思路比较了解之后，再来学习 Linux 上的工具。
+考虑到从简单到复杂的学习路线，我们先介绍 Windows 平台上的工具链。一旦我们对工具链背后的开发思路比较了解之后，再来学习 Linux 上的工具就会比较容易上手。
 
 有关 ADS 工具和 MDK 工具的介绍，可以参考阅读百度百科的介绍。
 
-[ADS] (http://baike.baidu.com/view/171249.htm#sub6295819)
-[MDK] (http://baike.baidu.com/view/1745465.htm)
+[ADS简介] (http://baike.baidu.com/view/171249.htm#sub6295819)
+
+[MDK简介] (http://baike.baidu.com/view/1745465.htm)
 
 总体说来，MDK 是 ADS 的升级版本，界面上做了很大改动，但后台使用的命令行工具链基本一样。以下就是以 ADS 安装为例，对命令行工具链做一个简单说明。
 
