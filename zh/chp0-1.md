@@ -5,6 +5,7 @@ title: 前言
 
 # 学习目标 #
 ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不可缺少的一个内容。在这个阶段我们努力培养学员具备以下的素质和能力：  
+
         1) 掌握ARM体系结构和汇编语言。
         2) 能够初步学会阅读硬件原理图和芯片数据手册。
         3) 具备为SoC芯片常见外设如 UART，NandFlash，Timer 等编写驱动程序的能力。
@@ -12,6 +13,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
         
 # 适合对象 #
 本阶段对于学员学习基础的要求如下：  
+
         1) 掌握C语言，熟悉指针的用法。
         2) 学过计算机组成原理和数字电路等课程。
         3) 具备一定的英文阅读能力。
@@ -30,7 +32,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 *如何用 markdown 写书  
 <http://www.slideshare.net/larrycai/write-book-in-markdown>
  
-*轻量级标记语言 Markdown  
+*简介轻量级标记语言 Markdown  
 <http://www.worldhello.net/gotgithub/appendix/markups.html>
 
 *如何生成 pdf 版本  
