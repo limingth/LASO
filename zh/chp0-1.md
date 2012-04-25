@@ -23,25 +23,20 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 # 如何写作本书的 #
 对于有志于参与本书编写的学员，可以通过学习以下内容来进一步了解关于如何写书的相关知识。
 
-**如何安装 GIT
+**如何安装 GIT  
+<http://progit.org/book/zh/ch1-4.html>
 
- <http://progit.org/book/zh/ch1-4.html>
-
-**如何使用 GitHub
-
+**如何使用 GitHub  
 <http://www.worldhello.net/gotgithub/index.html>
 
-**如何用 markdown 写书
-
- <http://www.slideshare.net/larrycai/write-book-in-markdown>
+**如何用 markdown 写书  
+<http://www.slideshare.net/larrycai/write-book-in-markdown>
  
-**轻量级标记语言 Markdown
-
+**轻量级标记语言 Markdown  
 <http://www.worldhello.net/gotgithub/appendix/markups.html>
 
-**如何生成 pdf 版本
-
- <https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
+**如何生成 pdf 版本  
+<https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
 
 
 
