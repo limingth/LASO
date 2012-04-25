@@ -20,10 +20,10 @@ title: 硬件原理图
 ### 核心板
 核心板一般包含了最小系统，也就是主芯片SoC，内存SDRAM，闪存FLASH，复位电路Reset，调试接口JTAG，时钟CLOCK和电源Power。请在原理图上分别找到这些器件，并初步熟悉了解它们的芯片型号。
 
-	主芯片    	SoC: 	S5PV210 -> 584pin			`S5PV210_UM_REV1.1.pdf`
-	内存      	Mem:	K4T1G -> 1Gb=128MB 			`K4T1G164QE_rev11.pdf`  
-	闪存      	Flash: 	K9F2G08 -> 2Gbx8bit=256Mx1Byte=256MB	`K9F2G08.pdf`  
-	复位电路  	Reset:	Max811					`MAX811T.pdf`
+	主芯片    	SoC: 	S5PV210 -> 584pin			<u>S5PV210_UM_REV1.1.pdf</u>
+	内存      	Mem:	K4T1G -> 1Gb=128MB 			<u>K4T1G164QE_rev11.pdf</u>
+	闪存      	Flash: 	K9F2G08 -> 2Gbx8bit=256Mx1Byte=256MB	<u>K9F2G08.pdf</u>
+	复位电路  	Reset:	Max811					<u>MAX811T.pdf</u>
 	调试电路  	Jtag:	TCK/TDI/TDO/TMS/TRST
 	时钟     	CLOCK:	24Mhz (X1) XXTI/XXTO
 	发光二极管	LED:	LED1-4
@@ -35,15 +35,15 @@ title: 硬件原理图
 	CONN-AB:	30*2 * 2个 = 120pin 引出 (例如串口TxD/RxD)
 	CONN-C:		15*2 = 30pin 引出 (例如I2C, CAM)
 	Power-On/Off: 	S1
-	NET：		DM9000AEP (Ethernet) HR91105A		`DM9000.pdf`
-	Audio:		WM8960 (DA/AD convert)			`WM8960_Rev40.pdf`
+	NET：		DM9000AEP (Ethernet) HR91105A		<u>DM9000.pdf</u>
+	Audio:		WM8960 (DA/AD convert)			<u>WM8960_Rev40.pdf</u>
 	Buzzer:		PWM beep
 	RTC:		Real-Time Clock
 	I2C-Eeprom:	MAC address (6 bytes)
 	Buttons:	K1-K8 (XEINT16-27)
 	SD-CARD:	Data(4pin) + (4pin)
-	UART:		串口(通用异步收发器)			`MAX3232.pdf`
-	LCD：		40pin / 45pin (DATA-24pin)		`H43-HSD043I9W1.pdf`
+	UART:		串口(通用异步收发器)			<u>MAX3232.pdf</u>
+	LCD：		40pin / 45pin (DATA-24pin)		<u>H43-HSD043I9W1.pdf</u>
 	
 	
 以上所有芯片的数据手册，都可以在开发板附带光盘中找到，也可以从 <https://github.com/limingth/ARM-Resources> 链接下载得到。
