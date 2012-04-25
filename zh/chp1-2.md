@@ -7,6 +7,11 @@ title: 硬件原理图
 
 通常提供硬件平台的厂家，都会随开发板光盘附带硬件原理图。硬件原理图一般都是以PDF格式提供，这和硬件设计人员通过使用 Protel/OrCAD Capture 这样的硬件原理图设计工具产生的文件不同，但PDF的文档方便查阅，易于打开，对于嵌入式软件开发工程师用于开发已经足够了。
 
+[Tiny210-core-board.pdf](https://github.com/limingth/ARM-Resources/blob/22dda0e9afefb8cd8fc4c8f117cbbde43f7678ee/tiny210/Schematic/Tiny210-core-board.pdf)
+
+[Tiny210-mother-board.pdf](https://github.com/limingth/ARM-Resources/blob/22dda0e9afefb8cd8fc4c8f117cbbde43f7678ee/tiny210/Schematic/Tiny210-mother-board.pdf)
+
+
 ### 原理图包含的信息
 核心板的原理图和底板的原理图，通常分为两个文件存放。通过查看原理图，能够知道哪些信息？
 
@@ -37,7 +42,7 @@ title: 硬件原理图
 	Power-On/Off: 	S1
 	NET：		DM9000AEP (Ethernet) HR91105A		[DM9000.pdf]
 	Audio:		WM8960 (DA/AD convert)			[WM8960_Rev40.pdf]
-	Buzzer:		PWM beep
+	Buzzer:		PWM Timer (beep)
 	RTC:		Real-Time Clock
 	I2C-Eeprom:	MAC address (6 bytes)
 	Buttons:	K1-K8 (XEINT16-27)
