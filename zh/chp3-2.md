@@ -4,7 +4,7 @@ title: GPIO 控制器 - GPIO 输出引脚
 ---
 
 ## GPIO 输出引脚
-General Purpose Input/Output (p92-p352)	  
+General Purpose Input/Output (p92-p352)	
 
 	1) 237 multi-functional input/output port pins  
 		34 general port groups  
