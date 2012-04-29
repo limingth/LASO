@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 时序图
+title: 源码开放学ARM - 芯片手册导读 - 时序图
 ---
 
 ## 时序图

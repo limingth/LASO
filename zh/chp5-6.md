@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UART 控制器 - 串口驱动代码实现
+title: 源码开放学ARM - UART 控制器 - 串口驱动代码实现
 ---
 
 ## uart.c 参考代码实现

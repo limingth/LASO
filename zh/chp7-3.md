@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 时序图
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 时序图
 ---
 
 ## Nand Flash Timing 时序

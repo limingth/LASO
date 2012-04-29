@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UART 控制器 - 串口管脚功能复用
+title: 源码开放学ARM - UART 控制器 - 串口管脚功能复用
 ---
 
 ## 串口的管脚功能复用 

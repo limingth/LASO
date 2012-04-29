@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UART 控制器 - 串口时序图
+title: 源码开放学ARM - UART 控制器 - 串口时序图
 ---
 
 ## 串口时序图

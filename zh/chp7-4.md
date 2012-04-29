@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 控制器结构
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 控制器结构
 ---
 
 ## NandFlash 控制器结构

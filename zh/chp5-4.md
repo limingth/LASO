@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UART 控制器 - 串口控制器结构
+title: 源码开放学ARM - UART 控制器 - 串口控制器结构
 ---
 
 ## 串口控制器功能

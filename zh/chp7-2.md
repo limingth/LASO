@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 管脚功能复用
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 管脚功能复用
 ---
 
 ## NandFlash 管脚功能复用

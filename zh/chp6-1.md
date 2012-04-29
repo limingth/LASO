@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SDRAM 控制器 - SDRAM 硬件连接
+title: 源码开放学ARM - SDRAM 控制器 - SDRAM 硬件连接
 ---
 
 ## DDR SDRAM 硬件连接情况 (原理图)

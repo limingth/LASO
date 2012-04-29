@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 硬件平台 
+title: 源码开放学ARM - 开发环境搭建 - 硬件平台 
 ---
 
 ## 硬件平台 ##

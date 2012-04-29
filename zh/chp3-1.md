@@ -1,6 +1,6 @@
 ---
 layout: post
-title: GPIO 控制器 - GPIO 控制器内部结构 
+title: 源码开放学ARM - GPIO 控制器 - GPIO 控制器内部结构 
 ---
 
 ## 控制器内部结构

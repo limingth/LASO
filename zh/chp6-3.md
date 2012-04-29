@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SDRAM 控制器 - SDRAM 时序图
+title: 源码开放学ARM - SDRAM 控制器 - SDRAM 时序图
 ---
 
 ## SDRAM 时序图

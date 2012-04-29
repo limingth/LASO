@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SDRAM 控制器 - SDRAM 驱动代码实现
+title: 源码开放学ARM - SDRAM 控制器 - SDRAM 驱动代码实现
 ---
 
 ## SDRAM 驱动代码实现

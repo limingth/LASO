@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SDRAM 控制器 - SDRAM 寄存器配置
+title: 源码开放学ARM - SDRAM 控制器 - SDRAM 寄存器配置
 ---
 
 ## DDR 寄存器配置

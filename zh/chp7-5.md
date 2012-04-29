@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 寄存器配置
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 寄存器配置
 ---
 
 ## Nand Flash Controller 控制器寄存器

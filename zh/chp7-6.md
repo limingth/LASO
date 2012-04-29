@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 驱动代码实现
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 驱动代码实现
 ---
 
 ## NandFlash 驱动代码实现

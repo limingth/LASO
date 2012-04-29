@@ -1,6 +1,6 @@
 ---
 layout: post
-title: UART 控制器 - 串口寄存器配置
+title: 源码开放学ARM - UART 控制器 - 串口寄存器配置
 ---
 
 ## 串口的寄存器 SFR:

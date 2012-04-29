@@ -1,6 +1,6 @@
 ---
 layout: post
-title: SDRAM 控制器 - SDRAM 控制器结构
+title: 源码开放学ARM - SDRAM 控制器 - SDRAM 控制器结构
 ---
 
 ## SDRAM 控制器结构

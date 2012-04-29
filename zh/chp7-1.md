@@ -1,6 +1,6 @@
 ---
 layout: post
-title: NandFlash 控制器 - NandFlash 硬件连接
+title: 源码开放学ARM - NandFlash 控制器 - NandFlash 硬件连接
 ---
 
 ## K9F2G08 芯片 
