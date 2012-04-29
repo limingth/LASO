@@ -3,6 +3,7 @@ layout: post
 title: 源码开放学ARM - 中断处理 - 中断相关基本概念
 ---
 
+# Interrupt 控制器
 ## 中断相关基本概念
 ### 异常和中断的概念区分
 	异常指的都是内核里面(Cortex-A8)发生的事情
@@ -14,13 +15,13 @@ title: 源码开放学ARM - 中断处理 - 中断相关基本概念
 		异常模式包含(中断)异常模式
 
 ### 中断处理的相关概念
-#2.1 中断源
+#### 中断源
 	属于 Controller (Samsung) + Board (tiny210)
 
-#2.2 中断控制器 Interrupt Controller
+#### 中断控制器 Interrupt Controller
 	属于 Controller (Samsung)
 
-#2.3 中断模式的响应和恢复
+#### 中断模式的响应和恢复
 	属于 Cortex-A Core (ARM)
 
 	S3C4510 - ARM7TDMI
