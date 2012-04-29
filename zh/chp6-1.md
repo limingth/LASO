@@ -3,6 +3,7 @@ layout: post
 title: SDRAM 控制器 - SDRAM 硬件连接
 ---
 
+# SDRAM 控制器 
 ## DDR SDRAM 硬件连接情况 (原理图)
 	Memory Summary (p4)
 	DDR SDRAM (p8)

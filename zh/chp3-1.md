@@ -3,6 +3,7 @@ layout: post
 title: GPIO 控制器 - GPIO 控制器内部结构 
 ---
 
+# GPIO 控制器 #
 ## 控制器内部结构
 	GPIO Controller
 		how many pin
