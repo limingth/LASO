@@ -3,6 +3,7 @@ layout: post
 title: 源码开放学ARM - UART 控制器 - 串口硬件连接
 ---
 
+# UART 控制器 
 ## 串口的硬件连接 (硬件原理图)
 	COM0 接口 DB9 九针公头
 	pin2: RSRXD0

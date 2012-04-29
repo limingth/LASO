@@ -196,6 +196,10 @@ def post_pandoc(string, config, lang, chapter=true)
 	end
 end
 
+def remove_jekyll(str)
+    str.lines.to_a[4..-3].join
+end 
+
 def generate_pdf(options)
     $config = YAML.load_file(options["config"])
     template = ERB.new(File.read(options["template"]))
@@ -217,9 +221,9 @@ def generate_pdf(options)
 
             puts "#{lang}:"
             puts "\tParsing preface markdown... "        
-            prefacemarkdown = Dir["#$root/#{lang}/*preface/*.markdown"].sort.map do |file|
+            prefacemarkdown = Dir["#$root/#{lang}/chp0*.md"].sort.map do |file|
                 puts "\t =>"+file
-                File.read(file)
+                remove_jekyll(File.read(file))
             end.join("\n\n")
 
             preface = IO.popen('pandoc -p --no-wrap -f markdown -t latex', 'w+') do |pipe|
@@ -230,14 +234,14 @@ def generate_pdf(options)
             
             puts "\n\tParsing main chapters markdown... "
             found = false
-            chaptersmarkdown = Dir["#$root/#{lang}/*chapters/*.markdown"].sort.map do |file|
+            chaptersmarkdown = Dir["#$root/#{lang}/chp[1-9]*.md"].sort{|a,b| Integer(a[/\d+/])<=>Integer(b[/\d+/])}.map do |file|
                 found = true
                 puts "\t =>"+file
-                File.read(file)
+                remove_jekyll(File.read(file))
             end.join("\n\n")
             chaptersmarkdown = Dir["#$root/#{lang}/*/*.markdown"].sort.map do |file|
                 puts "\t =>"+file
-                File.read(file)
+                remove_jekyll(File.read(file))
             end.join("\n\n") unless found
             # puts "done"
             
@@ -343,6 +347,8 @@ def generate_ebook(options)
         options["outputformat"].each do | format |
             system('pandoc',
                '--standalone', 
+               '--toc',
+               '--template=template.html',
                '--epub-metadata', 'epub/metadata.xml',
                '--epub-stylesheet', 'epub/book.css', # this doesn't work 
                '--output', "#{name}.#{lang}.#{format}",
