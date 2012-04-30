@@ -15,7 +15,7 @@ default:
   indent: "\\qquad"
   thanks: "This is the PDF file for the how to write opensource book contents. It is licensed under the Creative Commons Attribution-Non Commercial-Share Alike 3.0 license. I hope you enjoy it, I hope it helps you learn the software development, and I hope you'll continuously watch this : \\url{http://limingth.github.com/LASO/}, will be happy if you follow my weibo \\url{http://weibo.com/limingth}"
 zh:
-  title: 开源学ARM
+  title: 源码开放学ARM
   langrule: "\\XeTeXlinebreakskip=0em plus 0.1em minus 0.01em\n\\XeTeXlinebreakpenalty=0"
   font: AR PL SungtiL GB
   bold: WenQuanYi Micro Hei
