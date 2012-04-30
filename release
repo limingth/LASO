@@ -1,0 +1,4 @@
+ruby mkbok
+git add .
+git commit -a -m "update all"
+git push
