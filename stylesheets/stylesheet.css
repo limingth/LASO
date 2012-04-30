@@ -272,7 +272,7 @@ Full-Width Styles
 
 .inner {
   position: relative;
-  max-width: 640px;
+  max-width: 700px;
   padding: 20px 10px;
   margin: 0 auto;
 }
@@ -326,9 +326,10 @@ Full-Width Styles
   position: absolute;
   width: 210px;
   z-index: 10;
-  bottom: -40px;
+  bottom: -80px;
   right: 0;
   height: 70px;
+  text-shadow: #111 0px 0px 10px;
   background: url('../images/icon_download.png') no-repeat 0% 90%;
 }
 
