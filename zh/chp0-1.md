@@ -34,7 +34,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 - <http://www.slideshare.net/larrycai/write-book-in-markdown>
 
 ### 如何生成 pdf 版本  
-- <https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
+- <http://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
 
 ### 简介轻量级标记语言 Markdown  
 - <http://www.worldhello.net/gotgithub/appendix/markups.html>
