@@ -3,7 +3,8 @@ layout: post
 title: 源码开放学ARM - 前言
 ---
 
-# 学习目标 #
+# 前言 
+## 学习目标 
 ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不可缺少的一个内容。在这个阶段我们努力培养学员具备以下的素质和能力：  
 
         1) 掌握ARM体系结构和汇编语言。
@@ -11,7 +12,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
         3) 具备为SoC芯片常见外设如 UART，NandFlash，Timer 等编写驱动程序的能力。
         4) 能够完成 Bootloader 项目的程序编写和移植工作。
         
-# 适合对象 #
+## 适合对象 
 本阶段对于学员学习基础的要求如下：  
 
         1) 掌握C语言，熟悉指针的用法。
@@ -20,23 +21,29 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
         4) 对计算机底层的运行机制和软硬件协同工作具有浓厚的兴趣。
 
 
-# 如何写作本书的 #
+## 如何写作本书的 
 对于有志于参与本书编写的学员，可以通过学习以下内容来进一步了解关于如何写书的相关知识。
 
-*如何安装 GIT  
-<http://progit.org/book/zh/ch1-4.html>
+### 如何安装 GIT  
+- <http://progit.org/book/zh/ch1-4.html>
 
-*如何使用 GitHub  
-<http://www.worldhello.net/gotgithub/index.html>
+### 如何使用 GitHub  
+- <http://www.worldhello.net/gotgithub/index.html>
 
-*如何用 markdown 写书  
-<http://www.slideshare.net/larrycai/write-book-in-markdown>
- 
-*简介轻量级标记语言 Markdown  
-<http://www.worldhello.net/gotgithub/appendix/markups.html>
+### 如何用 markdown 写书  
+- <http://www.slideshare.net/larrycai/write-book-in-markdown>
 
-*如何生成 pdf 版本  
-<https://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
+### 如何生成 pdf 版本  
+- <http://github.com/larrycai/kaiyuanbook/blob/master/BUILD.md>
+
+### 简介轻量级标记语言 Markdown  
+- <http://www.worldhello.net/gotgithub/appendix/markups.html>
+
+### Github 偏爱的 Markdown  
+- <http://github.github.com/github-flavored-markdown/>
+
+### 在线的 Markdown 编辑浏览器  
+- <http://dillinger.io/>
 
 
 

@@ -1,0 +1,5 @@
+ruby mkbok
+git add .
+git add LASO.zh.pdf -f
+git commit -a -m "update all"
+git push

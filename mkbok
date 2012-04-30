@@ -234,7 +234,7 @@ def generate_pdf(options)
             
             puts "\n\tParsing main chapters markdown... "
             found = false
-            chaptersmarkdown = Dir["#$root/#{lang}/chp[1-9]*.md"].sort{|a,b| Integer(a[/\d+/])<=>Integer(b[/\d+/])}.map do |file|
+            chaptersmarkdown = Dir["#$root/#{lang}/chp[1-9]*.md"].sort{|a,b| [Integer(a[/\d+/]),a]<=>[Integer(b[/\d+/]),b]}.map do |file|
                 found = true
                 puts "\t =>"+file
                 remove_jekyll(File.read(file))

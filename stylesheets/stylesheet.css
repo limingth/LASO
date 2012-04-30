@@ -322,6 +322,7 @@ Full-Width Styles
 }
 
 #downloads {
+  color: #fff;
   position: absolute;
   width: 210px;
   z-index: 10;
