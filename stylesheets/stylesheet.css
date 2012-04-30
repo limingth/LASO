@@ -326,7 +326,7 @@ Full-Width Styles
   position: absolute;
   width: 210px;
   z-index: 10;
-  bottom: +40px;
+  bottom: -140px;
   right: 0;
   height: 70px;
   text-shadow: #111 0px 0px 10px;
