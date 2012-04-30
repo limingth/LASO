@@ -39,7 +39,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 ### Github 偏爱的 Markdown  
 - <http://github.github.com/github-flavored-markdown/>
 
-### 在线的 Markdown 编辑浏览器
+### 在线的 Markdown 编辑浏览器  
 - <http://dillinger.io/>
 
 ### 如何生成 pdf 版本  
