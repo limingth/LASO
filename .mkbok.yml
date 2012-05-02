@@ -1,0 +1,10 @@
+---
+  build: pdf
+  lang: zh
+  license: ccbyncnd30
+  config: latex/config.yml
+  template: latex/template.tex
+  preface-files: chp0*.md
+  chapter-files: chp[1-9]*.md
+  jeykll: true
+  
