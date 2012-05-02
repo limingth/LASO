@@ -8,15 +8,15 @@ layout: default
 
 如果有好的建议，或者愿意参与本书编写，请和我联系。 limingth AT gmail.com 
 
-how to make pdf book:
-These are the hints for your convinience
-
-  $ git clone git@github.com:limingth/LASO.git
-  $ cd LASO
-  LASO$ git checkout gh-pages
-  LASO$ export LANG=en_US.UTF-8
-  LASO$ export LC_ALL=en_US.UTF-8
-  LASO$ export LC_CTYPE=en_US.UTF-8
-  LASO$ ruby mkbok
-
-Then your can see LASO.zh.pdf in the LASO/LASO.zh.pdf
+  how to make pdf book:
+  These are the hints for your convinience
+  
+    $ git clone git@github.com:limingth/LASO.git
+    $ cd LASO
+    LASO$ git checkout gh-pages
+    LASO$ export LANG=en_US.UTF-8
+    LASO$ export LC_ALL=en_US.UTF-8
+    LASO$ export LC_CTYPE=en_US.UTF-8
+    LASO$ ruby mkbok
+  
+  Then your can see LASO.zh.pdf in the LASO/LASO.zh.pdf
