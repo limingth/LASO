@@ -116,10 +116,14 @@ end
 
 def pre_pandoc(string, config)
 	replace(string) do
-                s /\#\#\#\#\# (.*?) \#\#\#\#\#/, 'PARASECTION: \1'
+        s /\#\#\#\#\# (.*?) \#\#\#\#\#/, 'PARASECTION: \1'
 		# Pandoc discards #### subsubsections #### - this hack recovers them
 		s /\#\#\#\# (.*?) \#\#\#\#/, 'SUBSUBSECTION: \1'
-		
+        
+        # convert div figures to normal markdown format
+        # http://johnmacfarlane.net/pandoc/README.html
+        s /^<div class=\"figures\"> <img src=\"..\/figures\/(.*)\".*<\/div>/, '![](figures/\1)\ '
+
 		# Turns URLs into clickable links
 		s /\`(http:\/\/[A-Za-z0-9\/\%\&\=\-\_\\\.]+)\`/, '<\1>'
 		s /(\n\n)\t(http:\/\/[A-Za-z0-9\/\%\&\=\-\_\\\.]+)\n([^\t]|\t\n)/, '\1<\2>\1'
@@ -185,6 +189,9 @@ def post_pandoc(string, config, lang, chapter=true)
             else
                 s /(^\\item)/m,'\item[*]'
             end
+            
+            # change the width to standard .6 width 
+            s /\\includegraphics/m, '\\includegraphics[width=\\imgwidth]'
         end
         
         if chapter != true
