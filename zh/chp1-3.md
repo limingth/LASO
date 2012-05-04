@@ -18,13 +18,41 @@ title: 源码开放学ARM - 开发环境搭建 - 开发工具链
 总体说来，MDK 是 ADS 的升级版本，界面上做了很大改动，但后台使用的命令行工具链基本一样。以下就是以 ADS 安装为例，对命令行工具链做一个简单说明。
 
 ### 安装说明
-	工具下载： http://limingth.github.com/ARM-Tools
+
+工具下载： <http://limingth.github.com/ARM-Tools>
+	
+ADS1.2.zip 解压之后运行 setup.exe 安装
+
+	注意： 	1) Full 安装, 不是 Typical
+		2) Install Licence, 在解压后的 crack\licence.dat
+	
+安装完成之后
+
 	安装目录： C:\Program Files\ARM\ADSv1_2\Bin
 	图形开发环境：
 		IDE.exe - 	ADS IDE
 		axd.exe	-	AXD debugger
 
 ### 命令行开发工具链 /(GNU tools-chain)
+启动命令行方式
+
+	开始 -> 运行 -> cmd 命令打开一个窗口
+	
+	C:>path
+	是否有 C:\Program Files\ARM\ADSv1_2\bin 
+	
+	如果是 path 问题，需要添加 路径到 path 环境变量
+	我的电脑 -> 鼠标右键属性 -> 高级 -> 环境变量 -> 系统变量下面添加
+		(注意用分号间隔; 原来的不要删除掉，把 C:\Program Files\ARM\ADSv1_2\bin 添加到最后)
+	
+	C:>armcc 
+	是否有这个命令，这一点最重要，如果成功则会输出
+	ARM C Compiler, ADS1.2 [Build 805]
+	
+	Usage:         armcc [options] file1 file2 ... filen
+	Main options:
+	xxxxx
+	
 	armcc.exe -	C compiler (armcpp.exe) /(gcc)
 	armasm.exe -	ASM Assembler /(as)
 	armlink.exe -	Linker	/(ld)
