@@ -11,6 +11,11 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件原理图
 
 [Tiny210-mother-board.pdf](https://github.com/limingth/ARM-Resources/blob/22dda0e9afefb8cd8fc4c8f117cbbde43f7678ee/tiny210/Schematic/Tiny210-mother-board.pdf)
 
+推荐使用 FoxReader 福昕阅读器来打开 PDF 文档  
+	1. Ctrl + 放大  Ctrl - 缩小  Ctrl 滚轮也可以
+	2. Ctrl + F 查找
+	3. Ctrl + Shift + N 跳转
+	4. Ctrl + TAB 切换文档
 
 ### 原理图包含的信息
 核心板的原理图和底板的原理图，通常分为两个文件存放。通过查看原理图，能够知道哪些信息？
