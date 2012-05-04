@@ -6,7 +6,7 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 硬件连接
 # SDRAM 控制器 
 ## SDRAM 硬件连接
 
-### 芯片引脚描述
+### SDRAM 引脚描述
 硬件原理图
 
 	1) 从芯片角度  
