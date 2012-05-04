@@ -3,8 +3,8 @@ layout: post
 title: 源码开放学ARM - 开发环境搭建 - 硬件平台 
 ---
 
-# 开发环境搭建 #
-## 硬件平台 ##
+# 开发环境搭建
+## 硬件平台
 
 本课程采用 [广州友善之臂](http://arm9.net) 的 Tiny210 开发板 作为实验开发平台。 关于这个硬件开发板的详细描述和介绍，可以参考阅读下面这个链接的内容。
 [http://arm9.net/tiny210.asp](http://arm9.net/tiny210.asp)  
@@ -17,6 +17,29 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件平台
 	2) 开发板运行程序的主频是多少？ 使用什么内存？ 内存有多大？ 
 	3) 开发板上面能够运行哪几种操作系统？ 它们有什么差别？
 	4) 什么叫 BSP ，开发板的 BSP 支持哪些外设？
+	
+### 芯片识别  
+	board:	tiny210 
+	CPU:	S5PV210 (封装/FBGA)
+	MEM:	K4T1G08  
+	FLASH:	K9F2G08  
+	NET:	DM9000   
+	AUDIO:	WM8960  
+	UART: 	MAX3232  
+
+### 外设识别  
+	reset键
+	key键/home/back/menu
+	串口
+	网口
+	USB口
+	SD卡
+	CAMERA接口
+	MIC/HEARPHONE
+	AV口
+	启动跳线: NAND-SDboot
+	可变电阻: ADC
+	LCD接口: 外接LCD	
 
 ### 准备工作
 需要参加课程的学员提前准备好以下环境：
