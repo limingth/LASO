@@ -4,6 +4,9 @@ title: 源码开放学ARM - UART 控制器 - 串口时序图
 ---
 
 ## 串口时序图
+
+![UART Timing](../figures/LASO-chp5-3-UART-Timing.jpg)
+
 	Timing:
 		空闲状态 high-level
 		起始位 start bit - 1 bit
