@@ -13,7 +13,7 @@ title: 源码开放学ARM - UART 控制器 - 串口寄存器配置
 		UBRDIV0  0xE290_0028
 		UDIVSLOT0  0xE290_002C
 
-	状态类	通常是只读，属性 R    		4个
+	状态类	通常是只读，属性 R      	4个
 		UTRSTAT0  0xE290_0010
 		UERSTAT0  0xE290_0014
 		UFSTAT0  0xE290_0018
