@@ -19,14 +19,15 @@ Block Diagram:
 		Peripheral Bus 外设总线
 			*(int *)SFR_ADDR = value;
 		Controll Unit 控制单元
-			Control Regs
+			Control Regs (数据位, 停止位, 奇偶校验位, 时钟源选择, 工作模式等)
 		Baud-Rate Gengenrator 波特率发生器
-			Clock Source 时钟源 (66M)
+			Clock Source 时钟源 (PCLK=66M)
 		Transmitter 发送器
 			Transmit shift 发送移位器
 			Transmit buffer 发送队列FIFO缓冲器
 		Receiver 接收器
 			Receiver shift 接收移位器
+			Receiver buffer 接收队列FIFO缓冲器
 
 	
 
