@@ -5,9 +5,7 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 驱动代码实现
 
 ## SDRAM 驱动代码实现
 
-
-
-## 课后作业：
+### 课后作业：
 	1) 修改 uart_init, 把波特率改为 19200
 	2) 修改 时钟发生器，把 PCLK 输出改为 33M, 波特率重新计算 115200
 	3) 实现 puts("hello, world");  输出 "hello, world" 
