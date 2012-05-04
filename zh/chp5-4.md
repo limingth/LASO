@@ -23,10 +23,10 @@ Block Diagram:
 		Baud-Rate Gengenrator 波特率发生器
 			Clock Source 时钟源 (PCLK=66M)
 		Transmitter 发送器
-			Transmit shift 发送移位器
+			Transmit shifter 发送移位器
 			Transmit buffer 发送队列FIFO缓冲器
 		Receiver 接收器
-			Receiver shift 接收移位器
+			Receiver shifter 接收移位器
 			Receiver buffer 接收队列FIFO缓冲器
 
 	
