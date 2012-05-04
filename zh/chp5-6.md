@@ -3,7 +3,8 @@ layout: post
 title: 源码开放学ARM - UART 控制器 - 串口驱动代码实现
 ---
 
-## uart.c 参考代码实现
+## 串口驱动代码实现
+### uart.c 参考代码实现
 	// uart.c
 	#define ULCON0  	(*(volatile unsigned int *)0xE2900000) 
 	#define UCON0  		(*(volatile unsigned int *)0xE2900004) 
@@ -46,7 +47,7 @@ title: 源码开放学ARM - UART 控制器 - 串口驱动代码实现
 		return;
 	}
 
-## uart.h 参考代码实现	
+### uart.h 参考代码实现	
 	
 	// uart.h
 	void uart_init(void);
