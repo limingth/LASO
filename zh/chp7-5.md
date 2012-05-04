@@ -3,7 +3,10 @@ layout: post
 title: 源码开放学ARM - NandFlash 控制器 - NandFlash 寄存器配置
 ---
 
-## Nand Flash Controller 控制器寄存器
+## NandFlash 寄存器配置
+
+### NandFlash 寄存器分类
+
 	SFR 特殊功能寄存器 (部分)
 	控制类
 		NFCONF  0xB0E00000 
@@ -15,7 +18,7 @@ title: 源码开放学ARM - NandFlash 控制器 - NandFlash 寄存器配置
 	状态类
 		NFSTAT  0xB0E00028
 
-## 初始化配置
+### 初始化配置
 		mw 0xe0200320 0x22222222
 		mw 0xb0e00000 0x00006552
 		mw 0xb0e00004 0x00c100c5
