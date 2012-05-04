@@ -5,7 +5,7 @@ title: 源码开放学ARM - UART 控制器 - 串口寄存器配置
 
 ## 串口的寄存器 SFR:
 	15 Regs	Register  Address
-	控制类	6个
+	控制类	通常是可读可写，属性 R/W	6个
 		ULCON0  0xE290_0000
 		UCON0  0xE290_0004
 		UFCON0  0xE290_0008
@@ -13,17 +13,17 @@ title: 源码开放学ARM - UART 控制器 - 串口寄存器配置
 		UBRDIV0  0xE290_0028
 		UDIVSLOT0  0xE290_002C
 
-	状态类	4个
+	状态类	通常是只读，属性 R      	4个
 		UTRSTAT0  0xE290_0010
 		UERSTAT0  0xE290_0014
 		UFSTAT0  0xE290_0018
 		UMSTAT0  0xE290_001C
 
-	数据类	2个
+	数据类	通常是可读可写，属性 R/W	2个
 		UTXH0  0xE290_0020
 		URXH0  0xE290_0024
 
-	中断类	3个
+	中断类	通常是可读可写，属性 R/W	3个
 		UINTP0  0xE290_0030
 		UINTSP0  0xE290_0034
 		UINTM0  0xE290_0038
