@@ -3,7 +3,8 @@ layout: post
 title: 源码开放学ARM - UART 控制器 - 串口控制器结构
 ---
 
-## 串口控制器功能
+## 串口控制器结构
+### 串口控制器功能
 UART Controller (p853-p882)
 
 	类似是一个函数，需要了解它的->输入，输出，如何实现
@@ -13,7 +14,8 @@ UART Controller (p853-p882)
 			REGISTER DESCRIPTION  ->p864
 		3. 实现：Block Diagram (结构框图)
 			Block Diagram of UART  ->p854
-## 串口控制器结构			
+
+### 串口控制器框图
 Block Diagram:
 
 		Peripheral Bus 外设总线
