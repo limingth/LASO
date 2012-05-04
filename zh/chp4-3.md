@@ -22,6 +22,21 @@ title: 源码开放学ARM - 时钟管理 - 锁相环和分频器
 	DIV_APLL: CLK_DIV0, 0xE0100300: 14131440 [2:0]=> 0 = /1
 	DIV_APLL: CLK_DIV0, 0xE0100300: 14131440 [10:8]=> 100 = /5
 
+	
+### 分析 ARMCLK 的产生
+	Q1: OM[0] = 0, SRC->XXTI (24Mhz)	由硬件连线决定
+	Q2: APLLCON (24M->1000M)	0xE0100100 => 0xa07d0301
+		Fout = Fin * MDIV / (PDIV * 2 ^ SDIV-1)
+				= 24M * 0x7d / (3 * 2^0)
+				= 24M * 125 / (3*1) = 1000M
+	Q3: CLK_SRC0	0xE0100200 => 0x10001111
+		bit[0]=1 	MUXPLL = 1, Fout_APLL
+	Q4: CLK_SRC0	0xE0100200 => 0x10001111
+		bit[16]=0 	Fout_APLL = 1G
+	Q5: CLK_DIV0	Address = 0xE0100300 => 0x14131440
+		APLL_RATIO  [2:0] 	n=0+1	
+		ARMCLK = Fout_APLL/n = 1G/1 = 1Ghz
+		
 
 ### 举例: UART 串口时钟 PCLK_PSYS 的生成过程
 	Mux_PSYS: CLK_SRC0, 0xe0100200: 10001111 [24]=>0  Fout_mpll
