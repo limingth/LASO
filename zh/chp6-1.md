@@ -8,13 +8,14 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 硬件连接
 
 ### 芯片引脚描述
 硬件原理图
-	1) 从芯片角度
+
+	1) 从芯片角度  
 		地址线	A0-A13 	14根
 			BA0, BA1, BA2
 		数据线	DQ0-DQ7 * 4 = 32bit data bus (8bit * 4chips)
 		控制线	nCS, nRAS, nCAS
 		
-	2) 从处理器角度
+	2) 从处理器角度  
 		地址线	Xm1ADDR0-Xm1ADDR13
 			Xm1BA0, Xm1BA1, Xm1CSn1/BA2
 		数据线	Xm1DATA0-Xm1DATA31
@@ -23,6 +24,7 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 硬件连接
 
 ### SDRAM 内部结构 
 芯片手册
+
 	1Gbit = 128MByte
 	
 	内部分 8 bank，每个bank = 128M/8 = 16M (24根地址线)
