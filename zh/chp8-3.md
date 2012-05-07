@@ -10,7 +10,7 @@ title: 源码开放学ARM - 异常处理 - 异常处理流程
 		2. 保存 CPSR -> SPSR_svc
 		3. 修改 CPSR -> SVC mode
 		4. 修改 CPSR I-bit -> disable IRQ
-		5. 映射相应IRQ模式的寄存器
+		5. 映射相应(USR ->) SVC 模式的寄存器
 		6. 修改 PC -> 0x8
 		
 ### cpu 内核跳转到 0x8 之后，软件需要做哪些工作？
