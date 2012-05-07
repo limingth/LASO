@@ -6,7 +6,7 @@ title: 源码开放学ARM - 异常处理 - 异常处理流程
 ## 异常处理流程
 ### ARM 的软中断异常发生后，硬件做何响应？
 	硬件要做6件事情，以发生SWI异常为例：
-		1. 保存 PC -> LR_svc
+		1. 保存 (PC-4) -> LR_svc	(PC 是当前执行指令地址+8)
 		2. 保存 CPSR -> SPSR_svc
 		3. 修改 CPSR -> SVC mode
 		4. 修改 CPSR I-bit -> disable IRQ
