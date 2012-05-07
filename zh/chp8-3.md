@@ -27,9 +27,11 @@ PC 跳转到 0x8 之后，第一个问题是如何返回？ 包括两个返回�
 
 	b   跳转	b    swi_handler	
 		0xEA000000 | offset	offset计算公式 ( swi_handler - (0x8+8) ) / 4
+		offset：代表从 PC 到 目标地址 之间相差的指令数
 		
 	ldr 跳转	ldr  pc, [pc, offset]
 		0xE59FF000 | offset	offset计算公式 ( data_addr - (0x8+8) ) 
+		offset：代表从 PC 到 数据存储地址 之间相差的字节数
 
 跳转到 handler 之后， handler 需要做哪些工作？
 
@@ -37,11 +39,11 @@ PC 跳转到 0x8 之后，第一个问题是如何返回？ 包括两个返回�
 		1. 保存现场： r0-r12, r14 压栈
 			STMFD r13!, {r0-r12, r14}
 		2. 进入异常处理: 
-			BL	C_swi_handler		； 用C实现
+			BL	C_swi_handler		; 用C实现
 		3. 恢复现场： r0-r12, pc 出栈
 			A) LDMFD r13!, {r0-r12, pc}^
 			B) LDMFD r13!, {r0-r12, r14}
-				movs pc, lr	
+			   movs pc, lr	
 			将原来保存的 spsr 恢复给 CPSR
 
 <br> <br> 
