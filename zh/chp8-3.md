@@ -15,14 +15,13 @@ title: 源码开放学ARM - 异常处理 - 异常处理流程
 		
 ### cpu 内核跳转到 0x8 之后，软件需要做哪些工作？
 
-PC 跳转到 0x8 之后，第一个问题是如何返回？	
+PC 跳转到 0x8 之后，第一个问题是如何返回？ 包括两个返回：	
 	
-如何返回	
-		1. 地址的返回 	mov pc, lr
-		2. 模式的返回	movs pc, lr
+	1. 地址的返回 	mov pc, lr
+	2. 模式的返回	movs pc, lr
 	
-		mov pc, lr	[0xe1a0f00e]   
-		movs pc, lr	[0xe1b0f00e]   
+	mov pc, lr	[0xe1a0f00e]   
+	movs pc, lr	[0xe1b0f00e]   
 
 直接返回没有实际意义，因此第二个问题是如何跳转到 swi_handler ？
 
@@ -37,8 +36,8 @@ PC 跳转到 0x8 之后，第一个问题是如何返回？
 	swi_handler 要做以下工作：
 		1. 保存现场： r0-r12, r14 压栈
 			STMFD r13!, {r0-r12, r14}
-		2. 进入异常处理:
-			BL	swi_handler
+		2. 进入异常处理: 
+			BL	C_swi_handler		； 用C实现
 		3. 恢复现场： r0-r12, pc 出栈
 			A) LDMFD r13!, {r0-r12, pc}^
 			B) LDMFD r13!, {r0-r12, r14}
