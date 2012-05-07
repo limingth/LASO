@@ -32,6 +32,7 @@ PC 跳转到 0x8 之后，第一个问题是如何返回？ 包括两个返回�
 	ldr 跳转	ldr  pc, [pc, offset]
 		0xE59FF000 | offset	offset计算公式 ( data_addr - (0x8+8) ) 
 		offset：代表从 PC 到 数据存储地址 之间相差的字节数
+		data_addr: 代表 存储目标地址的内存单元的地址，这个地址被看成为一个数据，用ldr从内存中读出来。
 
 跳转到 handler 之后， handler 需要做哪些工作？
 
