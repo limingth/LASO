@@ -20,6 +20,13 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 	第二阶段，如何清除 pending bit ？
 		写1清除 pending bit
 		写0无效
+		
+		3种清0的写法，只有最后一种是正确的清除。
+		PEND |= 1<<0;		(not good)
+		PEND = 0xFFFFFFFF;	(not good)
+		PEND = 1<<0;		(Good!)
+	
+		
 		VIC0RAWINTR 寄存器取决于 EXT_INT_2_PEND 的值，如 PEND 是 1 ，则通过 MASK 之后它也是 1；
 		如果 PEND 做了清除，则相应的 VIC0RAWINTR 中的位，也随之清除；无需手工清除该寄存器的位。
 	
