@@ -25,8 +25,7 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 		PEND |= 1<<0;		(not good)
 		PEND = 0xFFFFFFFF;	(not good)
 		PEND = 1<<0;		(Good!)
-	
-		
+			
 		VIC0RAWINTR 寄存器取决于 EXT_INT_2_PEND 的值，如 PEND 是 1 ，则通过 MASK 之后它也是 1；
 		如果 PEND 做了清除，则相应的 VIC0RAWINTR 中的位，也随之清除；无需手工清除该寄存器的位。
 	
@@ -39,7 +38,7 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 		通过 汇编 MSR 	(SVC: 0xD3	1101->0101 0x53->CPSR)
 		__asm
 		{
-			mov r0, #0x53
+			mov 	r0, #0x53
 			msr	cpsr, r0
 		}
 	
@@ -53,10 +52,13 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 				真正的 IRQ_handler 应该要完成
 				1) 保存cpu 现场 STMFD
 				2) 清除掉 Pending bit，调用 beep					
-				3) 恢复cpu 现场 LDMFD (lr-4)->PC 	SPSR->CPSR
+				3) 恢复cpu 现场 LDMFD 	
+				
 			修改 start.s ，实现 IRQ_handler
 				1) IRQ 模式下的 sp 指针需要初始化
 				2) 除了清除pending bit 之外，还需要清除 VIC0ADDRESS = 0;
+				3) 返回地址 lr 寄存器需要 减4 即 sub lr, lr, #4
+				(lr-4)->PC 	SPSR->CPSR
 			
 		B) 复杂的办法就是不用 VIC ，自己实现全过程
 			1. 当 IRQ 异常发生的时候，cpu 跳转到 0x18
@@ -64,8 +66,8 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 				0 地址 在 iROM 中 (0xD0000000)
 					iRAM (0xD0020000) -> 0x20000
 				0x18: 0xEA000018
-				最终在 iROM 中的程序(不可修改)会加载
-				0xD0037400 地址开始的值，作为异常发生后要跳转的地址+offset	
+				最终在 iROM 中的程序(不可修改)会加载从 0xD0037400 地址开始的值，
+				作为异常发生后要跳转的地址+offset	
 			3. (int)IRQ_handler -> 0xD0037400 + 0x18
 				如果是 SWI 软件中断，则在 0xD0037408 处填写swi_handler的地址	
 
