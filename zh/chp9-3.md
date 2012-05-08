@@ -17,8 +17,8 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 						INTOFFSET      		VectADDRESS(32bit->A0-A31)
 									Vectors(handlers)
 						INTPRI			Priority
-			INTMOD			INTMOD			SELECT(MOD) IRQ/FIQ
-	中断		INTPND			INTPND			STATUS(PND) (IRQ/FIQ)
+			INTMOD			INTPND			(IRQ/FIQ)STATUS(PND) 
+	中断		INTPND			INTMOD			SELECT(MOD) IRQ/FIQ
 	控制器		INTMSK			INTMSK			ENABLE(MSK)
 	(IC)					SRCPND			RAWINTR(SRC)									
 	------------------------------------------------------------------------------------------
