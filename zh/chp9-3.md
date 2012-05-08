@@ -8,27 +8,27 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 
 			IC			IC			Vectored IC ->
 			
-			ARM7(4510)		ARM9(2440)		ARM11(6410)		A8(210)		
-	---------------------------------------------------------------------------------------
-									CPSR I-bit
-	内核		CPSR I-bit		CPSR I-bit		VIC Port(Enable)
-	(A8)								VIC interface(PC)
-	---------------------------------------------------------------------------------------
-						INTOFFSET		VectADDRESS(32bit)
-						INTPRI			Vectors(handlers)
-			INTMOD			INTMOD			Priority
+			ARM7(4510)		ARM9(2440)		ARM11(6410) & A8(210)		
+	------------------------------------------------------------------------------------------
+			CPSR I-bit		CPSR I-bit		CPSR I-bit
+	内核								VIC Port(Enable)
+	(Core)								VIC interface(PC<->A0-A31)
+	------------------------------------------------------------------------------------------
+						INTOFFSET      		VectADDRESS(32bit->A0-A31)
+									Vectors(handlers)
+						INTPRI			Priority
+			INTMOD			INTMOD			SELECT(MOD) IRQ/FIQ
 	中断		INTPND			INTPND			STATUS(PND) (IRQ/FIQ)
-	控制器		INTMSK			INTMSK			SELECT(MOD) IRQ/FIQ
-	(IC)					SRCPND			ENABLE(MSK)
-									RAWINTR(SRC)
-	---------------------------------------------------------------------------------------
+	控制器		INTMSK			INTMSK			ENABLE(MSK)
+	(IC)					SRCPND			RAWINTR(SRC)									
+	------------------------------------------------------------------------------------------
 									INTMSK
 									INTPND(clear)
 			EINTCON			EINTCON			EINTCON
 	中断源		(F/R/L)			(F/R/L)			(F/R/L)		
 	控制器		GPXCON			GPXCON			GPXCON
 	(GPIO)		(EINT)			(EINT)			(EINT)		
-	---------------------------------------------------------------------------------------
+	------------------------------------------------------------------------------------------
 	硬件层 		Key/UART/USB/Timer 
 
 ### S5PV210 中断相关寄存器
