@@ -33,7 +33,8 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 
 ### S5PV210 中断相关寄存器
 	中断源 GPIO Controller
-		GPH2CON[0]   [3:0]   0000 = Input     
+		GPH2CON[0]   [3:0]   Set the pin mux function as EXT_INT
+			0000 = Input     
 			0001 = Output 
 			0010 = Reserved 
 			0011 = KP_COL[0] 
@@ -69,13 +70,13 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 			IntEnable  [31:0]  Enables the interrupt request lines
 				Write: 
 				0 = No effect 
-				1 = Enables Interrupt. 
+		*		1 = Enables Interrupt. 
 		
 		VICINTENCLEAR 
 			IntEnable Clear 	
 				Write: 	
 				0 = No effect 
-				1 = Disables Interrupt in VICINTENABLE Register. 				
+		*		1 = Disables Interrupt in VICINTENABLE Register. 				
 		
 		VIC0IRQSTATUS  0xF200_0000 R  
 			Specifies the IRQ Status Register 
@@ -87,7 +88,7 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 		VIC0INTSELECT  0xF200_000C R/W 
 			Specifies the Interrupt Select Register 
 			IntSelect  [31:0]  Selects interrupt type for interrupt request: 
-				0 = IRQ interrupt 
+		*		0 = IRQ interrupt 
 				1 = FIQ interrupt 
 
 		VIC0VECTADDR0 0xF200_0100 R/W 
@@ -109,7 +110,19 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 
 	内核 
 		CPSR I-bit
-		VIC Enable (p15)	
+			__asm
+			{
+				mov r0, #0x53
+				msr CPSR_cxsf, r0
+			}
+				
+		VIC Enable (p15)		
+			__asm
+			{
+				mrc p15, 0, r0, c1, c0, 0
+				orr r0, r0, #(1<<24)
+				mcr p15, 0, r0, c1, c0, 0	
+			}	
 
 <br> <br> 
 <div> <a href="chp9-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp9-4.html">下一节</a> </div> <br> <br>
