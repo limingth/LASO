@@ -10,16 +10,18 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 		VIC0(IRQ/FIQ)STATUS	标识中断是否通过(IRQ/FIQ)
 		VIC0INTSELECT		选择IRQ还是FIQ
 		VIC0INTENABLE		使能中断通过
-		VIC0RAWINTR			通过 EXT_INT_2_MASK 之后的情况
+		VIC0RAWINTR		通过 EXT_INT_2_MASK 之后的情况
 		---------------------
 		EXT_INT_2_MASK		中断 Mask bit	
 		EXT_INT_2_PEND		中断 Pending bit
 		EXT_INT_2_CON		下升沿触发 Falling Edge
-		GPH2CON				管脚复用 EXT_INT[16]	
+		GPH2CON			管脚复用 EXT_INT[16]	
 			
 	第二阶段，如何清除 pending bit ？
 		写1清除 pending bit
 		写0无效
+		VIC0RAWINTR 寄存器取决于 EXT_INT_2_PEND 的值，如 PEND 是 1 ，则通过 MASK 之后它也是 1；
+		如果 PEND 做了清除，则相应的 VIC0RAWINTR 中的位，也随之清除；无需手工清除该寄存器的位。
 	
 	第三阶段，观察中断控制器中的使能Enable和状态Status标识寄存器
 		使能 Enable 寄存器在 RAW 和 STATUS 之间
