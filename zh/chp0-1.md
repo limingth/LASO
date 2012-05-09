@@ -50,6 +50,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 在本书的编写过程中，得到了很多热心人士，同时也是技术高手的帮助。
 
 [Peter Wang](http://weibo.com/happycasts)  (@happycasts) --  [开源电子书 LGCB](http://happypeter.github.com/LGCB/book) 的作者，从他这儿我学会了用 github 搭建这本书的写作方法，Peter 还有很多精心录制的[学习开源技术的视频](http://happycasts.net)，大家一定不要错过。  
+
 [chunzi](https://github.com/chunzi/progit/tree/master/zh) -- [Pro Git](http://github.com/progit/progit/) 的中文译者，正是这本书教会了我如何使用Git，启发了我想要通过协作迭代来写书，后来我发现协作本身比写作更有乐趣。虽然后来没有采用Pro Git的框架，但还是非常感谢chunzi及时回复了我的邮件，相信这本书还会帮助到更多的人。
 
 [Larry Cai](http://weibo.com/larrycaiyu) (@larrycaiyu) -- 上海爱立信研发中心的软件开发高级专家，从微博上加入["中文开源技术书"](http://q.weibo.com/1538118?source=weibo_tab)之后，身为管理员的larry就一直默默主动帮我解决从 markdown 到生成 pdf 格式的各种细节问题，他所维护的 [mkbok](https://github.com/larrycai/mkbok) 这里强烈推荐噢，以后一定会成为 GitHub 上写书必备之利器。
