@@ -3,15 +3,16 @@ layout: default
 title: 关于
 ---
 
-# 本书作者： 亚嵌李明老师 <limingth AT gmail.com>
-  新浪微博： @亚嵌李明老师
+# 本书作者
+亚嵌李明老师 <limingth AT gmail.com>  
+新浪微博： @亚嵌李明老师  
   
 # 建议反馈  
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'example'; // required: replace example with your forum shortname
+    var disqus_shortname = 'lumit'; // required: replace example with your forum shortname
 
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
@@ -22,3 +23,4 @@ title: 关于
 </script>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
