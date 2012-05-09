@@ -5,7 +5,7 @@ title: 关于
 
 # 本书作者
 亚嵌李明老师  - limingth AT gmail.com  
-新浪微博： @亚嵌李明老师  
+关注新浪微博： [@亚嵌李明老师](http://weibo.com/limingth)  
   
 # 建议反馈  
 
