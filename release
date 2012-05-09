@@ -1,5 +1,5 @@
-ls
-echo on
+set -v on
+git status
 git pull
 ruby mkbok
 xdg-open LASO.zh.pdf
