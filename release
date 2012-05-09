@@ -1,3 +1,5 @@
+ls
+echo on
 git pull
 ruby mkbok
 xdg-open LASO.zh.pdf
