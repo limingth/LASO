@@ -1,4 +1,7 @@
+git pull
 ruby mkbok
+xdg-open LASO.zh.pdf
+getchar
 git add .
 git add LASO.zh.pdf -f
 git commit -a -m "update all"
