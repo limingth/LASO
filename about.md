@@ -1,10 +1,10 @@
 ---
-layout: default
+layout: post
 title: 关于
 ---
 
 # 本书作者
-亚嵌李明老师 <limingth AT gmail.com>  
+亚嵌李明老师  - limingth AT gmail.com  
 新浪微博： @亚嵌李明老师  
   
 # 建议反馈  
