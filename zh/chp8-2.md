@@ -19,5 +19,7 @@ title: 源码开放学ARM - 异常处理 - 异常向量表的实现
 			B: 		0xEA000000 + offset
 			LDR: 	0xE59ff000 + offset
 
-<br> <br> 
-<div> <a href="chp8-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp8-3.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp8-1.html)  |  [目录索引](../index.html)  |  [下一节](chp8-3.html)

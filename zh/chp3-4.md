@@ -141,5 +141,6 @@ title: 源码开放学ARM - GPIO 控制器 - GPIO 驱动代码实现
 	}
 
 
-<br> <br> 
-<div> <a href="chp3-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp4-1.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp3-3.html)  |  [目录索引](../index.html)  |  [下一节](chp4-1.html)

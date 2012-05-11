@@ -69,7 +69,7 @@ title: 源码开放学ARM - 时钟管理 - 时钟驱动代码实现
 	2) 设置 DIV_PCLKP 分频因子 从 2 到 4，把 PCLK 从 66M 调整为 33M  
 		修改超级终端把 波特率 改为 57600 来测试 PCLK 的设置是否成功
 	
-	
 
-<br> <br> 
-<div> <a href="chp4-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-1.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp4-2.html)  |  [目录索引](../index.html)  |  [下一节](chp5-1.html)

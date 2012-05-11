@@ -50,5 +50,5 @@ title: 源码开放学ARM - GPIO 控制器 - GPIO 特殊功能寄存器
 
 	
 
-<br> <br> 
-<div> <a href="chp3-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp3-4.html">下一节</a> </div> <br> <br>
+
+[上一节](chp3-2.html)  |  [目录索引](../index.html)  |  [下一节](chp3-4.html)

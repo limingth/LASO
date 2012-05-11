@@ -41,5 +41,6 @@ title: 源码开放学ARM - 异常处理 - 异常相关基本概念
 		未定义指令异常： 什么样的指令是未定义？		
 	
 
-<br> <br> 
-<div> <a href="chp7-6.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp8-2.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp7-6.html)  |  [目录索引](../index.html)  |  [下一节](chp8-2.html)

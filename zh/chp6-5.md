@@ -31,5 +31,6 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 寄存器配置
 			...
 	
 
-<br> <br> 
-<div> <a href="chp6-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp6-6.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp6-4.html)  |  [目录索引](../index.html)  |  [下一节](chp6-6.html)

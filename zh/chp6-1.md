@@ -80,5 +80,5 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 硬件连接
 		
 	
 
-<br> <br> 
-<div> <a href="chp5-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp6-2.html">下一节</a> </div> <br> <br>
+
+[上一节](chp5-4.html)  |  [目录索引](../index.html)  |  [下一节](chp6-2.html)

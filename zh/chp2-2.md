@@ -51,5 +51,6 @@ title: 源码开放学ARM - 芯片手册导读 - 存储管理和地址映射
 		*(int *)0xE2900000 : UART SFR
 
 
-<br> <br> 
-<div> <a href="chp2-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp2-3.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp2-1.html)  |  [目录索引](../index.html)  |  [下一节](chp2-3.html)

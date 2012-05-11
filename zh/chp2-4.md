@@ -23,6 +23,7 @@ title: 源码开放学ARM - 芯片手册导读 - 时序图
 
 <img src="http://blog.chinaunix.net/attachment/201105/9/23860671_1304912130H6ww.jpg"> 
 
-	
-<br> <br> 
-<div> <a href="chp2-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp3-1.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp2-3.html)  |  [目录索引](../index.html)  |  [下一节](chp3-1.html)

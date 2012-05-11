@@ -33,5 +33,5 @@ Block Diagram:
 
 	
 
-<br> <br> 
-<div> <a href="chp5-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-5.html">下一节</a> </div> <br> <br>
+
+[上一节](chp5-3.html)  |  [目录索引](../index.html)  |  [下一节](chp5-5.html)

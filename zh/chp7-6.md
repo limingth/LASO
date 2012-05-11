@@ -137,5 +137,7 @@ title: 源码开放学ARM - NandFlash 控制器 - NandFlash 驱动代码实现
 		read NFSTAT;	-> R/nB 线会设置 STAT 寄存器 0 位
 		read NFDATA;	-> nRE 使能, CLE/ALE 禁止, IO[7:0] => NFDATA 中
 
-<br> <br> 
-<div> <a href="chp7-5.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp8-1.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp7-5.html)  |  [目录索引](../index.html)  |  [下一节](chp8-1.html)

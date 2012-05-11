@@ -19,5 +19,6 @@ Timing:
 <http://blog.163.com/hanozi@126/blog/static/1865756200897105453/>
 		
 
-<br> <br> 
-<div> <a href="chp6-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp6-4.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp6-2.html)  |  [目录索引](../index.html)  |  [下一节](chp6-4.html)

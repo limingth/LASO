@@ -35,5 +35,6 @@ title: 源码开放学ARM - 时钟管理 - 时钟发生器
 			Phase Locked Loop 锁相环 (倍频)
 	
 
-<br> <br> 
-<div> <a href="chp3-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp4-2.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp3-4.html)  |  [目录索引](../index.html)  |  [下一节](chp4-2.html)

@@ -23,5 +23,6 @@ title: 源码开放学ARM - UART 控制器 - 串口硬件连接
 	结论： GPA0 管理了 UART 的 Txd/Rxd 两个引脚
 	
 
-<br> <br> 
-<div> <a href="chp4-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp5-2.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp4-4.html)  |  [目录索引](../index.html)  |  [下一节](chp5-2.html)

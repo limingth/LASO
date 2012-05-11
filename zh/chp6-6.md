@@ -18,5 +18,7 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 驱动代码实现
 		把 data bit 的32bit 改为 8bit
 		用上述 putchar_hex 输出接口，观察读取DDR内存单元的数值变化
 
-<br> <br> 
-<div> <a href="chp6-5.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp7-1.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp6-5.html)  |  [目录索引](../index.html)  |  [下一节](chp7-1.html)

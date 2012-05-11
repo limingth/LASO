@@ -16,5 +16,7 @@ title: 源码开放学ARM - NandFlash 控制器 - NandFlash 时序图
 		忙等待周期 R/nB 高有效
 		数据周期 读2048次data + 64次ECC
 
-<br> <br> 
-<div> <a href="chp7-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp7-4.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp7-2.html)  |  [目录索引](../index.html)  |  [下一节](chp7-4.html)

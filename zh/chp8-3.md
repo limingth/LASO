@@ -47,5 +47,7 @@ PC 跳转到 0x8 之后，第一个问题是如何返回？ 包括两个返回�
 			   movs pc, lr	
 			将原来保存的 spsr 恢复给 CPSR
 
-<br> <br> 
-<div> <a href="chp8-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp8-4.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp8-2.html)  |  [目录索引](../index.html)  |  [下一节](chp8-4.html)

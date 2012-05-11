@@ -25,5 +25,6 @@ title: 源码开放学ARM - 时钟管理 - 时钟输出频率
 	PLL PMS setting
 		
 
-<br> <br> 
-<div> <a href="chp4-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp4-3.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp4-1.html)  |  [目录索引](../index.html)  |  [下一节](chp4-3.html)

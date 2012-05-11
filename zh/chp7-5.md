@@ -51,5 +51,6 @@ title: 源码开放学ARM - NandFlash 控制器 - NandFlash 寄存器配置
 			md 0xb0e00010
 	
 
-<br> <br> 
-<div> <a href="chp7-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp7-6.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp7-4.html)  |  [目录索引](../index.html)  |  [下一节](chp7-6.html)

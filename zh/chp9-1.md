@@ -30,5 +30,6 @@ title: 源码开放学ARM - 中断处理 - 中断相关基本概念
 	S5PV210 - Cortex A8	
 	
 
-<br> <br> 
-<div> <a href="chp8-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp9-2.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp8-4.html)  |  [目录索引](../index.html)  |  [下一节](chp9-2.html)

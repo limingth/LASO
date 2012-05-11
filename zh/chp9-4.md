@@ -70,8 +70,8 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 				作为异常发生后要跳转的地址+offset	
 			3. (int)IRQ_handler -> 0xD0037400 + 0x18
 				如果是 SWI 软件中断，则在 0xD0037408 处填写swi_handler的地址	
-
 	
 
-<br> <br> 
-<div> <a href="chp9-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp10-1.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp9-3.html)  |  [目录索引](../index.html)  |  [下一节](chp10-1.html)

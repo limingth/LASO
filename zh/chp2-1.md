@@ -146,5 +146,7 @@ title: 源码开放学ARM - 芯片手册导读 - 内部结构框图
 		SD
 		Security
 
-<br> <br> 
-<div> <a href="chp1-4.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp2-2.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp1-4.html)  |  [目录索引](../index.html)  |  [下一节](chp2-2.html)

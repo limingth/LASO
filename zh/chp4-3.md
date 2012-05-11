@@ -50,7 +50,7 @@ title: 源码开放学ARM - 时钟管理 - 锁相环和分频器
 	DIV_HCLKP: CLK_DIV0, 0xE0100300: 14131440 [27:24]=> 0100 = /5
 	DIV_PCLKP: CLK_DIV0, 0xE0100300: 14131440 [30:28]=> 001 = /2
 
-	
 
-<br> <br> 
-<div> <a href="chp4-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp4-4.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp4-2.html)  |  [目录索引](../index.html)  |  [下一节](chp4-4.html)

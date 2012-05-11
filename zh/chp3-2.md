@@ -18,5 +18,7 @@ General Purpose Input/Output (p92-p352)
 		pin name -> GPIO name  
 		default function  
 
-<br> <br> 
-<div> <a href="chp3-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp3-3.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp3-1.html)  |  [目录索引](../index.html)  |  [下一节](chp3-3.html)

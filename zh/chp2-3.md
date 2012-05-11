@@ -73,5 +73,6 @@ title: 源码开放学ARM - 芯片手册导读 - 特殊功能寄存器
 		int 类型对应4个字节，依据手册决定是否换为 char 类型
 
 
-<br> <br> 
-<div> <a href="chp2-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp2-4.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp2-2.html)  |  [目录索引](../index.html)  |  [下一节](chp2-4.html)

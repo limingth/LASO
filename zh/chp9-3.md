@@ -124,5 +124,8 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 				mcr p15, 0, r0, c1, c0, 0	
 			}	
 
-<br> <br> 
-<div> <a href="chp9-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp9-4.html">下一节</a> </div> <br> <br>
+
+
+
+
+[上一节](chp9-2.html)  |  [目录索引](../index.html)  |  [下一节](chp9-4.html)
