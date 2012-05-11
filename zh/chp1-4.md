@@ -79,7 +79,8 @@ title: 源码开放学ARM - 开发环境搭建 - 基本开发流程
 		
 	# go 0x21000000
 		之后观察 LED1 灯亮的现象
-	
 
-<br> <br> 
-<div> <a href="chp1-3.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp2-1.html">下一节</a> </div> <br> <br>
+
+
+
+[上一节](chp1-3.html)  |  [目录索引](../index.html)  |  [下一节](chp2-1.html)

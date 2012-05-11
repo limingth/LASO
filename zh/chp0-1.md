@@ -67,5 +67,5 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.5/cn/88x31.png" /></a><br />本<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/">知识共享署名-非商业性使用-相同方式共享 2.5 中国大陆许可协议</a>进行许可。
 
 
-<br> <br> 
-<div> <a href="../index.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-1.html">下一节</a> </div> <br> <br>
+
+[上一节](../index.html)  |  [目录索引](../index.html)  |  [下一节](chp1-1.html)

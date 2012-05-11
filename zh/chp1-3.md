@@ -138,5 +138,6 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
 
-<br> <br> 
-<div> <a href="chp1-2.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-4.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp1-2.html)  |  [目录索引](../index.html)  |  [下一节](chp1-4.html)

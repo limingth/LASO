@@ -60,5 +60,6 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件原理图
 以上所有芯片的数据手册，都可以在开发板附带光盘中找到，也可以从 <https://github.com/limingth/ARM-Resources> 链接下载得到。
 
 
-<br> <br> 
-<div> <a href="chp1-1.html">上一节</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a href="chp1-3.html">下一节</a> </div> <br> <br>
+
+
+[上一节](chp1-1.html)  |  [目录索引](../index.html)  |  [下一节](chp1-3.html)
