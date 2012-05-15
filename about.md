@@ -4,8 +4,9 @@ title: 关于
 ---
 
 # 本书作者
-亚嵌李明老师  - limingth AT gmail.com  
-关注新浪微博： [@亚嵌李明老师](http://weibo.com/limingth)  
+亚嵌李明老师: limingth AT gmail.com  
+关注新浪微博: [@亚嵌李明老师](http://weibo.com/limingth)  
+QQ: 2372614758
   
 # 建议反馈  
 
