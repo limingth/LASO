@@ -585,17 +585,6 @@ title: 源码开放学ARM - SDRAM 控制器 - SDRAM 驱动代码实现
 
 		mov	pc, lr
 
-	/*
-	 *     v7_flush_dcache_all()
-	 *
-	 *     Flush the whole D-cache.
-	 *
-	 *     Corrupted registers: r0-r5, r7, r9-r11
-	 *
-	 *     - mm    - mm_struct describing address space
-	 */
-	 
-
 
 ### 课堂修改作业
 
