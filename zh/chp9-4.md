@@ -46,7 +46,7 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 		接下来有2种处理办法：
 		A) 简单的办法就是使用 VIC 向量中断控制器的功能
 			1. 跳转的地址向量要提前设置好
-			2. 通知 ARM11 内核，启用 VIC Port 功能
+			2. 通知内核，启用 VIC Port 功能
 			紧接着的问题是，如何在执行完 beep 之后返回主程序？
 				原因： beep 程序不能作为 IRQ_handler
 				真正的 IRQ_handler 应该要完成
@@ -62,14 +62,15 @@ title: 源码开放学ARM - 中断处理 - 硬件中断异常代码实现
 			
 		B) 复杂的办法就是不用 VIC ，自己实现全过程
 			1. 当 IRQ 异常发生的时候，cpu 跳转到 0x18
-			2. 背景知识：reset 0 地址被映射 map 到 iROM
+			2. 背景知识：reset 0 地址被映射 map 到 iROM (内容不可修改)
 				0 地址 在 iROM 中 (0xD0000000)
-					iRAM (0xD0020000) -> 0x20000
-				0x18: 0xEA000018
-				最终在 iROM 中的程序(不可修改)会加载从 0xD0037400 地址开始的值，
-				作为异常发生后要跳转的地址+offset	
+					iRAM (0xD0020000) -> 0x20000 （iROM 被映射到了 0x20000）
+				通过 md 命令，查看相关内存单元值，发现 0x18: 0xEA000018
+				经过一系列分析，最终在 iROM 中的跳转指令会加载从 0xD0037400 地址开始的值，
+				作为异常发生后要跳转的地址+offset ，因此只需要修改 0xD0037418 的向量即可。					
 			3. (int)IRQ_handler -> 0xD0037400 + 0x18
 				如果是 SWI 软件中断，则在 0xD0037408 处填写swi_handler的地址	
+			4. 参考代码： https://github.com/limingth/ARM-Codes/tree/master/tiny210-codes/A-INT-demo
 	
 
 
