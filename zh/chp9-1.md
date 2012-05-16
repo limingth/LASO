@@ -27,7 +27,8 @@ title: 源码开放学ARM - 中断处理 - 中断相关基本概念
 	中断模式的响应和恢复，属于 Core (ARM)
 	Cortex-A8 Core (ARM) 手册下载 - 
 		http://infocenter.arm.com/help/topic/com.arm.doc.ddi0344k/DDI0344K_cortex_a8_r3p2_trm.pdf
-		
+
+#### 常见的 Soc - ARM Core
 	S3C4510 - ARM7TDMI
 	S3C2440 - ARM920T
 	S3C6410 - ARM1176
