@@ -38,7 +38,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	IDE.exe - 	ADS IDE
 	axd.exe	-	AXD debugger
 
-#### 命令行开发工具链 /(GNU tools-chain)
+#### 命令行开发工具链
 启动命令行方式
 
 	开始 -> 运行 -> cmd 命令打开一个窗口
@@ -140,7 +140,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	ADS_LinkerGuide_A.pdf 		- 链接器使用	
 	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
-### Linux 工具链安装使用说明
+### Linux 工具链安装使用说明 
 
 #### 安装 arm-linux-gcc
 
@@ -159,7 +159,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	$ arm-linux-gcc
 	arm-linux-gcc: no input files
 
-	以上步骤完成之后，可以在任意目录下使用 arm-linux-gcc 来编译程序。在输入 arm-linux- 之后使用 tab 键，还可以看到 arm-linux-as, arm-linux-ld, arm-linux-objcopy, arm-linux-objdump 等工具也都一并安装完成。
+以上步骤完成之后，可以在任意目录下使用 arm-linux-gcc 来编译程序。在输入 arm-linux- 之后使用 tab 键，还可以看到 arm-linux-as, arm-linux-ld, arm-linux-objcopy, arm-linux-objdump 等工具也都一并安装完成。
 	
 #### 安装 minicom 	
 
@@ -171,7 +171,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 		-> Exit
 	minicom	
 	
-	此时重启开发板，可以看到 minicom 中能够显示从开发板串口输出的字符。
+此时重启开发板，可以看到 minicom 中能够显示从开发板串口输出的字符。
 		
 
 [上一节](chp1-2.html)  |  [目录索引](../index.html)  |  [下一节](chp1-4.html)
