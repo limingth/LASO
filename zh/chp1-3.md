@@ -23,7 +23,7 @@ DS-5 (ARM Development Studio 5) 是 ARM 公司最新推出的开发工具套件�
 
 ### ADS 安装使用说明
 
-#### 工具下载： <http://limingth.github.com/ARM-Tools>
+工具下载 <http://limingth.github.com/ARM-Tools>
 	
 ADS1.2.zip 解压之后运行 setup.exe 安装
 
@@ -34,7 +34,8 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 
 	安装目录： C:\Program Files\ARM\ADSv1_2\Bin
 
-图形开发环境：
+图形开发环境
+
 	IDE.exe - 	ADS IDE
 	axd.exe	-	AXD debugger
 
@@ -140,12 +141,9 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	ADS_LinkerGuide_A.pdf 		- 链接器使用	
 	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
+### Linux 
 
-### Linux 工具链安装使用说明
-
-#### 安装 arm-linux-gcc
-
-
+#### arm-linux-gcc
 
 
 [上一节](chp1-2.html)  |  [目录索引](../index.html)  |  [下一节](chp1-4.html)
