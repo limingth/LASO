@@ -5,35 +5,40 @@ title: 源码开放学ARM - 开发环境搭建 - 开发工具链
 
 ##  开发工具链
 
-在ARM开发领域，有两大类开发工具可以选择，一类是基于 Windows 平台的 SDT, ADS, RealView MDK 系列，一类是基于 Linux 平台的 GNU Cross-Toolchain 。
+在ARM开发领域，有两大类开发工具可以选择，一类是基于 Windows 平台的 SDT, ADS, RealView MDK, DS-5 系列，一类是基于 Linux 平台的 GNU Cross-Toolchain 。
 
 考虑到从简单到复杂的学习路线，我们先介绍 Windows 平台上的工具链。一旦我们对工具链背后的开发思路比较了解之后，再来学习 Linux 上的工具就会比较容易上手。
 
 有关 ADS 工具和 MDK 工具的介绍，可以参考阅读百度百科的介绍。
 
-[ADS简介] (http://baike.baidu.com/view/171249.htm#sub6295819)
+[ADS简介](http://baike.baidu.com/view/171249.htm#sub6295819)
 
-[MDK简介] (http://baike.baidu.com/view/1745465.htm)
+[MDK简介](http://baike.baidu.com/view/1745465.htm)
 
-总体说来，MDK 是 ADS 的升级版本，界面上做了很大改动，但后台使用的命令行工具链基本一样。以下就是以 ADS 安装为例，对命令行工具链做一个简单说明。
+DS-5 (ARM Development Studio 5) 是 ARM 公司最新推出的开发工具套件，采用 Eclipse IDE，支持对于裸机，RTOS 和 Linux 系统的调试。
 
-### 安装说明
+[DS-5下载页面](http://www.arm.com/products/tools/software-tools/ds-5/index.php)
 
-工具下载： <http://limingth.github.com/ARM-Tools>
+总体说来，不同的开发工具套件虽然在界面上做了很大改动，但后台使用的命令行工具链基本是一样的。下面以 ADS 安装为例，对命令行工具链做一个简单说明。
+
+### ADS 安装使用说明
+
+#### 工具下载： <http://limingth.github.com/ARM-Tools>
 	
 ADS1.2.zip 解压之后运行 setup.exe 安装
 
-	注意： 	1) Full 安装, 不是 Typical
+注意： 	1) Full 安装, 不是 Typical
 		2) Install Licence, 在解压后的 crack\licence.dat
 	
 安装完成之后
 
-	安装目录： C:\Program Files\ARM\ADSv1_2\Bin
-	图形开发环境：
-		IDE.exe - 	ADS IDE
-		axd.exe	-	AXD debugger
+安装目录： C:\Program Files\ARM\ADSv1_2\Bin
 
-### 命令行开发工具链 /(GNU tools-chain)
+图形开发环境：
+	IDE.exe - 	ADS IDE
+	axd.exe	-	AXD debugger
+
+#### 命令行开发工具链
 启动命令行方式
 
 	开始 -> 运行 -> cmd 命令打开一个窗口
@@ -58,7 +63,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	armlink.exe -	Linker	/(ld)
 	fromelf.exe -	Bin-Utils /(objdump/objcopy)
 
-### C 编译器 
+#### C 编译器 
 	armcc 常用编译参数
 		-c 只编译，不连接
 		-D (定义)条件编译 (-DDEBUG)
@@ -82,7 +87,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 		如果一个C程序，没有 main 函数，编译会怎么样？ （有警告warning，无错误error，能生成可执行文件axf）
 	
 
-### asm 汇编器
+#### asm 汇编器
 	armasm 通常只生成 .o 的目标文件
 	
 	用法举例：
@@ -90,7 +95,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 			默认会生成  start.o，此时还需要 link 之后才能生成 axf 可执行文件
 	
 
-### obj 链接器
+#### obj 链接器
 	armlink 常用链接参数	
 		-ro-base 指定可执行代码的位置（代码段执行地址）
 		-rw-base 数据段执行地址
@@ -102,7 +107,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 		armlink hello.o -o hello.axf
 		armlink -first start.o -ro-base 0x0 -entry begin start.o main.o -o hello4.axf
 
-### 二进制转换工具
+#### bin-utils 二进制转换工具
 	fromelf 常用转换参数
 		-bin 生成bin文件，最终烧写到开发板上
 		-c 生成txt文本文件，反汇编文件
@@ -114,8 +119,7 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 		fromelf -bin hello.axf -o hello.bin
 		fromelf -c -s -d hello.axf -o hello.txt
 	
-
-### 综合应用
+#### 综合应用
 	单独汇编程序的编译链接
 		armasm start.s
 		armlink start.o -o demo.axf
@@ -129,14 +133,45 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 		armcc -c main.c
 		armlink -first start.o -ro-base 0x0 -entry begin start.o main.o -o demo.axf
 	
-
-### ARM Docs 开发文档
+#### ARM Docs 开发文档
 	DDI0100E_ARM_ARM.pdf  		- ARM体系结构知识，侧重于内核
 	ADS_CompilerGuide_D.pdf  	- 编译器使用	
 	ADS_AssemblerGuide_B.pdf 	- 汇编器使用
 	ADS_LinkerGuide_A.pdf 		- 链接器使用	
 	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
+### Linux 工具链安装使用说明 
 
+#### 安装 arm-linux-gcc
+
+工具下载： [arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz](http://www.lumit.org/ARM-Tools/dev/arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz)
+
+解压安装：
+
+	sudo tar zxvf arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz  -C /
+	ls /opt/FriendlyARM/toolschain/4.5.1/bin/
+		-> arm-linux-gcc
+	vi ~/.bashrc
+		-> export PATH=$PATH:/opt/FriendlyARM/toolschain/4.5.1/bin/
+	source ~/.bashrc
+	echo $PATH
+		-> /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/FriendlyARM/toolschain/4.5.1/bin/
+	$ arm-linux-gcc
+	arm-linux-gcc: no input files
+
+以上步骤完成之后，可以在任意目录下使用 arm-linux-gcc 来编译程序。在输入 arm-linux- 之后使用 tab 键，还可以看到 arm-linux-as, arm-linux-ld, arm-linux-objcopy, arm-linux-objdump 等工具也都一并安装完成。
+	
+#### 安装 minicom 	
+
+	sudo apt-get install minicom
+	sudo minicom -s
+		-> Serial port setup : /dev/ttyS0 (for USB Serial Port: /dev/ttyUSB0)
+		-> Hardware Flow Control : No
+		-> Save setup as dfl
+		-> Exit
+	minicom	
+	
+此时重启开发板，可以看到 minicom 中能够显示从开发板串口输出的字符。
+		
 
 [上一节](chp1-2.html)  |  [目录索引](../index.html)  |  [下一节](chp1-4.html)
