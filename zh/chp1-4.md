@@ -124,7 +124,7 @@ title: 源码开放学ARM - 开发环境搭建 - 基本开发流程
 
 	-> ls -l *.bin
 	   -rwxr-xr-x 1 limingth limingth   76 2012-05-11 18:21 led.bin
-	   -rw-r--r-- 1 limingth limingth 8192 2012-05-11 18:21 sd-led.bin			
+	   -rw-r--r-- 1 limingth limingth 8192 2012-05-11 18:21 sd-led.bin	
 
 #### 烧写 sd-led.bin 到 SD-Card
 	   
@@ -171,9 +171,10 @@ title: 源码开放学ARM - 开发环境搭建 - 基本开发流程
 	The partition table has been altered!
 
 	Syncing disks.
-	format FAT32 (This is VERY important for later use! However, it is not a must for led blink)
-
-	2. sudo mkfs.vfat /dev/sdb1
+		
+	2. format FAT32 
+	(This is VERY important for later use! However, it is not a must for led blink)
+	sudo mkfs.vfat /dev/sdb1
 	now you can test if SD-boot can blink led1
 
 	3. insert SD card to slot (CON10 of tiny210)
