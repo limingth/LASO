@@ -62,7 +62,7 @@ ARM 阶段的学习，构成了嵌入式软件开发工程师知识体系中不�
 ## 参与
 你可以通过 [@亚嵌李明老师](http://weibo.com/limingth) 联系作者或者发邮件给 limingth AT gmail.com 告知你希望出现在书中的内容和想要解决的问题。
 
-如果你愿意参与本书的编写，可以通过 fork [《源码开放学ARM》](<https://github.com/limingth/LASO) 作出贡献。
+如果你愿意参与本书的编写，可以通过 fork [《源码开放学ARM》](<http://github.com/limingth/LASO) 作出贡献。
     
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/"><img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.5/cn/88x31.png" /></a><br />本<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" rel="dct:type">作品</span>采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.5/cn/">知识共享署名-非商业性使用-相同方式共享 2.5 中国大陆许可协议</a>进行许可。
 
