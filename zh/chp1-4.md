@@ -80,7 +80,107 @@ title: 源码开放学ARM - 开发环境搭建 - 基本开发流程
 	# go 0x21000000
 		之后观察 LED1 灯亮的现象
 
-#### 测试可执行文件
+### Linux 平台开发
+#### led.s 汇编程序
+
+	.global _start
+	_start:
+		ldr r0, =0x1
+		ldr r1, =0xe0200280
+		str r0, [r1]    
+
+	loop:
+		ldr r0, =0x0
+		ldr r1, =0xe0200284
+		str r0, [r1]    
+		bl delay
+
+		ldr r0, =0x1
+		ldr r1, =0xe0200284
+		str r0, [r1]    
+		bl delay
+
+		b loop
+
+	delay:
+		ldr r0, =0x100000
+	go_on:  
+		sub r0, r0, #1
+		cmp r0, #0
+		bne go_on
+		mov pc, lr      
+		
+#### Makefile
+			
+	all:
+		arm-linux-as led.s -o led.o
+		arm-linux-ld led.o -o led.elf
+		arm-linux-objcopy -O binary led.elf led.bin
+		arm-linux-objdump -d led.elf > led.lst
+		./mktiny210spl.exe led.bin sd-led.bin
+				
+#### make
+
+	make
+
+	-> ls -l *.bin
+	   -rwxr-xr-x 1 limingth limingth   76 2012-05-11 18:21 led.bin
+	   -rw-r--r-- 1 limingth limingth 8192 2012-05-11 18:21 sd-led.bin			
+
+#### 烧写 sd-led.bin 到 SD-Card
+	   
+	insert sd card 
+	dmesg | grep sdb
+		-> /dev/sdb should be found
+	sudo dd iflag=dsync oflag=dsync if=sd-led.bin of=/dev/sdb seek=1
+		-> 记录了16+0 的读入
+		   记录了16+0 的写出
+		   8192字节(8.2 kB)已复制，0.209805 秒，39.0 kB/秒
+	   
+#### 补充：如何格式化 SD-Card
+
+	1. fdisk SD card to a Win95-FAT32 partition
+
+	if you just buy a new SD card, here we do it from the very beginning
+	sudo fdisk /dev/sdb
+	Command (m for help): m (help)
+	Command (m for help): p (print the partition table)
+	Command (m for help): d (delete the old partition)
+	Command (m for help): n (add a new partition)
+	Command action
+	   e   extended
+	   p   primary partition (1-4)
+	p (for primary) -> 
+	Partition number (1-4): 1
+	First cylinder (1-121, default 1): 1
+	Last cylinder, +cylinders or +size{K,M,G} (1-121, default 121):  (Enter)
+	Using default value 121
+
+	Command (m for help): t
+	Selected partition 1
+	Hex code (type L to list codes): L
+
+	Hex code (type L to list codes): b 
+	Changed system type of partition 1 to b (W95 FAT32)
+
+	Command (m for help): p
+
+	   Device Boot      Start         End      Blocks   Id  System
+	/dev/sdb1               1         121      971901    b  W95 FAT32
+
+	Command (m for help): w
+	The partition table has been altered!
+
+	Syncing disks.
+	format FAT32 (This is VERY important for later use! However, it is not a must for led blink)
+
+	2. sudo mkfs.vfat /dev/sdb1
+	now you can test if SD-boot can blink led1
+
+	3. insert SD card to slot (CON10 of tiny210)
+	>> switch to SDBOOT of S2
+	reset and see if it works!
+	 
 
 
 [上一节](chp1-3.html)  |  [目录索引](../index.html)  |  [下一节](chp2-1.html)
