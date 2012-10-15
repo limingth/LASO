@@ -141,9 +141,38 @@ ADS1.2.zip 解压之后运行 setup.exe 安装
 	ADS_LinkerGuide_A.pdf 		- 链接器使用	
 	ADS_DebugTargetGuide_D.pdf 	- 调试器使用
 
-### Linux 
+### Linux 工具链安装使用说明
 
-#### arm-linux-gcc
+#### 安装 arm-linux-gcc
+
+工具下载： [arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz](http://www.lumit.org/ARM-Tools/dev/arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz)
+
+解压安装：
+
+	sudo tar zxvf arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz  -C /
+	ls /opt/FriendlyARM/toolschain/4.5.1/bin/
+		-> arm-linux-gcc
+	vi ~/.bashrc
+		-> export PATH=$PATH:/opt/FriendlyARM/toolschain/4.5.1/bin/
+	source ~/.bashrc
+	echo $PATH
+		-> /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/FriendlyARM/toolschain/4.5.1/bin/
+	$ arm-linux-gcc
+	arm-linux-gcc: no input files
+
+	以上步骤完成之后，可以在任意目录下使用 arm-linux-gcc 来编译程序。在输入 arm-linux- 之后使用 tab 键，还可以看到 arm-linux-as, arm-linux-ld, arm-linux-objcopy, arm-linux-objdump 等工具也都一并安装完成。
+	
+#### 安装 minicom 	
+
+	sudo apt-get install minicom
+	sudo minicom -s
+		-> Serial port setup : /dev/ttyS0 (for USB Serial Port: /dev/ttyUSB0)
+		-> Hardware Flow Control : No
+		-> Save setup as dfl
+		-> Exit
+	minicom	
+	
+	此时重启开发板，可以看到 minicom 中能够显示从开发板串口输出的字符。
 
 
 [上一节](chp1-2.html)  |  [目录索引](../index.html)  |  [下一节](chp1-4.html)
