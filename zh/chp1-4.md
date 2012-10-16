@@ -82,9 +82,9 @@ title: 源码开放学ARM - 开发环境搭建 - 基本开发流程
 
 ### Linux 平台开发
 
-以下的代码可以从 <https://github.com/limingth/ARM-Codes/tree/master/tiny210-linux-codes/1-led-s> 下载
+以下代码可以从 <https://github.com/limingth/ARM-Codes/tree/master/tiny210-linux-codes/1-led-s> 下载
 
-相关工具可以从 <https://github.com/limingth/ARM-Tools/tree/gh-pages> 下载
+相关工具可以从 <https://github.com/limingth/ARM-Tools/tree/gh-pages/utils> 下载
 
 #### led.s 汇编程序
 
