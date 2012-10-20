@@ -19,11 +19,11 @@ Then your can see LASO.zh.pdf in your local directory
 
 Also you can download [LASO.zh.pdf](http://repo.or.cz/w/mkbok.git/blob_plain/HEAD:/limingth_LASO.zh.pdf) if you do NOT have ruby running env.
 
-if you want to view this book in html, see my website:
+if you want to view this book in html, see my website:  
 http://www.lumit.org
 
 if you want to know what is going on?  see my blog:  
 https://github.com/limingth/LASO/wiki
 
-if you know weibo, you can listen to 新浪微博 @亚嵌李明老师 
+if you know weibo, you can listen to 新浪微博 @亚嵌李明老师  
 http://weibo.com/limingth
