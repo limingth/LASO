@@ -25,5 +25,5 @@ http://www.lumit.org
 if you want to know what is going on?  see my blog:  
 https://github.com/limingth/LASO/wiki
 
-if you know weibo, you can listen to 新浪微博 @亚嵌李明老师  
+if you know weibo, you can watch 新浪微博 @亚嵌李明老师  
 http://weibo.com/limingth
