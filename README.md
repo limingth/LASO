@@ -1,6 +1,7 @@
-# This is the master branch, and it has nothing at all.
+## Last Updated: 2012-10-20
 
-# please switch to gh-pages branch to get the real material.
+This is the master branch, and it has nothing at all. 
+please switch to gh-pages branch to get the real material.
 
 These are the hints for your convinience
 
