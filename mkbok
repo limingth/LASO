@@ -203,7 +203,7 @@ def post_pandoc(string, config, lang, chapter=true)
 
 		# Shaded verbatim block
 		s /(\\begin\{verbatim\}.*?\\end\{verbatim\})/m, '\begin{shaded}\1\end{shaded}'
-        s /\t/m, '    '
+        s /\t/m, '        '
 
         # is using fancyvrb
         #s /\\begin\{verbatim\}/,'\\begin{Verbatim}[tabsize=4,frame=single]'
