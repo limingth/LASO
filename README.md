@@ -4,14 +4,14 @@
 
 These are the hints for your convinience
 
-  $ git clone git://github.com/limingth/LASO.git
-  $ cd LASO
-  LASO$ git checkout gh-pages
-  LASO$ export LANG=en_US.UTF-8
-  LASO$ export LC_ALL=en_US.UTF-8
-  LASO$ export LC_CTYPE=en_US.UTF-8
-  LASO$ ruby mkbok 
-  (incase your ruby version should be 1.9.3 or later)
+	$ git clone git://github.com/limingth/LASO.git
+	$ cd LASO
+	LASO$ git checkout gh-pages
+	LASO$ export LANG=en_US.UTF-8
+	LASO$ export LC_ALL=en_US.UTF-8
+	LASO$ export LC_CTYPE=en_US.UTF-8
+	LASO$ ruby mkbok 
+	(incase your ruby version should be 1.9.3 or later)
 
 
 Then your can see LASO.zh.pdf in your local directory 
