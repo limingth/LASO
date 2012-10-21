@@ -1,5 +1,9 @@
 ## Last Updated: 2012-10-21
 
+* Log 2012-10-21
+	- modify chp101-x.md
+
+
 This is the master branch, and it has nothing at all. 
 please switch to gh-pages branch to get the real material.
 
