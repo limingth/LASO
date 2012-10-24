@@ -1,4 +1,8 @@
-## Last Updated: 2012-10-21
+## Last Updated: 2012-10-24
+
+
+* Log of 2012-10-24  
+	modify chp102-x.md
 
 * Log of 2012-10-21  
 	modify chp101-x.md
