@@ -23,6 +23,8 @@ These are the hints for your convinience
 	LASO$ ruby mkbok 
 	(incase your ruby version should be 1.9.3 or later)
 
+	else you can fork it and clone to your local directory
+	$ git clone git@github.com:yourname/LASO.git
 
 Then your can see LASO.zh.pdf in your local directory 
 
