@@ -1,4 +1,4 @@
-## Last Updated: 2012-11-03
+## Last Updated: 2012-11-05
 
 * Log of 2012-11-03  
 	modify chp103, 104, 105
@@ -38,3 +38,13 @@ https://github.com/limingth/LASO/wiki
 
 - if you know weibo in China, you can watch 新浪微博 @亚嵌李明老师  
 http://weibo.com/limingth
+
+Tips:
+
+如果你在 linux 下面，可以用 git 命令来 clone 下载整个目录。
+
+git clone git://github.com/limingth/LASO.git
+
+windows 下面也可以安装一个 git for windows
+
+http://msysgit.github.com/
