@@ -1,7 +1,7 @@
 ## Last Updated: 2012-11-21
 
 * Log of 2012-11-32  
-	Add MMU, ProcessCore ...
+	+ Add MMU, ProcessCore ...
 
 * Log of 2012-11-03  
 	modify chp103, 104, 105
