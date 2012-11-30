@@ -1,10 +1,12 @@
-
 ## 《源码开放学ARM》  	
 <http://www.lumit.org>
 
-## Last Updated: 2012-11-21
+## Last Updated: 2012-11-30
 
-* Log of 2012-11-32  
+* Log of 2012-11-30
+	Add DM9000 Kernel module 
+
+* Log of 2012-11-22  
 	Add MMU, ProcessCore ...
 
 * Log of 2012-11-03  
