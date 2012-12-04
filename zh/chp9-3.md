@@ -22,9 +22,9 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 	控制器  	INTMSK			INTMSK			ENABLE(MSK)
 	(IC)    				SRCPND			RAWINTR(SRC)									
 	------------------------------------------------------------------------------------------
-									INTMSK
-									INTPND(clear)
-			EINTCON			EINTCON			EINTCON
+	                						INTMSK
+	                						INTPND(clear)
+	                EINTCON			EINTCON			EINTCON
 	中断源		(F/R/L)			(F/R/L)			(F/R/L)		
 	控制器		GPXCON			GPXCON			GPXCON
 	(GPIO)		(EINT)			(EINT)			(EINT)		
