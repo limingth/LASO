@@ -4,7 +4,8 @@
 ## Last Updated: 2012-12-4
 
 * Log of 2012-12-4  
-	Modify .mkbok.yml to gen new pdf
+	Modify .mkbok.yml to gen new pdf  
+	Add dm9000.c new source code
 
 * Log of 2012-11-30  
 	Add DM9000 Kernel module 
