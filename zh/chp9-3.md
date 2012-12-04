@@ -6,7 +6,7 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 ## 中断寄存器配置
 ### 中断相关寄存器的设计演变
 
-			IC			IC			Vectored IC ->
+			IC				IC				Vectored IC ->
 			
 			ARM7(4510)		ARM9(2440)		ARM11(6410) & A8(210)		
 	------------------------------------------------------------------------------------------
@@ -14,20 +14,20 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 	内核            						VIC Port(Enable)
 	(Core)          						VIC interface(PC<->A0-A31)
 	------------------------------------------------------------------------------------------
-	                			INTOFFSET      		VectADDRESS(32bit->A0-A31)
-	        							Vectors(handlers)
+	                		INTOFFSET      	VectADDRESS(32bit->A0-A31)
+											Vectors(handlers)
 	        				INTPRI			Priority
-	      		INTMOD			INTPND			(IRQ/FIQ)STATUS(PND) 
-	中断  		INTPND			INTMOD			SELECT(MOD) IRQ/FIQ
-	控制器		INTMSK			INTMSK			ENABLE(MSK)
+	      		INTMOD		INTPND			(IRQ/FIQ)STATUS(PND) 
+	中断  		INTPND		INTMOD			SELECT(MOD) IRQ/FIQ
+	控制器		INTMSK		INTMSK			ENABLE(MSK)
 	(IC)    				SRCPND			RAWINTR(SRC)									
 	------------------------------------------------------------------------------------------
-	                						INTMSK
-	                						INTPND(clear)
-	                EINTCON			EINTCON			EINTCON
-	中断源		(F/R/L)			(F/R/L)			(F/R/L)		
-	控制器		GPXCON			GPXCON			GPXCON
-	(GPIO)		(EINT)			(EINT)			(EINT)		
+											INTMSK
+											INTPND(clear)
+				EINTCON		EINTCON			EINTCON
+	中断源		(F/R/L)		(F/R/L)			(F/R/L)		
+	控制器		GPXCON		GPXCON			GPXCON
+	(GPIO)		(EINT)		(EINT)			(EINT)		
 	------------------------------------------------------------------------------------------
 	硬件层 		Key/UART/USB/Timer 
 
