@@ -11,14 +11,14 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 			ARM7(4510)		ARM9(2440)		ARM11(6410) & A8(210)		
 	------------------------------------------------------------------------------------------
 			CPSR I-bit		CPSR I-bit		CPSR I-bit
-	内核								VIC Port(Enable)
+	内核									VIC Port(Enable)
 	(Core)          						VIC interface(PC<->A0-A31)
 	------------------------------------------------------------------------------------------
 	                		INTOFFSET      	VectADDRESS(32bit->A0-A31)
 											Vectors(handlers)
 	        				INTPRI			Priority
 	      		INTMOD		INTPND			(IRQ/FIQ)STATUS(PND) 
-	中断		INTPND		INTMOD			SELECT(MOD) IRQ/FIQ
+	中断			INTPND		INTMOD			SELECT(MOD) IRQ/FIQ
 	控制器		INTMSK		INTMSK			ENABLE(MSK)
 	(IC)    				SRCPND			RAWINTR(SRC)									
 	------------------------------------------------------------------------------------------
