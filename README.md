@@ -5,7 +5,7 @@
 
 * Log of 2012-12-4  
 	Modify .mkbok.yml to gen new pdf  
-	Add dm9000.c new source code
+	Add dm9000.c new source code, thanks to teacher Bin ZheSong
 
 * Log of 2012-11-30  
 	Add DM9000 Kernel module 
