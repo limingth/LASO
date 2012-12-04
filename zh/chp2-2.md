@@ -38,10 +38,10 @@ title: 源码开放学ARM - 芯片手册导读 - 存储管理和地址映射
 	Boot Area: 0x0 - 0x20000000 =512M
 		Mirrored region depending on boot mode
 	
-	DRAM0: 	0x20000000 - 0x3FFFFFFF: 2^29 = 512M
-	DRAM1:  0x40000000 - 0x7FFFFFFF: =1G
-	SFR:	0xE0000000 - 0xFFFFFFFF: =512M
-	iROM:	0xD0000000 - 0xD0010000: =64K
+	DRAM0:	0x20000000 - 0x3FFFFFFF: 2^29 = 512M
+	DRAM1:	0x40000000 - 0x7FFFFFFF: =1G
+	SFR:  	0xE0000000 - 0xFFFFFFFF: =512M
+	iROM: 	0xD0000000 - 0xD0010000: =64K
 	iRAM: 	0xD0020000 - 0xD0038000: =96K (0x18=24*0x1000) 
 	
 	思考问题： 根据上述地址映射，对不同地址进行的访问，会引发底层硬件产生何种响应？
