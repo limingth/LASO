@@ -8,7 +8,7 @@ title: 源码开放学ARM - 异常处理 - 软中断异常代码实现
 ### New Project
 
 	start.s -> add to project
-	main.c 	-> add to project
+	main.c  -> add to project
 	Setting -> ARM Linker -> 1. robase 0x21000000
 				 2. layout start.o 
 				 3. PostLinker fromELF
