@@ -1,7 +1,10 @@
 ## 《源码开放学ARM》  	
 <http://www.lumit.org>
 
-## Last Updated: 2012-11-30
+## Last Updated: 2012-12-4
+
+* Log of 2012-12-4
+	Modify .mkbok.yml to gen new pdf
 
 * Log of 2012-11-30
 	Add DM9000 Kernel module 
