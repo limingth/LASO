@@ -36,7 +36,7 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件原理图
 	闪存      	Flash:	K9F2G08 -> 2Gbx8bit=256MB	[K9F2G08.pdf]
 	复位电路  	Reset:	Max811				[MAX811T.pdf]
 	调试电路  	Jtag: 	TCK/TDI/TDO/TMS/TRST
-	时钟       	CLOCK:	24Mhz (X1) XXTI/XXTO
+	时钟      	CLOCK:	24Mhz (X1) XXTI/XXTO
 	发光二极管	LED:  	LED1-4
 	高清接口  	HDMI:  	mini HDMI(CON8)
 
