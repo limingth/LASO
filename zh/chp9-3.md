@@ -14,7 +14,7 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 	内核            						VIC Port(Enable)
 	(Core)          						VIC interface(PC<->A0-A31)
 	------------------------------------------------------------------------------------------
-						INTOFFSET      		VectADDRESS(32bit->A0-A31)
+	                			INTOFFSET      		VectADDRESS(32bit->A0-A31)
 	        							Vectors(handlers)
 	        				INTPRI			Priority
 	        	INTMOD			INTPND			(IRQ/FIQ)STATUS(PND) 
