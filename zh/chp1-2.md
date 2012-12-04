@@ -46,7 +46,7 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件原理图
 	CONN-AB:	30*2 * 2个 = 120pin 引出 (例如串口TxD/RxD)
 	CONN-C:		15*2 = 30pin 引出 (例如I2C, CAM)
 	Power-On/Off:	S1
-	NET：        	DM9000AEP (Ethernet) HR91105A		[DM9000.pdf]
+	NET:        	DM9000AEP (Ethernet) HR91105A		[DM9000.pdf]
 	Audio:       	WM8960 (DA/AD convert)	     		[WM8960_Rev40.pdf]
 	Buzzer:	     	PWM Timer (beep)
 	RTC:         	Real-Time Clock
@@ -54,7 +54,7 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件原理图
 	Buttons:     	K1-K8 (XEINT16-27)
 	SD-CARD:    	Data(4pin) + (4pin)
 	UART:        	串口(通用异步收发器)	     		[MAX3232.pdf]
-	LCD：        	40pin / 45pin (DATA-24pin)    		[H43-HSD043I9W1.pdf]
+	LCD:        	40pin / 45pin (DATA-24pin)    		[H43-HSD043I9W1.pdf]
 	
 	
 以上所有芯片的数据手册，都可以在开发板附带光盘中找到，也可以从 <https://github.com/limingth/ARM-Resources> 链接下载得到。
