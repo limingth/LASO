@@ -25,7 +25,7 @@ title: 源码开放学ARM - 开发环境搭建 - 硬件平台
 	FLASH:	K9F2G08  
 	NET:	DM9000   
 	AUDIO:	WM8960  
-	UART: 	MAX3232  
+	UART:	MAX3232  
 
 ### 外设识别  
 	reset键
