@@ -33,7 +33,7 @@ title: 源码开放学ARM - 中断处理 - 中断寄存器配置
 
 ### S5PV210 中断相关寄存器
 	中断源 GPIO Controller
-		GPH2CON[0]   [3:0]   Set the pin mux function as EXT_INT
+		GPH2CON[0]   [3:0]   Set the pin mux function as EXT_INT 
 			0000 = Input     
 			0001 = Output 
 			0010 = Reserved 
